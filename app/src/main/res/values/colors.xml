@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008bab</color>
+    <color name="colorPrimaryDark">#006e8f</color>
+    <color name="colorAccent">#008bab</color>
+    <color name="colorBackground">#ffffff</color>
+    <color name="background_material_light">#ffffff</color>
+    <color name="Vaavio_blauw">#006e8f</color>
+</resources>

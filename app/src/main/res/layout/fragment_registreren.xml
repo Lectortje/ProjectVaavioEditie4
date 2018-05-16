@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/VaavioLogo"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vaavio_logo" />
+
+    <TextView
+        android:id="@+id/NieuwProfielTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Nieuw profiel aanmaken"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VaavioLogo" />
+
+    <ScrollView
+        android:id="@+id/ScrollViewRegistreren"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NieuwProfielTextView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/GebruikersnaamTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Gebruikersnaam"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="151dp" />
+
+            <EditText
+                android:id="@+id/EditTextGebruikersnaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="Naam*"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="186dp" />
+
+            <TextView
+                android:id="@+id/WachtwoordTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Wachtwoord"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="241dp" />
+
+            <EditText
+                android:id="@+id/EditTextWachtwoord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="Wachtwoord*"
+                android:inputType="textPassword"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="321dp" />
+
+            <TextView
+                android:id="@+id/EmailadresTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="E-mailadres"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="305dp" />
+
+            <EditText
+                android:id="@+id/EditTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="E-mailadres*"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="60dp"
+                tools:layout_editor_absoluteY="419dp" />
+
+            <TextView
+                android:id="@+id/TelefoonnummerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Telefoonnummer"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="385dp" />
+
+            <EditText
+                android:id="@+id/EditTextTelefoonnummer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="Telefoonnummer*"
+                android:inputType="phone"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="501dp" />
+
+            <Button
+                android:id="@+id/RegistratieVoltooienBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="48dp"
+                android:background="#008bab"
+                android:text="Registratie Voltooien" />
+
+            <TextView
+                android:id="@+id/AlgemeneVoorwaardenTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:text="U accepteert hiermee de algemene voorwaarden"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="76dp"
+                tools:layout_editor_absoluteY="135dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
