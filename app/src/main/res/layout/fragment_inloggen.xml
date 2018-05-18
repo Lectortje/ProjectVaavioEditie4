@@ -97,7 +97,7 @@
         android:layout_marginTop="48dp"
         android:background="#008bab"
         android:text="Inloggen"
-        app:layout_constraintBottom_toTopOf="@+id/textViewWachtwoordVergeten"
+        app:layout_constraintBottom_toTopOf="@+id/TextViewWachtwoordVergeten"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextWachtwoord" />
@@ -110,17 +110,18 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="Geen account? Klik hier om te registeren"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWachtwoordVergeten" />
+        app:layout_constraintTop_toBottomOf="@+id/TextViewWachtwoordVergeten" />
 
     <TextView
-        android:id="@+id/textViewWachtwoordVergeten"
+        android:id="@+id/TextViewWachtwoordVergeten"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
