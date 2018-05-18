@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class Startscherm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Startscherm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 
     @Override
@@ -49,11 +49,11 @@ public class Startscherm extends AppCompatActivity implements NavigationView.OnN
     gevuld wordt met de aan de geklikte knop bij behorende layout  */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new StartschermFragment()).commit();
-            break;
+                break;
             case R.id.nav_filters:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FiltersFragment()).commit();
@@ -65,6 +65,14 @@ public class Startscherm extends AppCompatActivity implements NavigationView.OnN
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new InloggenFragment()).commit();
+                break;
+            case R.id.nav_over_ons:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new OverOnsFragment()).commit();
+                break;
+            case R.id.nav_contact:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ContactFragment()).commit();
                 break;
         }
 

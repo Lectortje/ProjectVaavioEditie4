@@ -1,5 +1,7 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegistrerenFragment extends Fragment {
@@ -26,6 +29,14 @@ public class RegistrerenFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new InloggenFragment()).commit();
                 Toast.makeText(getActivity(), "U account is aangemaakt, u kunt nu inloggen", Toast.LENGTH_LONG).show();
+            }
+        });
+        TextView AlgemeneVoorwardenTextView = (TextView) view.findViewById(R.id.AlgemeneVoorwaardenTextView);
+        AlgemeneVoorwardenTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent av = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/terms-and-conditions/"));
+                startActivity(av);
             }
         });
 
