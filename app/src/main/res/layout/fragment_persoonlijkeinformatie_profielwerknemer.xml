@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/VaavioLogo"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vaavio_logo" />
+
+    <TextView
+        android:id="@+id/PersoonlijkeInformatieTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Persoonlijke Informatie"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VaavioLogo" />
+
+    <Button
+        android:id="@+id/OpslaanBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#008bab"
+        android:text="Opslaan"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/PaginaScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PersoonlijkeInformatieTextView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/NaamTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Naam"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/NaamEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Naam"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/AchternaamTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Achternaam"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/AchternaamEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Achternaam"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/EmailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="E-mailadres"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/EmailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="E-mailadres"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/TelefoonTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Telefoonnummer"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/TelefoonEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Telefoonnummer"
+                android:inputType="phone"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/AdresTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Adres"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/AdresEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Straat"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/HuisnummerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Huisnummer"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/HuisnummerEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Huisnummer"
+                android:inputType="number"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/ToevoegingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Toevoeging"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/ToevoegingEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Toevoeging"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/WoonplaatsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Woonplaats"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/WoonplaatsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Woonplaats"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/PostcodeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Postcode"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/PostcodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Postcode"
+                android:inputType="textPostalAddress"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/LeeftijdTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Leeftijd"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/LeeftijdEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Leeftijd"
+                android:inputType="number"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/GeslachtTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Geslacht"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/GeslachtEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Man/Vrouw"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/NationaliteitTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="Nationaliteit"
+                android:textColor="#000"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/NationaliteitEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nationaliteit"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

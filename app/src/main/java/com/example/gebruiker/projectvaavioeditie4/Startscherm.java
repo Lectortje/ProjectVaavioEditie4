@@ -74,6 +74,10 @@ public class Startscherm extends AppCompatActivity implements NavigationView.OnN
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ContactFragment()).commit();
                 break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new InstellingenFragment()).commit();
+                break;
         }
 
         //wanneer er op een knop is geklikt wordt de drawer gesloten

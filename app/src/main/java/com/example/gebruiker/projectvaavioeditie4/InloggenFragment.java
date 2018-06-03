@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class InloggenFragment extends Fragment {
@@ -35,6 +36,15 @@ public class InloggenFragment extends Fragment {
                 fragmentTransaction.replace(R.id.fragment_container, new WachtwoordVergetenFragment()).addToBackStack("tag").commit();
             }
         });
+        Button InlogBtn = (Button) view.findViewById(R.id.InlogBtn);
+        InlogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ProfielWerknemerFragment()).addToBackStack("tag").commit();
+            }
+        });
+
         return view;
     }
 
