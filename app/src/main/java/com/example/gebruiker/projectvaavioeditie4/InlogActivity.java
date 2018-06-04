@@ -80,7 +80,7 @@ public class InlogActivity extends AppCompatActivity implements NavigationView.O
 
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(wachtwoord))
                 {
-                    Toast.makeText(InlogActivity.this, "Velden zijn leeg", Toast.LENGTH_LONG).show();
+                    Toast.makeText(InlogActivity.this, "Vul gebruikersnaam en wachtwoord in", Toast.LENGTH_LONG).show();
                 }
                 else
                     {
@@ -93,7 +93,7 @@ public class InlogActivity extends AppCompatActivity implements NavigationView.O
 
                                 if (!task.isSuccessful())
                                 {
-                                    Toast.makeText(InlogActivity.this, "Probleem bij het inloggen", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(InlogActivity.this, "Wachtwoord of gebruikersnaam verkeerd", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
