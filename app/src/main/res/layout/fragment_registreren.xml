@@ -84,33 +84,6 @@
                 tools:layout_editor_absoluteY="186dp" />
 
             <TextView
-                android:id="@+id/WachtwoordTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:text="Wachtwoord"
-                android:textColor="#000"
-                android:textSize="12sp"
-                tools:layout_editor_absoluteX="71dp"
-                tools:layout_editor_absoluteY="241dp" />
-
-            <EditText
-                android:id="@+id/EditTextWachtwoord"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:ems="10"
-                android:hint="Wachtwoord*"
-                android:inputType="textPassword"
-                android:textSize="12sp"
-                tools:layout_editor_absoluteX="81dp"
-                tools:layout_editor_absoluteY="321dp" />
-
-            <TextView
                 android:id="@+id/EmailadresTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,6 +109,33 @@
                 android:textSize="12sp"
                 tools:layout_editor_absoluteX="60dp"
                 tools:layout_editor_absoluteY="419dp" />
+
+            <TextView
+                android:id="@+id/WachtwoordTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Wachtwoord"
+                android:textColor="#000"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="241dp" />
+
+            <EditText
+                android:id="@+id/EditTextWachtwoord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:hint="Wachtwoord*"
+                android:inputType="textPassword"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="321dp" />
 
             <TextView
                 android:id="@+id/TelefoonnummerTextView"

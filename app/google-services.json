@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "78832737903",
+    "firebase_url": "https://vaavio-af699.firebaseio.com",
+    "project_id": "vaavio-af699",
+    "storage_bucket": "vaavio-af699.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78832737903:android:0eca7408e941561e",
+        "android_client_info": {
+          "package_name": "com.example.gebruiker.projectvaavioeditie4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78832737903-4699alc1jmntt3edtorf3e3u1u8io2qv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gebruiker.projectvaavioeditie4",
+            "certificate_hash": "55a33302ea5a49c08dae95bbc937bd145626c775"
+          }
+        },
+        {
+          "client_id": "78832737903-1g8j61m64thpu0tba89dlvb43pmk4dlk.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "78832737903-1g8j61m64thpu0tba89dlvb43pmk4dlk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD42mAqKQj41LDDwA7an0xssuQsUqreXCY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78832737903-1g8j61m64thpu0tba89dlvb43pmk4dlk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
