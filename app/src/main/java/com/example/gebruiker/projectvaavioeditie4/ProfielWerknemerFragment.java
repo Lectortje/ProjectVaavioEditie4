@@ -14,7 +14,7 @@ public class ProfielWerknemerFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profielwerknemer, container, false);
-
+/*
         Button CvBtn = (Button) view.findViewById(R.id.CvBtn);
         CvBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,8 @@ public class ProfielWerknemerFragment extends Fragment {
             }
         });
 
-
+*/
         return view;
     }
 }
+

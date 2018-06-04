@@ -11,8 +11,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Startscherm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private DrawerLayout drawer;
 
     @Override
@@ -34,14 +36,16 @@ public class Startscherm extends AppCompatActivity implements NavigationView.OnN
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView.setCheckedItem(R.id.nav_home);
+
         /*Wanneer de app geopend wordt moet er niet een lege fragment te zien zijn, bij het opstarten wordt deze dus gevuld met het homescherm.
         de if statement is om te kijken of de persoon de compleet nieuw opstart of weer terug gaat na dat het bijvoorbeeld op de homebutton hebt gedrukt
-        Wanneer dat laatste het geval is wordt de code hier onder juist niet uitgevoerd zodat je gewoon weer verder kan gaan waar je bent gebleven.*/
+        Wanneer dat laatste het geval is wordt de code hier onder juist niet uitgevoerd zodat je gewoon weer verder kan gaan waar je bent gebleven.
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new StartschermFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
-        }
+        }*/
     }
 
 
@@ -51,32 +55,31 @@ public class Startscherm extends AppCompatActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new StartschermFragment()).commit();
-                break;
+                Intent navhome = new Intent(this, Startscherm.class);
+                navhome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navhome);
+                finish();
             case R.id.nav_filters:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FiltersFragment()).commit();
+                Toast.makeText(Startscherm.this, "Filters", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_av:
                 Intent av = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/terms-and-conditions/"));
                 startActivity(av);
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new InloggenFragment()).commit();
+                Intent navprofile = new Intent(this, InlogActivity.class);
+                navprofile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navprofile);
+                finish();
                 break;
             case R.id.nav_over_ons:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new OverOnsFragment()).commit();
+                Toast.makeText(Startscherm.this, "Over ons", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_contact:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ContactFragment()).commit();
+                Toast.makeText(Startscherm.this, "Contact", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new InstellingenFragment()).commit();
+                Toast.makeText(Startscherm.this, "Settings", Toast.LENGTH_LONG).show();
                 break;
         }
 

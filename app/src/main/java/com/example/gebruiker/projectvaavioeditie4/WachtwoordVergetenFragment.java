@@ -18,7 +18,7 @@ public class WachtwoordVergetenFragment extends Fragment {
     //Het koppelen van de layout aan et fragment. 'OnCreate', dus wanneer het fragment wordt gemaakt maakt hij gebruikt van de layout genoemnd in onderstaande code.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wwvergeten, container, false);
-
+/*
         Button HerstellenBtn = (Button) view.findViewById(R.id.HerstellenBtn);
         HerstellenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +28,8 @@ public class WachtwoordVergetenFragment extends Fragment {
                 Toast.makeText(getActivity(), "Volg de intructies in de mail om uw wachtwoord te herstellen", Toast.LENGTH_LONG).show();
             }
         });
+
+        */
         return view;
     }
 }

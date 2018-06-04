@@ -17,12 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 
 public class RegistrerenFragment extends Fragment {
 
-    private DatabaseReference mDatabase;
+    /* private DatabaseReference mDatabase;
     private EditText mGebruikersnaam;
     private EditText mWachtwoord;
     private EditText mEmail;
     private EditText mTelefoonnummer;
-    private Button mRegistreren;
+    private Button mRegistreren; */
 
     @Nullable
     @Override
@@ -42,10 +42,10 @@ public class RegistrerenFragment extends Fragment {
         // mDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
         // mGebruikersnaam = (EditText) view.findViewById(R.id.EditTextGebruikersnaam);
-        mWachtwoord = (EditText) view.findViewById(R.id.EditTextWachtwoord);
-        mEmail = (EditText) view.findViewById(R.id.EditTextEmail);
+        // mWachtwoord = (EditText) view.findViewById(R.id.EditTextWachtwoord);
+        // mEmail = (EditText) view.findViewById(R.id.EditTextEmail);
         // mTelefoonnummer = (EditText) view.findViewById(R.id.EditTextTelefoonnummer);
-        mRegistreren = (Button) view.findViewById(R.id.RegistratieVoltooienBtn);
+        // mRegistreren = (Button) view.findViewById(R.id.RegistratieVoltooienBtn);
 
         /* mRegistreren.setOnClickListener(new View.OnClickListener() {
             @Override

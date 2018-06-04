@@ -29,70 +29,108 @@
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="48dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
             app:srcCompat="@drawable/vaavio_logo" />
 
-        <TextView
-            android:id="@+id/textViewFunctie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:text="Functie"
-            android:textColor="#000"
-            android:textSize="14sp" />
-
-        <AutoCompleteTextView
-            android:id="@+id/EditTextFunctie"
+        <EditText
+            android:id="@+id/EditTextEmailadres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:hint="Bijv. Loodgieter"
+            android:layout_marginTop="8dp"
+            android:hint="E-mailadres*"
+            android:inputType="textPersonName"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/TextViewLocatie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:layout_marginEnd="32dp"
-
-            android:layout_marginStart="32dp"
-            android:text="Locatie"
-            android:textColor="#000"
-            android:textSize="14sp" />
-
-        <AutoCompleteTextView
-            android:id="@+id/EditTextLocatie"
+        <EditText
+            android:id="@+id/EditTextWachtwoord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="Bijv. Heerenveen"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:hint="Wachtwoord*"
+            android:inputType="textPersonName"
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/ZoekenBtn"
+            android:id="@+id/InlogBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#008bab"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:text="Zoeken"
-            android:textSize="14sp" />
+            android:layout_marginTop="8dp"
+            android:background="#008bab"
+            android:text="Inloggen" />
+
+        <TextView
+            android:id="@+id/TextViewRegistreren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Geen account? Klik hier om te registeren"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/TextViewWachtwoordVergeten"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Wachtwoord vergeten? Klik dan hier"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/SocialeButtonsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Of login met Google, Facebook of Twitter"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+       <!-- <ImageView
+            android:id="@+id/FacebookImageView"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/facebook_icon" />
+
+        <ImageView
+            android:id="@+id/TwitterImageView"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="right"
+            app:srcCompat="@drawable/twitter_icon" />
+
+        <ImageView
+            android:id="@+id/GoogleImageView"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/google_icon" /> -->
+
+
     </LinearLayout>
 
     <!-- Het ontwerpen van de navigation drawer, wat niet meer is dan het toewijzen van de nav header (waar de code in een apart xml file staat,

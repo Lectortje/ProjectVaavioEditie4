@@ -32,7 +32,7 @@ public class InloggenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inloggen, container, false);
 
-        TextView TextViewRegistreren = (TextView) view.findViewById(R.id.TextViewRegistreren);
+       /* TextView TextViewRegistreren = (TextView) view.findViewById(R.id.TextViewRegistreren);
         TextViewRegistreren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,9 +48,9 @@ public class InloggenFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new WachtwoordVergetenFragment()).addToBackStack("tag").commit();
             }
-        });
+        }); */
 
-        mEmail = (EditText) view.findViewById(R.id.EditTextEmail);
+        /* mEmail = (EditText) view.findViewById(R.id.EditTextEmail);
         mWachtwoord = (EditText) view.findViewById(R.id.EditTextWachtwoord);
         mInlog = (Button) view.findViewById(R.id.InlogBtn);
 
