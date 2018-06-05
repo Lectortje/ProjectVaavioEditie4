@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class WachtwoordVergetenFragment extends Fragment {
 
@@ -24,7 +21,7 @@ public class WachtwoordVergetenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new InloggenFragment()).commit();
+                fragmentTransaction.replace(R.id.fragment_container, new ).commit();
                 Toast.makeText(getActivity(), "Volg de intructies in de mail om uw wachtwoord te herstellen", Toast.LENGTH_LONG).show();
             }
         });

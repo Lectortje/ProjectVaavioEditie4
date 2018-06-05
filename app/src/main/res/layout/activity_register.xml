@@ -28,71 +28,94 @@
             android:id="@+id/VaavioLogo"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
             app:srcCompat="@drawable/vaavio_logo" />
 
         <TextView
-            android:id="@+id/textViewFunctie"
+            android:id="@+id/NieuwProfielTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Nieuw profiel aanmaken"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/EmailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:text="Functie"
+
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="E-mail"
             android:textColor="#000"
             android:textSize="14sp" />
 
         <AutoCompleteTextView
-            android:id="@+id/EditTextFunctie"
+            android:id="@+id/EditTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:hint="Bijv. Loodgieter"
+            android:layout_marginTop="8dp"
+            android:hint="E-mailadres*"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/TextViewLocatie"
+            android:id="@+id/WachtwoordTextiew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:layout_marginEnd="32dp"
-
-            android:layout_marginStart="32dp"
-            android:text="Locatie"
+            android:text="Wachtwoord"
             android:textColor="#000"
             android:textSize="14sp" />
 
         <AutoCompleteTextView
-            android:id="@+id/EditTextLocatie"
+            android:id="@+id/EditTextWachtwoord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="Bijv. Heerenveen"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:hint="Wachtwoord*"
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/ZoekenBtn"
+            android:id="@+id/RegisterBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#008bab"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:text="Zoeken"
+            android:layout_marginTop="8dp"
+            android:background="#008bab"
+            android:text="Registreren"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/AlgemeneVoorwaardenTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:text="U accepteert hiermee de algemene voorwaarden"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
     <!-- Het ontwerpen van de navigation drawer, wat niet meer is dan het toewijzen van de nav header (waar de code in een apart xml file staat,
