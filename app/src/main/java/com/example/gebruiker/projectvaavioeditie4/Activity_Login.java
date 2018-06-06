@@ -2,13 +2,13 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -31,6 +31,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
     private EditText mWachtwoord;
     private Button mInlog;
     private TextView mRegisteren;
+    private TextView mResetPassword;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -58,6 +59,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         mWachtwoord = (EditText) findViewById(R.id.EditTextWachtwoord);
         mInlog = (Button) findViewById(R.id.InlogBtn);
         mRegisteren = (TextView) findViewById(R.id.TextViewRegistreren);
+        mResetPassword = (TextView) findViewById(R.id.TextViewWachtwoordVergeten);
 
         // Initializing the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
@@ -70,7 +72,6 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
             {
-
                 if (firebaseAuth.getCurrentUser() != null)
                 {
                     // Intent to change to the profile activity.
@@ -86,15 +87,20 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
             @Override
             public void onClick(View v)
             {
-
                 // First the input given by the users in the Edit Text Fields is converted into String and then placed into a string variable
                 String email = mEmailadres.getText().toString();
                 String wachtwoord = mWachtwoord.getText().toString();
 
                 // Checking if the strings are empty or not. If empty the app will toast the user to fill in all the Edit Text Fields
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(wachtwoord))
+                if (TextUtils.isEmpty(email))
                 {
-                    Toast.makeText(Activity_Login.this, "Vul gebruikersnaam en wachtwoord in", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_Login.this, "Vul gebruikersnaam in", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(wachtwoord))
+                {
+                    Toast.makeText(Activity_Login.this, "Vul wachtwoord in", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 // If the fields are not empty, they will be placed in the login method.
                 else
@@ -129,6 +135,16 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
             }
         });
 
+        // Setting the onCLickListener for the password reset text. When the user clicks the text he will be redirected to the reset activity
+        mResetPassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent resetpassword = new Intent(Activity_Login.this, Activity_PasswordForgotten.class);
+                startActivity(resetpassword);
+            }
+        });
     }
 
     // When the login activity is loaded, you first want to check if the user is logged in or not already. Therefore, onStart, you

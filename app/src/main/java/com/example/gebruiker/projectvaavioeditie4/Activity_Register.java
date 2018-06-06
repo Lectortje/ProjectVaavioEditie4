@@ -15,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Activity_Register extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -31,6 +33,8 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
     private EditText mWachtwoord;
     private Button mRegister;
     private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private TextView mAV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +59,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
         mEmail = (EditText) findViewById(R.id.EditTextEmail);
         mWachtwoord = (EditText) findViewById(R.id.EditTextWachtwoord);
         mRegister = (Button) findViewById(R.id.RegisterBtn);
+        mAV = (TextView) findViewById(R.id.AlgemeneVoorwaardenTextView);
 
         // Initializing the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
@@ -104,10 +109,34 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
                     {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(Activity_Register.this, "U bent geregistreerd", Toast.LENGTH_LONG).show();
+                            // Sending the email verification using the method provided by Firebase. If task is successful, a toast get displayed.
+                            mUser = mAuth.getCurrentUser();
+
+                            mUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
+                            {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    if(task.isSuccessful())
+                                    {
+                                        Toast.makeText(Activity_Register.this, "U bent geregistreerd, verifieer je email", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });
+            }
+        });
+
+        // Handling the event when clicked on the Algemene voorwaarden text. It will redirect the user to the vaavio site.
+        mAV.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent voorwaarden = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/terms-and-conditions/"));
+                startActivity(voorwaarden);
             }
         });
     }

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Fragment_Profile extends Fragment
+public class Fragment_Account extends Fragment
 {
 
     // Creating the variables
@@ -25,7 +25,7 @@ public class Fragment_Profile extends Fragment
     // When loading the fragment, the fragment has to be assigned a layout. This happens through the inflate method.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         // Executing the FireBaseListener function created below to log the user out.
         setupFireBaseListener();

@@ -2,28 +2,37 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Patterns;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-public class Activity_Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
-    // creating a variable and setting it as a drawer
+public class Activity_PasswordForgotten extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    // creating the variables
     private DrawerLayout drawer;
+    private FirebaseAuth mAuth;
+    private EditText mEmail;
+    private Button mHerstellen;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profiel_werknemer);
+        setContentView(R.layout.activity_passwordforgotten);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,12 +48,54 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
-        // So when loading the activity, the fragment gets replaced with the profile fragment.
-        // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Fragment_Account()).commit();
-        navigationView.setCheckedItem(R.id.nav_profile);
+        mAuth = FirebaseAuth.getInstance();
+        mEmail = (EditText) findViewById(R.id.EditTextPasswordForgoten);
+        mHerstellen = (Button) findViewById(R.id.HerstellenBtn);
+
+        mHerstellen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Converting the input in the edit text to a string variable
+                String email = mEmail.getText().toString().trim();
+
+                // First, there is a check to make sure the email field isn't empty. If this is the case however, the user gets instructed to fill in a email.
+                if (email.isEmpty())
+                {
+                    Toast.makeText(Activity_PasswordForgotten.this, "Vul een emailadres in", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // Secondly, the email is being validated. To make sure the filled in text is an email, a check gets executed
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                {
+                    Toast.makeText(Activity_PasswordForgotten.this, "Vul een geldig emailadres in", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Sending the email to reset the password using the email provided in the edit text.
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            // If email is send successfully, the user gets redirected to the login screen, where it can login again after the password is changed.
+                            if (task.isSuccessful())
+                            {
+                                Intent intent = new Intent(Activity_PasswordForgotten.this, Activity_Login.class);
+                                startActivity(intent);
+                                finish();
+                                Toast.makeText(Activity_PasswordForgotten.this, "Email om wachtwoord te herstellen is verstuurd", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            // If an email is entered that doesn't match any email in the database,  the sending email part won't work. If that is the case, an toast
+                            // Will be displayed saying that the email is unknown in the system.
+                            {
+                                Toast.makeText(Activity_PasswordForgotten.this, "Het ingevoerde emailadres is niet bij ons bekend", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                });
+            }
+        });
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
