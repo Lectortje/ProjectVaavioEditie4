@@ -94,7 +94,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
                 // Checking if the strings are empty or not. If empty the app will toast the user to fill in all the Edit Text Fields
                 if (TextUtils.isEmpty(email))
                 {
-                    Toast.makeText(Activity_Login.this, "Vul gebruikersnaam in", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_Login.this, "Vul emailadres in", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(wachtwoord))

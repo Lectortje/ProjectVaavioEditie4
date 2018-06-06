@@ -23,7 +23,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profiel_werknemer);
+        setContentView(R.layout.activity_account);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
