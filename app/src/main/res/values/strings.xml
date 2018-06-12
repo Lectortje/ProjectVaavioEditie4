@@ -2,4 +2,5 @@
     <string name="app_name">ProjectVaavioEditie4</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="title_activity__vacatures">Activity_Vacatures</string>
 </resources>

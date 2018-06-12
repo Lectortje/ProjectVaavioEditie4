@@ -39,7 +39,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inlog);
+        setContentView(R.layout.activity_login);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);

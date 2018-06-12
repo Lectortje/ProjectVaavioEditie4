@@ -2,19 +2,20 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class Activity_Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Activity_VacOmschrijving extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+
 
     // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
@@ -23,7 +24,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_vac_omschrijving);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,12 +40,8 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
-        // So when loading the activity, the fragment gets replaced with the profile fragment.
-        // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Fragment_Account()).commit();
-        navigationView.setCheckedItem(R.id.nav_profile);
+        // Making the nav_home button in the drawer menu selected on start up
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -62,9 +59,8 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 navhome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(navhome);
                 finish();
-                break;
             case R.id.nav_filters:
-                Toast.makeText(this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_VacOmschrijving.this, "Filters", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -86,7 +82,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_VacOmschrijving.this, "Settings", Toast.LENGTH_LONG).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment
@@ -109,3 +105,4 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         }
     }
 }
+

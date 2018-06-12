@@ -62,7 +62,7 @@ public class Fragment_Account extends Fragment
             public void onClick(View v)
             {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcSolicitations()).addToBackStack("tag").commit();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcFavorites()).addToBackStack("tag").commit();
             }
         });
 

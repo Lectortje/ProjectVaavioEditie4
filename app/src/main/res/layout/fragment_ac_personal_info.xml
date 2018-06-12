@@ -44,8 +44,19 @@
         android:text="Opslaan"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/UploadPFBtn"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/UploadPFBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#008bab"
+        android:text="Upload profielfoto"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/OpslaanBtn" />
 
     <ScrollView
         android:id="@+id/PaginaScrollView"

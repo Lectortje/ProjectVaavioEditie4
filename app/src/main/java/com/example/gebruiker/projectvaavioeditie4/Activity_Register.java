@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Activity_Register extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
     // creating the variables
     private DrawerLayout drawer;
     private EditText mEmail;

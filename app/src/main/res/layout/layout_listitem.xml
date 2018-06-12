@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:id="@+id/parent_layout">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/image"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job title"
+        android:id="@+id/job_title"
+        android:layout_toRightOf="@+id/image"
+        android:textColor="#000"
+        android:layout_marginLeft="30dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locatie"
+        android:id="@+id/locatie"
+        android:layout_toRightOf="@+id/job_title"
+        android:textColor="#000"
+        android:layout_marginLeft="30dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Omschrijving"
+        android:id="@+id/omschrijving"
+        android:layout_below="@+id/job_title"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:layout_marginLeft="110dp" />
+
+</RelativeLayout>

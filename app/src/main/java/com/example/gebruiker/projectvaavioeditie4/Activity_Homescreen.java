@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -18,12 +20,13 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
 
     // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
+    private Button mZoeken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startscherm);
+        setContentView(R.layout.activity_homescreen);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -41,6 +44,18 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
 
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);
+
+        // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
+        mZoeken = (Button) findViewById(R.id.ZoekenBtn);
+        mZoeken.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+                startActivity(zoeken);
+            }
+        });
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
