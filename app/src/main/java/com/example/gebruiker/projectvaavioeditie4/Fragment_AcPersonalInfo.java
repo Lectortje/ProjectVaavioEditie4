@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -44,6 +47,7 @@ public class Fragment_AcPersonalInfo extends Fragment
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private String UserID;
+    private ImageView mProfielFoto;
     private StorageReference mStorage;
     private ProgressDialog mProgressDialog;
     private static final int GALLERY_INTENT = 2;
@@ -64,6 +68,7 @@ public class Fragment_AcPersonalInfo extends Fragment
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
+        mProfielFoto = (ImageView) view.findViewById(R.id.ImageViewProfilePicture);
         mNaam = (EditText) view.findViewById(R.id.NaamEditText);
         mAchternaam = (EditText) view.findViewById(R.id.AchternaamEditText);
         mEmail = (EditText) view.findViewById(R.id.EmailEditText);
@@ -79,6 +84,8 @@ public class Fragment_AcPersonalInfo extends Fragment
 
         //Executing the checkFilePersmissions created down below
         checkFilePermissions();
+
+        setProfileImage();
 
         //Handling the event that needs to happen when the upload button is clicked.
         // When the upload button is clicked, a new intent will start opening the gallery on the users phone. In the gallery, the user can pick an image
@@ -203,11 +210,29 @@ public class Fragment_AcPersonalInfo extends Fragment
         return view;
     }
 
+    private void setProfileImage()
+    {
+        String userID = UserID.toString();
+
+        mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).fit().centerCrop().into(mProfielFoto);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Laden pf gefaald.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Declaring the request we want to take care of, and checking if the request went successful
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK)
         {
             // Showing the progress dialog while uploading the image
@@ -227,6 +252,10 @@ public class Fragment_AcPersonalInfo extends Fragment
                 {
                     Toast.makeText(getActivity(), "Upload done.", Toast.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
+
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+
+                    Picasso.get().load(downloadUri).fit().centerCrop().into(mProfielFoto);
                 }
             });
         }

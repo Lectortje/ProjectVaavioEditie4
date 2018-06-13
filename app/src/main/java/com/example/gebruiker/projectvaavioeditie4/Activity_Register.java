@@ -2,6 +2,7 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Activity_Register extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -34,6 +37,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private TextView mAV;
+    private String TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -122,6 +126,24 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
                                     }
                                 }
                             });
+                        }
+                        // When the registration fails, the failure gets 'test'. The main reason it will fail, is to a email already having an account. This gets
+                        // Checked with the first catch (existEmail). When this is the case, an toast will show saying the email adres is already in use.
+                        // If this ain't the case however, the failure gets logged to the system.
+                        else
+                        {
+                            try
+                            {
+                               throw task.getException();
+                            }
+                            catch (FirebaseAuthUserCollisionException existEmail)
+                            {
+                                Toast.makeText(Activity_Register.this, "Emailadres is al in gebruik", Toast.LENGTH_LONG).show();
+                            }
+                            catch (Exception e)
+                            {
+                                Log.d(TAG, "onComplete: " + e.getMessage());
+                            }
                         }
                     }
                 });

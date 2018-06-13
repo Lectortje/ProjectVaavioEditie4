@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context=".Activity_Register"
-    tools:openDrawer="start">
+    tools:openDrawer="">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:textColor="#000"
             android:textSize="14sp" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/EditTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,6 +67,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
+            android:inputType="textEmailAddress"
             android:hint="E-mailadres*"
             android:textSize="12sp" />
 
@@ -82,7 +83,7 @@
             android:textColor="#000"
             android:textSize="14sp" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/EditTextWachtwoord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
+            android:inputType="textPassword"
             android:hint="Wachtwoord*"
             android:textSize="12sp" />
 
