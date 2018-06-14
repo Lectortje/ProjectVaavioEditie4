@@ -13,15 +13,36 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class Activity_Vacatures extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
-    // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
+    private ImageView mIVNavHeader;
+    private TextView mTV1NavHeader;
+    private TextView mTV2NavHeader;
+    private StorageReference mStorage;
+    private DatabaseReference myRef;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private String UserID;
 
     private ArrayList<String> mJobTitles = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
@@ -48,9 +69,66 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Making the nav_home button in the drawer menu selected on start up
-        navigationView.setCheckedItem(R.id.nav_home);
+        // Setting the nav_header of the drawer menu, using the layout created.
+        View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
+        // Setting up the firebase connection, getting the current user, if present
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null)
+        {
+            // When a user is logged in, the user ID gets put in a string
+            UserID = user.getUid();
+
+            String userID = UserID.toString();
+
+            // Declaring the image view of the nav header
+            mIVNavHeader = (ImageView) hView.findViewById(R.id.ImageViewNavHeader);
+
+            // Getting the profile image of the user, if it has uploaded one. When successful, the image view in het nav header gets replaced
+            // By the profile picture of the user. Picasso is used fot this processed. The image get loaded from the uri, fit in the image view
+            // and cropped centerly into the view.
+            mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+            {
+                @Override
+                public void onSuccess(Uri uri)
+                {
+                    Picasso.get().load(uri).fit().centerCrop().into(mIVNavHeader);
+                }
+            });
+
+            // Declaring the TextView's of the nav header of the drawer menu
+            mTV1NavHeader = (TextView) hView.findViewById(R.id.TextViewNaamNavHeader);
+            mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
+
+            // addValueEventListener to change the default text view to the name and email adres of the user, if it has provided these in the
+            // profile information section of the account. A dataSnapshot is used to get the name and email, which get put in a string, after which the
+            // string gets put in het Text View.
+            myRef.addValueEventListener(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+                    String naam = dataSnapshot.child("Users").child(UserID).child("Naam").getValue(String.class);
+                    String email = dataSnapshot.child("Users").child(UserID).child("Email").getValue(String.class);
+
+                    mTV1NavHeader.setText(naam);
+                    mTV2NavHeader.setText(email);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+
+        // Executing the initImageBitmaps function created down below;
         initImageBitmaps();
     }
 
@@ -117,7 +195,6 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
     private void initImageBitmaps()
     {
-
         mJobTitles.add("Loodgieter");
         mImageUrls.add("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg");
         mLocaties.add("Heerenveen");

@@ -21,7 +21,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_vacatureomschrijving, container, false);
 
-
         mSollicitatie = view.findViewById(R.id.btnSoll);
         mSollicitatie.setOnClickListener(new View.OnClickListener()
         {

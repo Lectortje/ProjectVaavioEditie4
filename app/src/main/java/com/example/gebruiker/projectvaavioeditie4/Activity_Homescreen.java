@@ -32,7 +32,6 @@ import com.squareup.picasso.Picasso;
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
-    // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
     private Button mZoeken;
     private ImageView mIVNavHeader;
@@ -64,20 +63,29 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
+        // Setting up the firebase connection, getting the current user, if present
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null)
         {
+            // When a user is logged in, the user ID gets put in a string
             UserID = user.getUid();
 
             String userID = UserID.toString();
 
+            // Declaring the image view of the nav header
             mIVNavHeader = (ImageView) hView.findViewById(R.id.ImageViewNavHeader);
+
+            // Getting the profile image of the user, if it has uploaded one. When successful, the image view in het nav header gets replaced
+            // By the profile picture of the user. Picasso is used fot this processed. The image get loaded from the uri, fit in the image view
+            // and cropped centerly into the view.
             mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
             {
                 @Override
@@ -87,8 +95,13 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 }
             });
 
+            // Declaring the TextView's of the nav header of the drawer menu
             mTV1NavHeader = (TextView) hView.findViewById(R.id.TextViewNaamNavHeader);
             mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
+
+            // addValueEventListener to change the default text view to the name and email adres of the user, if it has provided these in the
+            // profile information section of the account. A dataSnapshot is used to get the name and email, which get put in a string, after which the
+            // string gets put in het Text View.
             myRef.addValueEventListener(new ValueEventListener()
             {
                 @Override

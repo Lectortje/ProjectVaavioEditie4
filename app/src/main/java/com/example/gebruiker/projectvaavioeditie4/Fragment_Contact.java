@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Fragment_Contact extends Fragment
 {
@@ -65,20 +66,23 @@ public class Fragment_Contact extends Fragment
                 String emailadres = mEditTextEmail.getText().toString().trim().toLowerCase();
                 final String bericht = mEditTextBericht.getText().toString().trim();
 
-                final HashMap<String, String> dataMap = new HashMap<String, String>();
-                dataMap.put("Naam", naam);
-                dataMap.put("Achternaam", achternaam);
-                dataMap.put("Emailadres", emailadres);
+                HashMap<String, Object> childUpdates = new HashMap<String, Object>();
+                childUpdates.put("Naam", naam);
+                childUpdates.put("Achternaam", achternaam);
+                childUpdates.put("Emailadres", emailadres);
 
-                mRef.child("Users").child(UserID).setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mRef.child("Users").child(UserID).updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
                         if (task.isSuccessful())
                         {
-
-                            mRef.child("Contact").child("Berichten").child(UserID).setValue(bericht).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mRef.child("Contact").child("Berichten").child(UserID).setValue(bericht).addOnCompleteListener(new OnCompleteListener<Void>()
+                            {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
                                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                     fragmentTransaction.replace(R.id.fragment_container, new Fragment_VacatureOmschrijving()).addToBackStack("tag").commit();
                                     Toast.makeText(getActivity(), "Uw bericht is succesvol verzonden", Toast.LENGTH_LONG).show();
@@ -87,7 +91,6 @@ public class Fragment_Contact extends Fragment
                         }
                         else
                         {
-                            // If something goes wrong, a toast shows an error.
                             Toast.makeText(getActivity(), "Uw bericht is niet verzonden, probeer het opnieuw", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -108,7 +111,6 @@ public class Fragment_Contact extends Fragment
                 mEditTextBericht.setText(bericht);
                 mEditTextEmail.setText(emailadres);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
