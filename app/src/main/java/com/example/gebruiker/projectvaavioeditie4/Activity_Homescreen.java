@@ -13,7 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -21,6 +29,14 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
     private Button mZoeken;
+    private ImageView mIVNavHeader;
+    private TextView mTV1NavHeader;
+    private TextView mTV2NavHeader;
+    private StorageReference mStorage;
+    private DatabaseReference myRef;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +57,28 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
+        mTV1NavHeader = (TextView)hView.findViewById(R.id.TextViewNaamNavHeader);
+        mTV1NavHeader.setText("Test");
+
+        mTV2NavHeader = (TextView)hView.findViewById(R.id.TextViewEmailNavHeader);
+        mTV2NavHeader.setText("Test");
+
+        mIVNavHeader = (ImageView)hView.findViewById(R.id.ImageViewNavHeader);
+        Picasso.get().load("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg").fit().centerCrop().into(mIVNavHeader);
+
+        /* FirebaseUser user = mAuth.getCurrentUser();
+        UserID = user.getUid();
+            String userID = UserID.toString();
+
+            mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).fit().centerCrop().into(mIVNavHeader);
+                }
+            }); */
+
 
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);

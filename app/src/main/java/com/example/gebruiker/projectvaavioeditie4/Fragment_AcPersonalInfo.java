@@ -82,9 +82,10 @@ public class Fragment_AcPersonalInfo extends Fragment
         mGeslacht = (EditText) view.findViewById(R.id.GeslachtEditText);
         mNationaliteit = (EditText) view.findViewById(R.id.NationaliteitEditText);
 
-        //Executing the checkFilePersmissions created down below
+        //Executing the checkFilePersmissions function created down below
         checkFilePermissions();
 
+        //Executing the setProfileImage function created donw below
         setProfileImage();
 
         //Handling the event that needs to happen when the upload button is clicked.
@@ -210,6 +211,11 @@ public class Fragment_AcPersonalInfo extends Fragment
         return view;
     }
 
+    // The set profile image function. This function is used to set the image of the image view, displaying either the photo uploaded by the user,
+    // or an stock image. First, the UserID gets converted to a string, as it needed for the storage reference. The profile pictures are uploaded under
+    // The users UserID, and are stored in a folder called Profile photos. So to get the profile picture, a reference to the profile pictures map with the UserID
+    // is made. When successful, the profile picture get put in the image view with Picasso. If there is no picture present, and on failure listener
+    // Will execute, making the image a stock image from vaavio.
     private void setProfileImage()
     {
         String userID = UserID.toString();
@@ -222,7 +228,7 @@ public class Fragment_AcPersonalInfo extends Fragment
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Laden pf gefaald.", Toast.LENGTH_LONG).show();
+                Picasso.get().load("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg").fit().centerCrop().into(mProfielFoto);
             }
         });
     }
