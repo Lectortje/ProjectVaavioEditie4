@@ -1,13 +1,10 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,15 +15,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.zip.Inflater;
-
 public class Activity_VacOmschrijving extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
+    private Button mSollicitatie;
+    private Button mContact;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vac_omschrijving);
 
@@ -44,37 +42,25 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Making the nav_home button in the drawer menu selected on start up
-        navigationView.setCheckedItem(R.id.nav_home);
-
-        Button PbtnSoll = (Button)findViewById(R.id.btnSoll);
-
-        PbtnSoll.setOnClickListener(new View.OnClickListener() {
+        mSollicitatie = (Button) findViewById(R.id.btnSoll);
+        mSollicitatie.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                android.support.v4.app.FragmentManager fragmentManager = Activity_VacOmschrijving.this.getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
-                Fragment_Sollicitatie fragment = new Fragment_Sollicitatie();
-
-                fragmentTransaction.add(R.id.fragment_container, fragment).addToBackStack("Sollicitatie fragment");
-                fragmentTransaction.commit();
+            public void onClick(View v)
+            {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Fragment_Sollicitatie()).addToBackStack("tag").commit();
             }
         });
-        Button PbtnContact = (Button)findViewById(R.id.btnContact);
 
-        PbtnContact.setOnClickListener(new View.OnClickListener() {
+        mContact = (Button)findViewById(R.id.btnContact);
+        mContact.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                android.support.v4.app.FragmentManager fragmentManager = Activity_VacOmschrijving.this.getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
-                Fragment_Contact fragment = new Fragment_Contact();
-
-                fragmentTransaction.add(R.id.fragment_container, fragment).addToBackStack("Contact fragment");
-                fragmentTransaction.commit();
+            public void onClick(View v)
+            {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Fragment_Contact()).addToBackStack("tag").commit();
             }
         });
     }
