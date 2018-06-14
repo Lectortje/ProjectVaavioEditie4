@@ -12,6 +12,7 @@
         android:id="@+id/ImageViewNavHeader"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:src="@drawable/ic_vaaviologo"
         android:paddingTop="16dp"/>
 
     <TextView
@@ -19,14 +20,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Prototype Vaavio"
+        android:text="Vaavio"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/TextViewEmailNavHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Een mooie ondertitel" />
+        android:text="Uw vacaturebank!" />
 
 
 </LinearLayout>

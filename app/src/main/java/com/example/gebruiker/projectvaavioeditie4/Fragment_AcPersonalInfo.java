@@ -82,13 +82,13 @@ public class Fragment_AcPersonalInfo extends Fragment
         mGeslacht = (EditText) view.findViewById(R.id.GeslachtEditText);
         mNationaliteit = (EditText) view.findViewById(R.id.NationaliteitEditText);
 
-        //Executing the checkFilePersmissions function created down below
+        // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
 
-        //Executing the setProfileImage function created donw below
+        // Executing the setProfileImage function created donw below
         setProfileImage();
 
-        //Handling the event that needs to happen when the upload button is clicked.
+        // Handling the event that needs to happen when the upload button is clicked.
         // When the upload button is clicked, a new intent will start opening the gallery on the users phone. In the gallery, the user can pick an image
         // that it wants to upload as the profile picture.
         mUpload = (Button) view.findViewById(R.id.UploadPFBtn);
@@ -105,9 +105,11 @@ public class Fragment_AcPersonalInfo extends Fragment
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
 
                 // First there is a string created. This string gets the data form the dataSnapshot. In the case of 'naam'. The string gets the value
                 // equal to the Naam child in the child equal to the currently logged in user his UserID. This gets repeated for every string.

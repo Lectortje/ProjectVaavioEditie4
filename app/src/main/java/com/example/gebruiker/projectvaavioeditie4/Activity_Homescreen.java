@@ -17,9 +17,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -58,27 +64,50 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
-        mTV1NavHeader = (TextView)hView.findViewById(R.id.TextViewNaamNavHeader);
-        mTV1NavHeader.setText("Test");
+        View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
-        mTV2NavHeader = (TextView)hView.findViewById(R.id.TextViewEmailNavHeader);
-        mTV2NavHeader.setText("Test");
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null)
+        {
+            UserID = user.getUid();
 
-        mIVNavHeader = (ImageView)hView.findViewById(R.id.ImageViewNavHeader);
-        Picasso.get().load("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg").fit().centerCrop().into(mIVNavHeader);
-
-        /* FirebaseUser user = mAuth.getCurrentUser();
-        UserID = user.getUid();
             String userID = UserID.toString();
 
-            mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            mIVNavHeader = (ImageView) hView.findViewById(R.id.ImageViewNavHeader);
+            mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+            {
                 @Override
-                public void onSuccess(Uri uri) {
+                public void onSuccess(Uri uri)
+                {
                     Picasso.get().load(uri).fit().centerCrop().into(mIVNavHeader);
                 }
-            }); */
+            });
 
+            mTV1NavHeader = (TextView) hView.findViewById(R.id.TextViewNaamNavHeader);
+            mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
+            myRef.addValueEventListener(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+                    String naam = dataSnapshot.child("Users").child(UserID).child("Naam").getValue(String.class);
+                    String email = dataSnapshot.child("Users").child(UserID).child("Email").getValue(String.class);
+
+                    mTV1NavHeader.setText(naam);
+                    mTV2NavHeader.setText(email);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
 
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);
