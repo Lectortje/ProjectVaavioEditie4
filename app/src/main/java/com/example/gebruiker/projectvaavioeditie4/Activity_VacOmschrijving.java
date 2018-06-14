@@ -1,28 +1,32 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.zip.Inflater;
 
 public class Activity_VacOmschrijving extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
-
     // creating a variable and setting it as a drawer
     private DrawerLayout drawer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vac_omschrijving);
 
@@ -42,6 +46,37 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
 
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);
+
+        Button PbtnSoll = (Button)findViewById(R.id.btnSoll);
+
+        PbtnSoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.FragmentManager fragmentManager = Activity_VacOmschrijving.this.getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+                Fragment_Sollicitatie fragment = new Fragment_Sollicitatie();
+
+                fragmentTransaction.add(R.id.fragment_container, fragment).addToBackStack("Sollicitatie fragment");
+                fragmentTransaction.commit();
+            }
+        });
+        Button PbtnContact = (Button)findViewById(R.id.btnContact);
+
+        PbtnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.FragmentManager fragmentManager = Activity_VacOmschrijving.this.getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+                Fragment_Contact fragment = new Fragment_Contact();
+
+                fragmentTransaction.add(R.id.fragment_container, fragment).addToBackStack("Contact fragment");
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -95,10 +130,12 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
     {
         // If the drawer is open, the back button will instead of going back to the previous page, close the drawer.
         if (drawer.isDrawerOpen(GravityCompat.START))
+
         {
             drawer.closeDrawer(GravityCompat.START);
         }
         else
+
         // if the drawer isn't open, the back button will operate just as normal.
         {
             super.onBackPressed();
