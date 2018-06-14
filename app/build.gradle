@@ -4,7 +4,11 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.gebruiker.projectvaavioeditie4"
+<<<<<<< HEAD
         minSdkVersion 15
+=======
+        minSdkVersion 23
+>>>>>>> 4fe1e250a805a3eca81c70673a8225513ca77bdb
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
