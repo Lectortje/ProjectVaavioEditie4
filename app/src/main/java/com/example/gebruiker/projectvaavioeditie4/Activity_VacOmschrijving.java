@@ -42,27 +42,8 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        mSollicitatie = (Button) findViewById(R.id.btnSoll);
-        mSollicitatie.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Fragment_Sollicitatie()).addToBackStack("tag").commit();
-            }
-        });
-
-        mContact = (Button)findViewById(R.id.btnContact);
-        mContact.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Fragment_Contact()).addToBackStack("tag").commit();
-            }
-        });
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new Fragment_VacatureOmschrijving()).addToBackStack("tag").commit();
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
