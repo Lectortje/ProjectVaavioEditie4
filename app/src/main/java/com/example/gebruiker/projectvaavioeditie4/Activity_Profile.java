@@ -37,6 +37,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
     private StorageReference mStorage;
     private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
+    private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private String UserID;
 
@@ -104,8 +105,9 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot)
                 {
+                    mUser = mAuth.getCurrentUser();
+                    String email = mUser.getEmail();
                     String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
-                    String email = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
 
                     mTV1NavHeader.setText(naam);
                     mTV2NavHeader.setText(email);

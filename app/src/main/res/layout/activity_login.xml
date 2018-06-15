@@ -42,7 +42,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:hint="E-mailadres*"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textSize="12sp" />
 
         <EditText

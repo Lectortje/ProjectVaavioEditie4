@@ -48,6 +48,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private String UserID;
+    private FirebaseUser mUser;
     private RecyclerView mRecyclerView;
     private List<VacatureModel> result;
     private RecyclerViewAdapter adapter;
@@ -130,8 +131,9 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot)
                 {
+                    mUser = mAuth.getCurrentUser();
+                    String email = mUser.getEmail();
                     String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
-                    String email = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
 
                     mTV1NavHeader.setText(naam);
                     mTV2NavHeader.setText(email);
