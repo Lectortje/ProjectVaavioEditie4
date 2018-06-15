@@ -105,8 +105,8 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot)
                 {
-                    String naam = dataSnapshot.child("Users").child(UserID).child("Naam").getValue(String.class);
-                    String email = dataSnapshot.child("Users").child(UserID).child("Email").getValue(String.class);
+                    String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
+                    String email = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
 
                     mTV1NavHeader.setText(naam);
                     mTV2NavHeader.setText(email);

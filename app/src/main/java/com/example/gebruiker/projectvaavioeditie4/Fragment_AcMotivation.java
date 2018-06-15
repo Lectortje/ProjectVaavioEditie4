@@ -40,6 +40,7 @@ public class Fragment_AcMotivation extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_ac_motivation, container, false);
+
         mBtnOpslaan = view.findViewById(R.id.btnOpslaan);
         mEditTextMotivatie = view.findViewById(R.id.editTextMotivatie);
 
@@ -52,31 +53,23 @@ public class Fragment_AcMotivation extends Fragment
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
-        mBtnOpslaan.setOnClickListener(new View.OnClickListener() {
+        mBtnOpslaan.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 final String motivatie = mEditTextMotivatie.getText().toString().trim();
 
-                final HashMap<String, Object> childUpdates = new HashMap<String, Object>();
-                childUpdates.put("Motivatie", motivatie);
-
-                mRef.child("Motivatie").child(UserID).updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
+                mRef.child("Users").child(UserID).child("Motivatie").setValue(motivatie).addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)
                     {
                         if (task.isSuccessful())
                         {
-                            mRef.child("Motivatie").child(UserID).setValue(motivatie).addOnCompleteListener(new OnCompleteListener<Void>()
-                            {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_Account()).addToBackStack("tag").commit();
-                                    Toast.makeText(getActivity(), "Uw motivatie is succesvol opgeslagen", Toast.LENGTH_LONG).show();
-                                }
-                            });
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_Account()).addToBackStack("tag").commit();
+                            Toast.makeText(getActivity(), "Uw motivatie is succesvol opgeslagen", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
@@ -90,7 +83,7 @@ public class Fragment_AcMotivation extends Fragment
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String motivatie = dataSnapshot.child("Motivatie").child(UserID).getValue(String.class);
+                String motivatie = dataSnapshot.child("Users").child(UserID).child("Motivatie").getValue(String.class);
 
                 mEditTextMotivatie.setText(motivatie);
 

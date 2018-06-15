@@ -113,18 +113,18 @@ public class Fragment_AcPersonalInfo extends Fragment
 
                 // First there is a string created. This string gets the data form the dataSnapshot. In the case of 'naam'. The string gets the value
                 // equal to the Naam child in the child equal to the currently logged in user his UserID. This gets repeated for every string.
-                String naam = dataSnapshot.child("Users").child(UserID).child("Naam").getValue(String.class);
-                String achternaam = dataSnapshot.child("Users").child(UserID).child("Achternaam").getValue(String.class);
-                String email = dataSnapshot.child("Users").child(UserID).child("Email").getValue(String.class);
-                String telefoonnummer = dataSnapshot.child("Users").child(UserID).child("Telefoonnummer").getValue(String.class);
-                String adres = dataSnapshot.child("Users").child(UserID).child("Adres").getValue(String.class);
-                String huisnummer = dataSnapshot.child("Users").child(UserID).child("Huisnummer").getValue(String.class);
-                String toevoeging = dataSnapshot.child("Users").child(UserID).child("Toevoeging").getValue(String.class);
-                String woonplaats = dataSnapshot.child("Users").child(UserID).child("Woonplaats").getValue(String.class);
-                String postcode = dataSnapshot.child("Users").child(UserID).child("Postcode").getValue(String.class);
-                String leeftijd = dataSnapshot.child("Users").child(UserID).child("Leeftijd").getValue(String.class);
-                String geslacht = dataSnapshot.child("Users").child(UserID).child("Geslacht").getValue(String.class);
-                String nationaliteit = dataSnapshot.child("Users").child(UserID).child("Nationaliteit").getValue(String.class);
+                String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
+                String achternaam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Achternaam").getValue(String.class);
+                String email = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
+                String telefoonnummer = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Telefoonnummer").getValue(String.class);
+                String adres = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Adres").getValue(String.class);
+                String huisnummer = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Huisnummer").getValue(String.class);
+                String toevoeging = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Toevoeging").getValue(String.class);
+                String woonplaats = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Woonplaats").getValue(String.class);
+                String postcode = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Postcode").getValue(String.class);
+                String leeftijd = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Leeftijd").getValue(String.class);
+                String geslacht = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Geslacht").getValue(String.class);
+                String nationaliteit = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Nationaliteit").getValue(String.class);
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
@@ -187,7 +187,7 @@ public class Fragment_AcPersonalInfo extends Fragment
 
                 // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                 // Parent equal to there UserID.
-                myRef.child("Users").child(UserID).setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
+                myRef.child("Users").child(UserID).child("Persoonlijke informatie").setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)

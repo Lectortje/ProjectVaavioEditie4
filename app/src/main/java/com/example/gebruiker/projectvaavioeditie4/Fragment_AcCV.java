@@ -38,6 +38,7 @@ public class Fragment_AcCV extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_ac_cv, container, false);
+
         mBtnOpslaan = view.findViewById(R.id.OpslaanBtn);
         mEditTextOpleidingen = view.findViewById(R.id.OpleidingenEditText);
         mEditTextErvaring = view.findViewById(R.id.ErvaringEditText);
@@ -56,34 +57,27 @@ public class Fragment_AcCV extends Fragment
         mBtnOpslaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String opleidingen = mEditTextOpleidingen.getText().toString().trim();
+                String opleidingen = mEditTextOpleidingen.getText().toString().trim();
                 String ervaring = mEditTextErvaring.getText().toString().trim();
                 String training = mEditTextTraining.getText().toString().trim();
-                final String vaardigheden = mEditTextVaardigheden.getText().toString().trim();
+                String vaardigheden = mEditTextVaardigheden.getText().toString().trim();
 
-                final HashMap<String, Object> childUpdates = new HashMap<String, Object>();
-                childUpdates.put("Opleidingen", opleidingen);
-                childUpdates.put("Ervaring", ervaring);
-                childUpdates.put("Training en cursussen", training);
-                childUpdates.put("Vaardigheden", vaardigheden);
+                final HashMap<String, String> datamap = new HashMap<String, String>();
+                datamap.put("Opleidingen", opleidingen);
+                datamap.put("Ervaring", ervaring);
+                datamap.put("Training en cursussen", training);
+                datamap.put("Vaardigheden", vaardigheden);
 
-                mRef.child("CV").child(UserID).updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
+                mRef.child("Users").child(UserID).child("CV").setValue(datamap).addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)
                     {
                         if (task.isSuccessful())
                         {
-                            mRef.child("CV").child(UserID).setValue(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
-                            {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                                    fragmentTransaction.replace(R.id.fragment_container, new Fragment_Account()).addToBackStack("tag").commit();
-                                    Toast.makeText(getActivity(), "Uw CV is succesvol opgeslagen", Toast.LENGTH_LONG).show();
-                                }
-                            });
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_Account()).addToBackStack("tag").commit();
+                            Toast.makeText(getActivity(), "Uw CV is succesvol opgeslagen", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
@@ -97,10 +91,10 @@ public class Fragment_AcCV extends Fragment
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String opleidingen = dataSnapshot.child("CV").child("Opleidingen").child(UserID).getValue(String.class);
-                String ervaring = dataSnapshot.child("CV").child("Ervaring").child(UserID).getValue(String.class);
-                String training = dataSnapshot.child("CV").child("Trainingen en cursussen").child(UserID).getValue(String.class);
-                String vaardigheden = dataSnapshot.child("CV").child("Vaardigheden").child(UserID).getValue(String.class);
+                String opleidingen = dataSnapshot.child("Users").child(UserID).child("CV").child("Opleidingen").getValue(String.class);
+                String ervaring = dataSnapshot.child("Users").child(UserID).child("CV").child("Ervaring").getValue(String.class);
+                String training = dataSnapshot.child("Users").child(UserID).child("CV").child("Training en cursussen").getValue(String.class);
+                String vaardigheden = dataSnapshot.child("Users").child(UserID).child("CV").child("Vaardigheden").getValue(String.class);
 
                 mEditTextOpleidingen.setText(opleidingen);
                 mEditTextErvaring.setText(ervaring);

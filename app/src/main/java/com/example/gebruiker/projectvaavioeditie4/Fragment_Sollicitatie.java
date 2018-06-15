@@ -41,6 +41,7 @@ public class Fragment_Sollicitatie extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_ac_sollicitatie, container, false);
+
         mButtonVerstuurSoll = view.findViewById(R.id.btnVerstuurSoll);
         mEditTextNaamSoll = view.findViewById(R.id.editTextNaamSoll);
         mEditTextAchternaamSoll = view.findViewById(R.id.editTextAchternaamSoll);
