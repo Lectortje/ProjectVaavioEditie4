@@ -46,20 +46,20 @@
                             android:textSize="14sp" />
 
                         <EditText
-                            android:id="@+id/editTextEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="E-mailadres"
-                            android:inputType="textPersonName"
-                            android:textSize="14sp" />
-
-                        <EditText
                             android:id="@+id/editTextAchternaam"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:hint="Achternaam"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/editTextEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="E-mailadres"
                             android:inputType="textPersonName"
                             android:textSize="14sp" />
 
