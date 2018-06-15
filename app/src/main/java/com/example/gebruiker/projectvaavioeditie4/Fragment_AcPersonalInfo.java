@@ -148,7 +148,7 @@ public class Fragment_AcPersonalInfo extends Fragment
             }
         });
 
-        // Setting the OnClick event for the opslaan button.
+        //Setting the OnClick event for the opslaan button.
         mOpslaan = (Button) view.findViewById(R.id.OpslaanBtn);
         mOpslaan.setOnClickListener(new View.OnClickListener()
         {
