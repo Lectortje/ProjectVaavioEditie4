@@ -205,6 +205,11 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         mLocaties.add("Heerenveen");
         mOmschrijvingen.add("Dit is een prachtige omschrijving");
 
+        mJobTitles.add("Support medewerker");
+        mImageUrls.add("https://www.vaavio.nl/employer/flexibility/");
+        mLocaties.add("Veenendaal");
+        mOmschrijvingen.add("Onze opdrachtgever is een vooruitstrevende producent van slimme software.");
+
         initRecyclerView();
     }
 

@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView5"
         android:layout_width="match_parent"
-        android:layout_height="582dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="528dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnOpslaan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,30 +26,16 @@
             <EditText
                 android:id="@+id/editTextMotivatie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="Type hier uw motivatie"
                 android:inputType="textMultiLine" />
 
-            <TextView
-                android:id="@+id/textViewMotivatie"
-                android:layout_width="363dp"
-                android:layout_height="205dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextMotivatie"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="201dp" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/SaveMotivationBtn"
+        android:id="@+id/btnOpslaan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#008bab"
