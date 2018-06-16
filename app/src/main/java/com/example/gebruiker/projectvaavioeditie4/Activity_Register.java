@@ -31,8 +31,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
 {
     //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
-    private EditText mEmail;
-    private EditText mWachtwoord;
+    private EditText mEmail, mWachtwoord;
     private Button mRegister;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -59,10 +58,10 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        mEmail = (EditText) findViewById(R.id.EditTextEmail);
-        mWachtwoord = (EditText) findViewById(R.id.EditTextWachtwoord);
-        mRegister = (Button) findViewById(R.id.RegisterBtn);
-        mAV = (TextView) findViewById(R.id.AlgemeneVoorwaardenTextView);
+        mEmail = findViewById(R.id.EditTextEmail);
+        mWachtwoord = findViewById(R.id.EditTextWachtwoord);
+        mRegister = findViewById(R.id.RegisterBtn);
+        mAV = findViewById(R.id.TextViewAlgemeneVoorwaarden);
 
         // Initializing the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();

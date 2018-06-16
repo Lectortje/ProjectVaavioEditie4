@@ -35,14 +35,14 @@
             app:srcCompat="@drawable/vaavio_logo" />
 
         <TextView
-            android:id="@+id/textViewFunctie"
+            android:id="@+id/TextViewFunctie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:text="Functie"
             android:textColor="#000"
             android:textSize="14sp" />

@@ -15,18 +15,16 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class Fragment_AcSettings extends Fragment
 {
-    private EditText mOldPassword, mNewPassword, mNewPassword2, mCurrentPassword;
+    private EditText mPasswordChange, mNewPassword, mNewPassword2, mPasswordDelete;
     private Button mBevestigen, mVerwijderen;
     private FirebaseDatabase mDatabase;
     private String UserID;
@@ -41,10 +39,10 @@ public class Fragment_AcSettings extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_ac_settings, container, false);
 
-        mOldPassword = (EditText) view.findViewById(R.id.HuidigWachtwoordEditText);
-        mNewPassword = (EditText) view.findViewById(R.id.NieuwWachtwoordEditText);
-        mNewPassword2 = (EditText) view.findViewById(R.id.NieuwWachtwoordHerhalenEditText);
-        mCurrentPassword = (EditText) view.findViewById(R.id.WachtwoordDeleteEditText);
+        mPasswordChange = view.findViewById(R.id.EditTextWachtwoordWijzigen);
+        mNewPassword = view.findViewById(R.id.EditTextNieuwWachtwoord);
+        mNewPassword2 =  view.findViewById(R.id.EditTextNieuwWachtwoord2);
+        mPasswordDelete = view.findViewById(R.id.EditTextWachtwoordDelete);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -56,7 +54,7 @@ public class Fragment_AcSettings extends Fragment
             {
                 mUser = mAuth.getCurrentUser();
                 final String email = mUser.getEmail();
-                final String oldpassword = mOldPassword.getText().toString();
+                final String oldpassword = mPasswordChange.getText().toString();
 
                 AuthCredential credential = EmailAuthProvider.getCredential(email, oldpassword);
 
@@ -116,7 +114,7 @@ public class Fragment_AcSettings extends Fragment
                 mUser = mAuth.getCurrentUser();
 
                 final String email = mUser.getEmail();
-                final String currentpassword = mCurrentPassword.getText().toString();
+                final String currentpassword = mPasswordDelete.getText().toString();
 
                 AuthCredential credential = EmailAuthProvider.getCredential(email, currentpassword);
 

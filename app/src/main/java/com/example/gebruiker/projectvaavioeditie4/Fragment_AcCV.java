@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -39,8 +38,8 @@ import static android.app.Activity.RESULT_OK;
 public class Fragment_AcCV extends Fragment
 {
     //Declaring all the button, textView, String and Firebase variables.
-    private Button mBtnOpslaan, mUploadCVBtn;
-    private EditText mEditTextOpleidingen, mEditTextErvaring, mEditTextTraining, mEditTextVaardigheden;
+    private Button mOpslaanBtn, mUploadCVBtn;
+    private EditText mOpleidingen, mErvaring, mTraining, mVaardigheden;
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -68,12 +67,12 @@ public class Fragment_AcCV extends Fragment
         mProgressDialog = new ProgressDialog(getActivity());
 
         //Assingning the button variables to the button ID's.
-        mBtnOpslaan = view.findViewById(R.id.OpslaanBtn);
+        mOpslaanBtn = view.findViewById(R.id.OpslaanBtn);
         mUploadCVBtn = view.findViewById(R.id.UploadCVBtn);
-        mEditTextOpleidingen = view.findViewById(R.id.OpleidingenEditText);
-        mEditTextErvaring = view.findViewById(R.id.ErvaringEditText);
-        mEditTextTraining = view.findViewById(R.id.TrainingCursussenEditText);
-        mEditTextVaardigheden = view.findViewById(R.id.VaardighedenEditText);
+        mOpleidingen = view.findViewById(R.id.EditTextOpleidingen);
+        mErvaring = view.findViewById(R.id.EditTextErvaring);
+        mTraining = view.findViewById(R.id.EditTextTrainingCursussen);
+        mVaardigheden = view.findViewById(R.id.EditTextVaardigheden);
 
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
@@ -82,14 +81,14 @@ public class Fragment_AcCV extends Fragment
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
         //Setting the OnClick event for the opslaan button.
-        mBtnOpslaan.setOnClickListener(new View.OnClickListener() {
+        mOpslaanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // First, a string is created, in which the text that is filled in the edit text gets put.
-                String opleidingen = mEditTextOpleidingen.getText().toString().trim();
-                String ervaring = mEditTextErvaring.getText().toString().trim();
-                String training = mEditTextTraining.getText().toString().trim();
-                String vaardigheden = mEditTextVaardigheden.getText().toString().trim();
+                String opleidingen = mOpleidingen.getText().toString().trim();
+                String ervaring = mErvaring.getText().toString().trim();
+                String training = mTraining.getText().toString().trim();
+                String vaardigheden = mVaardigheden.getText().toString().trim();
 
                 // When all the strings are created, they get put in an HashMap. This HashMap is used to send the data to the database.
                 // For every string, a child name gets declared.
@@ -151,10 +150,10 @@ public class Fragment_AcCV extends Fragment
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
-                mEditTextOpleidingen.setText(opleidingen);
-                mEditTextErvaring.setText(ervaring);
-                mEditTextTraining.setText(training);
-                mEditTextVaardigheden.setText(vaardigheden);
+                mOpleidingen.setText(opleidingen);
+                mErvaring.setText(ervaring);
+                mTraining.setText(training);
+                mVaardigheden.setText(vaardigheden);
 
             }
             @Override

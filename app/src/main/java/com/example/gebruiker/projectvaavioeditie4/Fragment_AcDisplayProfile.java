@@ -21,8 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Fragment_AcDisplayProfile extends Fragment
 {
     //Declaring all the button, textView, String and Firebase variables.
-    private TextView mTextViewNationaliteit, mTextViewNaamWerkn, mTextViewAdres, mTextViewPostcode, mTextViewPlaats, mTextViewEmailadres;
-    private TextView mTextViewOpleidingen, mTextViewErvaring, mTextViewTrainingen, mTextViewVaardigheden, mTextViewTelefoonNr, mTextViewGeslacht;
+    private TextView mNationaliteit, mNaamWerknemer, mAdres, mPlaats, mEmailadres, mOpleidingen, mErvaring, mTrainingen, mVaardigheden, mTelefoon, mGeslacht;
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -47,18 +46,17 @@ public class Fragment_AcDisplayProfile extends Fragment
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
         //Assingning the button variables to the button ID's.
-        mTextViewNationaliteit = view.findViewById(R.id.textViewNationaliteitDis);
-        mTextViewAdres = view.findViewById(R.id.textViewAdresDis);
-        mTextViewErvaring = view.findViewById(R.id.textViewErvaringDis);
-        mTextViewNaamWerkn = view.findViewById(R.id.textViewNaamWerknDis);
-        mTextViewOpleidingen = view.findViewById(R.id.textViewOpleidingenDis);
-        mTextViewPlaats = view.findViewById(R.id.textViewPlaatsDis);
-        mTextViewPostcode = view.findViewById(R.id.textViewPostcodeDis);
-        mTextViewTrainingen = view.findViewById(R.id.textViewTrainingenDis);
-        mTextViewVaardigheden = view.findViewById(R.id.textViewVaardighedenDis);
-        mTextViewTelefoonNr = view.findViewById(R.id.textViewTelefoonNrDis);
-        mTextViewEmailadres = view.findViewById(R.id.textViewEmailadresDis);
-        mTextViewGeslacht = view.findViewById(R.id.textViewGeslachtDis);
+        mNationaliteit = view.findViewById(R.id.TextViewNationaliteit);
+        mAdres = view.findViewById(R.id.TextViewAdres);
+        mErvaring = view.findViewById(R.id.TextViewErvaring);
+        mNaamWerknemer = view.findViewById(R.id.TextViewNaamWerknemer);
+        mOpleidingen = view.findViewById(R.id.TextViewOpleidingen);
+        mPlaats = view.findViewById(R.id.TextViewPlaats);
+        mTrainingen = view.findViewById(R.id.TextViewTrainingen);
+        mVaardigheden = view.findViewById(R.id.TextViewVaardigheden);
+        mTelefoon = view.findViewById(R.id.TextViewTelefoonnummer);
+        mEmailadres = view.findViewById(R.id.TextViewEmailadres);
+        mGeslacht = view.findViewById(R.id.TextViewGeslacht);
 
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
@@ -88,18 +86,17 @@ public class Fragment_AcDisplayProfile extends Fragment
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
-                mTextViewAdres.setText(adres + " " + huisnummer + toevoeging);
-                mTextViewErvaring.setText(ervaring);
-                mTextViewNaamWerkn.setText(naam + " " + achternaam);
-                mTextViewNationaliteit.setText(nationaliteit);
-                mTextViewOpleidingen.setText(opleidingen);
-                mTextViewPlaats.setText(plaats);
-                mTextViewPostcode.setText(postcode);
-                mTextViewTrainingen.setText(trainingen);
-                mTextViewVaardigheden.setText(vaardigheden);
-                mTextViewTelefoonNr.setText(telefoonnummer);
-                mTextViewEmailadres.setText(emailadres);
-                mTextViewGeslacht.setText(geslacht);
+                mAdres.setText(adres + " " + huisnummer + toevoeging);
+                mErvaring.setText(ervaring);
+                mNaamWerknemer.setText(naam + " " + achternaam);
+                mNationaliteit.setText(nationaliteit);
+                mOpleidingen.setText(opleidingen);
+                mPlaats.setText(postcode + " " + plaats);
+                mTrainingen.setText(trainingen);
+                mVaardigheden.setText(vaardigheden);
+                mTelefoon.setText(telefoonnummer);
+                mEmailadres.setText(emailadres);
+                mGeslacht.setText(geslacht);
             }
             @Override
             public void onCancelled(DatabaseError databaseError)

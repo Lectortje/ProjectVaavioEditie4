@@ -68,19 +68,19 @@ public class Fragment_AcPersonalInfo extends Fragment
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mProfielFoto = (ImageView) view.findViewById(R.id.ImageViewProfilePicture);
-        mNaam = (EditText) view.findViewById(R.id.NaamEditText);
-        mAchternaam = (EditText) view.findViewById(R.id.AchternaamEditText);
-        mEmail = (EditText) view.findViewById(R.id.EmailEditText);
-        mTelefoonnummer = (EditText) view.findViewById(R.id.TelefoonEditText);
-        mAdres = (EditText) view.findViewById(R.id.AdresEditText);
-        mHuisnummer = (EditText) view.findViewById(R.id.HuisnummerEditText);
-        mToevoeging = (EditText) view.findViewById(R.id.ToevoegingEditText);
-        mWoonplaats = (EditText) view.findViewById(R.id.WoonplaatsEditText);
-        mPostcode = (EditText) view.findViewById(R.id.PostcodeEditText);
-        mLeeftijd = (EditText) view.findViewById(R.id.LeeftijdEditText);
-        mGeslacht = (EditText) view.findViewById(R.id.GeslachtEditText);
-        mNationaliteit = (EditText) view.findViewById(R.id.NationaliteitEditText);
+        mProfielFoto = view.findViewById(R.id.ImageViewProfilePicture);
+        mNaam = view.findViewById(R.id.EditTextNaam);
+        mAchternaam = view.findViewById(R.id.EditTextAchternaam);
+        mEmail = view.findViewById(R.id.EditTextEmailadres);
+        mTelefoonnummer = view.findViewById(R.id.EditTextTelefoon);
+        mAdres = view.findViewById(R.id.EditTextAdres);
+        mHuisnummer = view.findViewById(R.id.EditTextHuisnummer);
+        mToevoeging = view.findViewById(R.id.EditTextToevoeging);
+        mWoonplaats = view.findViewById(R.id.EditTextWoonplaats);
+        mPostcode = view.findViewById(R.id.EditTextPostcode);
+        mLeeftijd = view.findViewById(R.id.EditTextLeeftijd);
+        mGeslacht = view.findViewById(R.id.EditTextGeslacht);
+        mNationaliteit = view.findViewById(R.id.EditTextNationaliteit);
 
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();

@@ -20,12 +20,21 @@ public class Fragment_Account extends Fragment
 
     // Creating the variables
     private FirebaseAuth.AuthStateListener mAuthstateListener;
-    private Button mLogOut;
+    private Button mLogOut, mCv, mPersoonlijkeInfo, mSollicitaties, mProfielWeergave, mMotivatie, mInbox, mSettings;
 
     // When loading the fragment, the fragment has to be assigned a layout. This happens through the inflate method.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        mLogOut = view.findViewById(R.id.LogOutBtn);
+        mCv = view.findViewById(R.id.CvBtn);
+        mPersoonlijkeInfo = view.findViewById(R.id.PersoonlijkeInfoBtn);
+        mSollicitaties = view.findViewById(R.id.SollicatiesBtn);
+        mProfielWeergave = view.findViewById(R.id.ProfielWeergaveBtn);
+        mMotivatie = view.findViewById(R.id.MotivatieBtn);
+        mInbox = view.findViewById(R.id.InboxBtn);
+        mSettings = view.findViewById(R.id.AccountinstellingenBtn);
 
         // Executing the FireBaseListener function created below to log the user out.
         setupFireBaseListener();
@@ -34,8 +43,7 @@ public class Fragment_Account extends Fragment
         // Current fragment to the fragment called in the method. The fragment however gets added to the back stack so the user can press
         // The back button in case it wants to go back. This prevents the app from getting closed start away when the back button is pressed.
         // The same method is used for all buttons below, with the only change being the fragment names.
-        Button CvBtn = (Button) view.findViewById(R.id.CvBtn);
-        CvBtn.setOnClickListener(new View.OnClickListener()
+        mCv.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -45,8 +53,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button PersoonlijkeInfoBtn = (Button) view.findViewById(R.id.PersoonlijkeInfoBtn);
-        PersoonlijkeInfoBtn.setOnClickListener(new View.OnClickListener()
+        mPersoonlijkeInfo.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -56,8 +63,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button SollicitatiesBtn = (Button) view.findViewById(R.id.SollicatiesBtn);
-        SollicitatiesBtn.setOnClickListener(new View.OnClickListener() {
+        mSollicitaties.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -66,8 +72,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button ProfielWeergaveBtn = (Button) view.findViewById(R.id.ProfielWeergaveBtn);
-        ProfielWeergaveBtn.setOnClickListener(new View.OnClickListener()
+        mProfielWeergave.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -77,8 +82,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button MotivatieBtn = (Button) view.findViewById(R.id.MotivatieBtn);
-        MotivatieBtn.setOnClickListener(new View.OnClickListener()
+        mMotivatie.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -88,8 +92,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button InboxBtn = (Button) view.findViewById(R.id.InboxBtn);
-        InboxBtn.setOnClickListener(new View.OnClickListener()
+        mInbox.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -99,8 +102,7 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        Button AccountinstellingenBtn = (Button) view.findViewById(R.id.AccountinstellingenBtn);
-        AccountinstellingenBtn.setOnClickListener(new View.OnClickListener()
+        mSettings.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -111,7 +113,6 @@ public class Fragment_Account extends Fragment
         });
 
         // Setting the onClickListener for the LogOut button. When clicked the button starts the log out function from Firebase.
-        mLogOut = (Button) view.findViewById(R.id.LogOutBtn);
         mLogOut.setOnClickListener(new View.OnClickListener()
         {
             @Override

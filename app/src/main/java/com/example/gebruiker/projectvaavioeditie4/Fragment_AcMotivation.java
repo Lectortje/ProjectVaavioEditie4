@@ -25,8 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Fragment_AcMotivation extends Fragment
 {
     //Declaring all the button, textView, String and Firebase variables.
-    private Button mBtnOpslaan;
-    private EditText mEditTextMotivatie;
+    private Button mOpslaan;
+    private EditText mMotivatie;
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -49,20 +49,20 @@ public class Fragment_AcMotivation extends Fragment
         mRef = mFirebaseDatabase.getReference();
 
         //Assingning the button variables to the button ID's.
-        mBtnOpslaan = view.findViewById(R.id.btnOpslaan);
-        mEditTextMotivatie = view.findViewById(R.id.editTextMotivatie);
+        mOpslaan = view.findViewById(R.id.OpslaanBtn);
+        mMotivatie = view.findViewById(R.id.EditTextMotivatie);
 
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
         //Setting the OnClick event for the opslaan button.
-        mBtnOpslaan.setOnClickListener(new View.OnClickListener()
+        mOpslaan.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 // First, a string is created, in which the text that is filled in the edit text gets put.
-                final String motivatie = mEditTextMotivatie.getText().toString().trim();
+                final String motivatie = mMotivatie.getText().toString().trim();
 
                 // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                 // Parent equal to there UserID.
@@ -100,7 +100,7 @@ public class Fragment_AcMotivation extends Fragment
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
-                mEditTextMotivatie.setText(motivatie);
+                mMotivatie.setText(motivatie);
 
             }
             @Override

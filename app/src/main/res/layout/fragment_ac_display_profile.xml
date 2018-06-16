@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageViewBannerDis"
+        android:id="@+id/ImageViewBanner"
         android:layout_width="0dp"
         android:layout_height="228dp"
         android:layout_marginBottom="8dp"
@@ -21,23 +21,23 @@
         app:srcCompat="@drawable/banner" />
 
     <ImageView
-        android:id="@+id/imageViewProfielFotoDis"
+        android:id="@+id/ImageViewProfielFoto"
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewBannerDis"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewBannerDis"
+        app:layout_constraintBottom_toBottomOf="@+id/ImageViewBanner"
+        app:layout_constraintEnd_toEndOf="@+id/ImageViewBanner"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageViewBannerDis"
-        app:layout_constraintTop_toTopOf="@+id/imageViewBannerDis"
+        app:layout_constraintStart_toStartOf="@+id/ImageViewBanner"
+        app:layout_constraintTop_toTopOf="@+id/ImageViewBanner"
         app:layout_constraintVertical_bias="0.556"
         app:srcCompat="@android:color/holo_blue_dark" />
 
     <TextView
-        android:id="@+id/textViewNaamWerknDis"
+        android:id="@+id/TextViewNaamWerknemer"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -47,11 +47,11 @@
         android:gravity="center"
         android:text="Naam werknemer"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewBannerDis"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewBannerDis"
+        app:layout_constraintBottom_toBottomOf="@+id/ImageViewBanner"
+        app:layout_constraintEnd_toEndOf="@+id/ImageViewBanner"
         app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toEndOf="@+id/imageViewProfielFotoDis"
-        app:layout_constraintTop_toTopOf="@+id/imageViewBannerDis"
+        app:layout_constraintStart_toEndOf="@+id/ImageViewProfielFoto"
+        app:layout_constraintTop_toTopOf="@+id/ImageViewBanner"
         app:layout_constraintVertical_bias="0.529" />
 
     <ScrollView
@@ -64,9 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,220 +72,205 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/ImageViewPersoonlijkeInformatie"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.104"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.395"
                 app:srcCompat="@drawable/profilepic" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/TextViewPersoonlijkeInformatie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="-40dp"
+                android:layout_marginTop="-30dp"
+                android:textAlignment="center"
                 android:text="Persoonlijke informatie"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/TextViewAdresText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Adres"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewAdresDis"
+                android:id="@+id/TextViewAdres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Adres"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Postcode"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
 
             <TextView
-                android:id="@+id/textViewPostcodeDis"
+                android:id="@+id/TextViewPlaats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Postcode"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Plaats"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textViewPlaatsDis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Plaats"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Nationaliteit"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textViewNationaliteitDis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nationaliteit"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Telefoonnummer"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textViewTelefoonNrDis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Telefoonnummer"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/TextViewEmailadresText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="E-mailadres"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewEmailadresDis"
+                android:id="@+id/TextViewEmailadres"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:text="E-mailadres"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/TextViewTelefoonnummerText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:text="Telefoonnummer"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextViewTelefoonnummer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Telefoonnummer"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/TextViewGeslachtText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
                 android:text="Geslacht"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewGeslachtDis"
+                android:id="@+id/TextViewGeslacht"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Geslacht"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/TextViewNationaliteitText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Nationaliteit"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextViewNationaliteit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Nationaliteit"
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/ImageViewKennis"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 app:srcCompat="@drawable/kennis" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/TextViewKennis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="-30dp"
-                android:layout_marginLeft="50dp"
                 android:text="Kennis en vaardigheden"
                 android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/TextViewOpleidingenText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Opleidingen"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewOpleidingenDis"
+                android:id="@+id/TextViewOpleidingen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Opleidingen"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/TextViewErvaringText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textAlignment="center"
                 android:text="Ervaring"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewErvaringDis"
+                android:id="@+id/TextViewErvaring"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ervaring"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView30"
+                android:id="@+id/TextViewTrainingenText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Trainingen en cursussen"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewTrainingenDis"
+                android:id="@+id/TextViewTrainingen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Trainingen en cursussen"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/TextViewVaardighedenText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textAlignment="center"
                 android:text="Vaardigheden"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textViewVaardighedenDis"
+                android:id="@+id/TextViewVaardigheden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Vaardigheden"
                 android:textSize="14sp" />
 

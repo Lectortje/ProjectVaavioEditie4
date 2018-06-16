@@ -35,8 +35,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     private DrawerLayout drawer;
     private Button mZoeken;
     private ImageView mIVNavHeader;
-    private TextView mTV1NavHeader;
-    private TextView mTV2NavHeader;
+    private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
     private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
@@ -82,7 +81,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             String userID = UserID.toString();
 
             // Declaring the image view of the nav header
-            mIVNavHeader = (ImageView) hView.findViewById(R.id.ImageViewNavHeader);
+            mIVNavHeader = hView.findViewById(R.id.ImageViewNavHeader);
 
             // Getting the profile image of the user, if it has uploaded one. When successful, the image view in het nav header gets replaced
             // By the profile picture of the user. Picasso is used fot this processed. The image get loaded from the uri, fit in the image view
@@ -97,8 +96,8 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             });
 
             // Declaring the TextView's of the nav header of the drawer menu
-            mTV1NavHeader = (TextView) hView.findViewById(R.id.TextViewNaamNavHeader);
-            mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
+            mTV1NavHeader = hView.findViewById(R.id.TextViewNaamNavHeader);
+            mTV2NavHeader = hView.findViewById(R.id.TextViewEmailNavHeader);
 
             // addValueEventListener to change the default text view to the name and email adres of the user, if it has provided these in the
             // profile information section of the account. A dataSnapshot is used to get the name, which get put in a string, after which the
@@ -129,7 +128,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         navigationView.setCheckedItem(R.id.nav_home);
 
         // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
-        mZoeken = (Button) findViewById(R.id.ZoekenBtn);
+        mZoeken = findViewById(R.id.ZoekenBtn);
         mZoeken.setOnClickListener(new View.OnClickListener()
         {
             @Override

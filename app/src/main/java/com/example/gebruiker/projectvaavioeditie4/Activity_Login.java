@@ -27,11 +27,9 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
 {
     //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
-    private EditText mEmailadres;
-    private EditText mWachtwoord;
+    private EditText mEmailadres, mWachtwoord;
     private Button mInlog;
-    private TextView mRegisteren;
-    private TextView mResetPassword;
+    private TextView mRegisteren,mResetPassword;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -56,11 +54,11 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         toggle.syncState();
 
         // Setting up the refrences to the actual buttons/edittexts/textviews in the app
-        mEmailadres = (EditText) findViewById(R.id.EditTextEmailadres);
-        mWachtwoord = (EditText) findViewById(R.id.EditTextWachtwoord);
-        mInlog = (Button) findViewById(R.id.InlogBtn);
-        mRegisteren = (TextView) findViewById(R.id.TextViewRegistreren);
-        mResetPassword = (TextView) findViewById(R.id.TextViewWachtwoordVergeten);
+        mEmailadres = findViewById(R.id.EditTextEmailadres);
+        mWachtwoord = findViewById(R.id.EditTextWachtwoord);
+        mInlog = findViewById(R.id.InlogBtn);
+        mRegisteren = findViewById(R.id.TextViewRegistreren);
+        mResetPassword = findViewById(R.id.TextViewWachtwoordVergeten);
 
         // Initializing the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();

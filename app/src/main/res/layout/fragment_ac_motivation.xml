@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/scrollView5"
+        android:id="@+id/ScrollViewMotivatie"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOpslaan"
+        app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextMotivatie"
+                android:id="@+id/EditTextMotivatie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
@@ -36,7 +36,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnOpslaan"
+        android:id="@+id/OpslaanBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#008bab"

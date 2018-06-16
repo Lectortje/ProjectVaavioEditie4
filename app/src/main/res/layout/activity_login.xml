@@ -95,13 +95,13 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/SocialeButtonsTextView"
+            android:id="@+id/TextViewSocialeButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
             android:text="Of login met Google, Facebook of Twitter"
             android:textAlignment="center"
             android:textColor="#000"

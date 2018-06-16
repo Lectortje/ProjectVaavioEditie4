@@ -28,11 +28,8 @@ public class Fragment_Sollicitatie extends Fragment
 {
 
     //Declaring all the button, textView, String and Firebase variables.
-    private Button mButtonVerstuurSoll;
-    private EditText mEditTextNaamSoll;
-    private EditText mEditTextEmailSoll;
-    private EditText mEditTextAchternaamSoll;
-    private EditText mEditTextBerichtSoll;
+    private Button mVerstuur;
+    private EditText mNaam, mEmail, mAchternaam, mBericht, mTelefoon;
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -44,7 +41,7 @@ public class Fragment_Sollicitatie extends Fragment
     {
         //In order to be able to return the view at the end there has to be a variable created called 'view' which is done here with 'View view ='.
         //This also holds the content of the fragment to display.
-        View view = inflater.inflate(R.layout.fragment_ac_sollicitatie, container, false);
+        View view = inflater.inflate(R.layout.fragment_sollicitatie, container, false);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -52,14 +49,15 @@ public class Fragment_Sollicitatie extends Fragment
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
         //Assingning the button variables to the button ID's.
-        mButtonVerstuurSoll = view.findViewById(R.id.btnVerstuurSoll);
-        mEditTextNaamSoll = view.findViewById(R.id.editTextNaamSoll);
-        mEditTextAchternaamSoll = view.findViewById(R.id.editTextAchternaamSoll);
-        mEditTextEmailSoll = view.findViewById(R.id.editTextEmailSoll);
-        mEditTextBerichtSoll = view.findViewById(R.id.editTextBerichtSoll);
+        mVerstuur = view.findViewById(R.id.VerstuurSollicitatieBtn);
+        mNaam = view.findViewById(R.id.EditTextNaamSollicitatie);
+        mAchternaam = view.findViewById(R.id.EditTextAchternaamSollicitatie);
+        mEmail = view.findViewById(R.id.EditTextEmailSollicitatie);
+        mBericht = view.findViewById(R.id.EditTextBerichtSollicitatie);
+        mTelefoon = view.findViewById(R.id.EditTextTelefoonSollicitatie);
 
         //Setting the OnClick event for the verstuur button.
-        mButtonVerstuurSoll.setOnClickListener(new View.OnClickListener()
+        mVerstuur.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
@@ -69,10 +67,11 @@ public class Fragment_Sollicitatie extends Fragment
                 if (user != null)
                 {
                     // First, a string is created, in which the text that is filled in the edit text gets put.
-                    String naam = mEditTextNaamSoll.getText().toString().trim();
-                    String achternaam = mEditTextAchternaamSoll.getText().toString().trim();
-                    String emailadres = mEditTextEmailSoll.getText().toString().trim().toLowerCase();
-                    final String bericht = mEditTextBerichtSoll.getText().toString().trim();
+                    String naam = mNaam.getText().toString().trim();
+                    String achternaam = mAchternaam.getText().toString().trim();
+                    String emailadres = mEmail.getText().toString().trim().toLowerCase();
+                    String telefoon = mTelefoon.getText().toString().trim();
+                    final String bericht = mBericht.getText().toString().trim();
 
                     // When all the strings are created, they get put in an HashMap. This HashMap is used to send the data to the database.
                     // For every string, a child name gets declared.
@@ -80,6 +79,7 @@ public class Fragment_Sollicitatie extends Fragment
                     childUpdates.put("Naam", naam);
                     childUpdates.put("Achternaam", achternaam);
                     childUpdates.put("Emailadres", emailadres);
+                    childUpdates.put("Telefoon", telefoon);
 
                     // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                     // Parent equal to there UserID.
@@ -142,14 +142,16 @@ public class Fragment_Sollicitatie extends Fragment
                     String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
                     String achternaam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Achternaam").getValue(String.class);
                     String emailadres = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
+                    String telefoon = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Telefoon").getValue(String.class);
                     String bericht = dataSnapshot.child("Sollicitaties").child(UserID).child("Persoonlijke informatie").child("Bericht").getValue(String.class);
 
                     // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                     // given to the edit text in het xml.
-                    mEditTextNaamSoll.setText(naam);
-                    mEditTextAchternaamSoll.setText(achternaam);
-                    mEditTextBerichtSoll.setText(bericht);
-                    mEditTextEmailSoll.setText(emailadres);
+                    mNaam.setText(naam);
+                    mAchternaam.setText(achternaam);
+                    mBericht.setText(bericht);
+                    mTelefoon.setText(telefoon);
+                    mEmail.setText(emailadres);
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError)

@@ -6,56 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="548dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/TextViewOmschrijving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Vacature Omschrijving"
+        app:layout_constraintBottom_toTopOf="@+id/SollicitatieBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/imageViewLogo"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                app:srcCompat="@android:color/holo_blue_dark" />
-
-            <TextView
-                android:id="@+id/textViewOmschrijving"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSoll"
+        android:id="@+id/SollicitatieBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#008bab"
         android:text="Sollicitatie"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnContact"
+        app:layout_constraintEnd_toStartOf="@+id/ContactBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnContact"
+        android:id="@+id/ContactBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#008bab"
         android:text="Contact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSoll" />
+        app:layout_constraintStart_toEndOf="@+id/SollicitatieBtn" />
 </android.support.constraint.ConstraintLayout>

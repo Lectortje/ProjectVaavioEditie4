@@ -49,8 +49,8 @@ public class Activity_PasswordForgotten extends AppCompatActivity implements Nav
         toggle.syncState();
 
         mAuth = FirebaseAuth.getInstance();
-        mEmail = (EditText) findViewById(R.id.EditTextPasswordForgoten);
-        mHerstellen = (Button) findViewById(R.id.HerstellenBtn);
+        mEmail = findViewById(R.id.EditTextPasswordForgoten);
+        mHerstellen = findViewById(R.id.HerstellenBtn);
 
         mHerstellen.setOnClickListener(new View.OnClickListener() {
             @Override

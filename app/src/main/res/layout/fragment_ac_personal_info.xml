@@ -15,25 +15,23 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:background="#FAFAFA"
-        app:layout_constraintBottom_toTopOf="@+id/PaginaScrollView"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewPersonalInfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ProfielfotoTextView"
+        android:id="@+id/TextViewProfielfoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Profielfoto"
         android:textColor="#000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/PaginaScrollView"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewPersonalInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/ImageViewProfilePicture"
@@ -63,7 +61,7 @@
         app:layout_constraintStart_toEndOf="@+id/OpslaanBtn" />
 
     <ScrollView
-        android:id="@+id/PaginaScrollView"
+        android:id="@+id/ScrollViewPersonalInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -83,7 +81,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/NaamTextView"
+                android:id="@+id/TextViewNaam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -94,7 +92,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/NaamEditText"
+                android:id="@+id/EditTextNaam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -103,7 +101,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/AchternaamTextView"
+                android:id="@+id/TextViewAchternaam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -114,7 +112,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/AchternaamEditText"
+                android:id="@+id/EditTextAchternaam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -123,7 +121,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/EmailTextView"
+                android:id="@+id/TextViewEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -134,7 +132,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/EmailEditText"
+                android:id="@+id/EditTextEmailadres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -143,7 +141,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/TelefoonTextView"
+                android:id="@+id/TextViewTelefoon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -154,7 +152,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/TelefoonEditText"
+                android:id="@+id/EditTextTelefoon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -163,7 +161,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/AdresTextView"
+                android:id="@+id/TextViewAdres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -174,7 +172,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/AdresEditText"
+                android:id="@+id/EditTextAdres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -183,7 +181,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/HuisnummerTextView"
+                android:id="@+id/TextViewHuisnummer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -194,7 +192,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/HuisnummerEditText"
+                android:id="@+id/EditTextHuisnummer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -203,7 +201,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/ToevoegingTextView"
+                android:id="@+id/TextViewToevoeging"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -214,7 +212,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/ToevoegingEditText"
+                android:id="@+id/EditTextToevoeging"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -223,7 +221,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/WoonplaatsTextView"
+                android:id="@+id/TextViewWoonplaats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -234,7 +232,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/WoonplaatsEditText"
+                android:id="@+id/EditTextWoonplaats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -243,7 +241,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/PostcodeTextView"
+                android:id="@+id/TextViewPostcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -254,7 +252,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/PostcodeEditText"
+                android:id="@+id/EditTextPostcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -263,7 +261,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/LeeftijdTextView"
+                android:id="@+id/TextViewLeeftijd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -274,7 +272,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/LeeftijdEditText"
+                android:id="@+id/EditTextLeeftijd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -283,7 +281,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/GeslachtTextView"
+                android:id="@+id/TextViewGeslacht"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -294,7 +292,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/GeslachtEditText"
+                android:id="@+id/EditTextGeslacht"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -303,7 +301,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/NationaliteitTextView"
+                android:id="@+id/TextViewNationaliteit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -314,7 +312,7 @@
                 tools:layout_editor_absoluteY="54dp" />
 
             <EditText
-                android:id="@+id/NationaliteitEditText"
+                android:id="@+id/EditTextNationaliteit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

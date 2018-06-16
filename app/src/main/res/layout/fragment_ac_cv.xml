@@ -7,13 +7,11 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/ScrollViewCV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
@@ -27,7 +25,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/OpleidingenTextView"
+                android:id="@+id/TextViewOpleidingen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dp"
@@ -41,7 +39,7 @@
                 tools:layout_editor_absoluteY="129dp" />
 
             <EditText
-                android:id="@+id/OpleidingenEditText"
+                android:id="@+id/EditTextOpleidingen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,7 +48,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/ErvaringTextView"
+                android:id="@+id/TextViewErvaring"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dp"
@@ -64,7 +62,7 @@
                 tools:layout_editor_absoluteY="129dp" />
 
             <EditText
-                android:id="@+id/ErvaringEditText"
+                android:id="@+id/EditTextErvaring"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -73,7 +71,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/TrainingCursussenTextView"
+                android:id="@+id/TextViewTrainingCursussen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dp"
@@ -87,7 +85,7 @@
                 tools:layout_editor_absoluteY="129dp" />
 
             <EditText
-                android:id="@+id/TrainingCursussenEditText"
+                android:id="@+id/EditTextTrainingCursussen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -96,7 +94,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/VaardighedenTextView"
+                android:id="@+id/TextViewVaardigheden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dp"
@@ -110,7 +108,7 @@
                 tools:layout_editor_absoluteY="129dp" />
 
             <EditText
-                android:id="@+id/VaardighedenEditText"
+                android:id="@+id/EditTextVaardigheden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
