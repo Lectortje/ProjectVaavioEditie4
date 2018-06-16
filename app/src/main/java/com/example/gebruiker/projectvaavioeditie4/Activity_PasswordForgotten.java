@@ -48,7 +48,13 @@ public class Activity_PasswordForgotten extends AppCompatActivity implements Nav
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
+        // Initializing the Auth refrence
         mAuth = FirebaseAuth.getInstance();
+
+        // Setting the refrence to the button and EditText
         mEmail = findViewById(R.id.EditTextPasswordForgoten);
         mHerstellen = findViewById(R.id.HerstellenBtn);
 

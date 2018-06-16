@@ -1,6 +1,7 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class Fragment_AcDisplayProfile extends Fragment
 {
@@ -25,6 +32,8 @@ public class Fragment_AcDisplayProfile extends Fragment
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
+    private ImageView mProfielFoto;
+    private StorageReference mStorage;
     private DatabaseReference mRef;
 
     @Nullable
@@ -42,6 +51,7 @@ public class Fragment_AcDisplayProfile extends Fragment
         UserID = user.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mFirebaseDatabase.getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
@@ -57,7 +67,9 @@ public class Fragment_AcDisplayProfile extends Fragment
         mTelefoon = view.findViewById(R.id.TextViewTelefoonnummer);
         mEmailadres = view.findViewById(R.id.TextViewEmailadres);
         mGeslacht = view.findViewById(R.id.TextViewGeslacht);
+        mProfielFoto = view.findViewById(R.id.ImageViewProfielFoto);
 
+        setProfileImage();
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
@@ -107,6 +119,27 @@ public class Fragment_AcDisplayProfile extends Fragment
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;
+    }
+
+    private void setProfileImage()
+    {
+        String userID = UserID.toString();
+
+        mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+        {
+            @Override
+            public void onSuccess(Uri uri)
+            {
+                Picasso.get().load(uri).fit().centerCrop().into(mProfielFoto);
+            }
+        }).addOnFailureListener(new OnFailureListener()
+        {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+                Picasso.get().load("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg").fit().centerCrop().into(mProfielFoto);
+            }
+        });
     }
 
 }

@@ -10,61 +10,57 @@
     <ImageView
         android:id="@+id/ImageViewBanner"
         android:layout_width="0dp"
-        android:layout_height="228dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView7"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/display_profile_banner"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewDiplayProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/banner" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/ImageViewProfielFoto"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ImageViewBanner"
-        app:layout_constraintEnd_toEndOf="@+id/ImageViewBanner"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/TextViewNaamWerknemer"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/ImageViewBanner"
-        app:layout_constraintTop_toTopOf="@+id/ImageViewBanner"
-        app:layout_constraintVertical_bias="0.556"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/holo_blue_dark" />
 
     <TextView
         android:id="@+id/TextViewNaamWerknemer"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:text="Naam werknemer"
+        android:textAlignment="textStart"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/ImageViewBanner"
         app:layout_constraintEnd_toEndOf="@+id/ImageViewBanner"
-        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toEndOf="@+id/ImageViewProfielFoto"
-        app:layout_constraintTop_toTopOf="@+id/ImageViewBanner"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView7"
+        android:id="@+id/ScrollViewDiplayProfile"
         android:layout_width="0dp"
-        android:layout_height="331dp"
+        android:layout_height="370dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageViewProfielFoto">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,8 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="-30dp"
-                android:textAlignment="center"
                 android:text="Persoonlijke informatie"
+                android:textAlignment="center"
                 android:textSize="18sp" />
 
             <TextView
@@ -101,8 +97,8 @@
                 android:id="@+id/TextViewAdres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Adres"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
 
@@ -110,8 +106,8 @@
                 android:id="@+id/TextViewPlaats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Plaats"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
@@ -127,9 +123,9 @@
             <TextView
                 android:id="@+id/TextViewEmailadres"
                 android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:text="E-mailadres"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
@@ -137,8 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textAlignment="center"
                 android:text="Telefoonnummer"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
@@ -146,8 +142,8 @@
                 android:id="@+id/TextViewTelefoonnummer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Telefoonnummer"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
@@ -155,8 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textAlignment="center"
                 android:text="Geslacht"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
@@ -164,8 +160,8 @@
                 android:id="@+id/TextViewGeslacht"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Geslacht"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
@@ -182,8 +178,8 @@
                 android:id="@+id/TextViewNationaliteit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Nationaliteit"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <ImageView
@@ -216,8 +212,8 @@
                 android:id="@+id/TextViewOpleidingen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Opleidingen"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
             <TextView
@@ -225,8 +221,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textAlignment="center"
                 android:text="Ervaring"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
@@ -261,8 +257,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textAlignment="center"
                 android:text="Vaardigheden"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
@@ -270,8 +266,8 @@
                 android:id="@+id/TextViewVaardigheden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="Vaardigheden"
+                android:textAlignment="center"
                 android:textSize="14sp" />
 
 

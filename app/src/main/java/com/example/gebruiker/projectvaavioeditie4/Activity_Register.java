@@ -58,6 +58,10 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
+        // Creating the refrence to the EditText's and TextView
         mEmail = findViewById(R.id.EditTextEmail);
         mWachtwoord = findViewById(R.id.EditTextWachtwoord);
         mRegister = findViewById(R.id.RegisterBtn);
@@ -178,7 +182,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
                 finish();
                 break;
             case R.id.nav_filters:
-                Toast.makeText(Activity_Register.this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Register.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -200,7 +204,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_Register.this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Register.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

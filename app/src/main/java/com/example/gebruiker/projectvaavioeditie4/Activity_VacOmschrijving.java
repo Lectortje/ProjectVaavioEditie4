@@ -62,6 +62,9 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
@@ -126,8 +129,7 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
         // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
         // So when loading the activity, the fragment gets replaced with the profile fragment.
         // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Fragment_VacatureOmschrijving()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_VacatureOmschrijving()).commit();
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -146,7 +148,7 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_VacOmschrijving.this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_VacOmschrijving.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -168,7 +170,7 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_VacOmschrijving.this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_VacOmschrijving.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

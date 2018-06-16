@@ -72,6 +72,12 @@ public class Fragment_AcSettings extends Fragment
                             if (!newpassword.equals(newpassword2))
                             {
                                 Toast.makeText(getActivity(), "Nieuw wachtwoord komt niet overeen", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            if (newpassword.length() < 6)
+                            {
+                                Toast.makeText(getActivity(), "Het nieuwe wachtwoord moet minimaal 6 tekens lang zijn", Toast.LENGTH_LONG).show();
+                                return;
                             }
                             else
                             {

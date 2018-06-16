@@ -63,6 +63,9 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
@@ -156,7 +159,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_Homescreen.this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Homescreen.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -178,7 +181,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_Homescreen.this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Homescreen.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

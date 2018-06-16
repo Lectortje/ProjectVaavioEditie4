@@ -53,6 +53,9 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
         // Setting up the refrences to the actual buttons/edittexts/textviews in the app
         mEmailadres = findViewById(R.id.EditTextEmailadres);
         mWachtwoord = findViewById(R.id.EditTextWachtwoord);
@@ -173,7 +176,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
                 finish();
                 break;
             case R.id.nav_filters:
-                Toast.makeText(Activity_Login.this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Login.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -195,7 +198,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_Login.this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Login.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

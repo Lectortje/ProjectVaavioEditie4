@@ -61,6 +61,9 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
@@ -69,6 +72,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         myRef = mDatabase.getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        // Initializing the mAuth refrence and checking if a user is signed in
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null)
@@ -128,8 +132,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
         // So when loading the activity, the fragment gets replaced with the profile fragment.
         // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Fragment_Account()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Account()).commit();
         navigationView.setCheckedItem(R.id.nav_profile);
     }
 
@@ -150,7 +153,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 finish();
                 break;
             case R.id.nav_filters:
-                Toast.makeText(this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -172,7 +175,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment
@@ -189,9 +192,11 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
             drawer.closeDrawer(GravityCompat.START);
         }
         else
-        // if the drawer isn't open, the back button will operate just as normal.
+        // if the drawer isn't open, the back button will start a new intent to go from the profile screen to the homescreen
         {
-            super.onBackPressed();
+            Intent intent = new Intent(this, Activity_Homescreen.class);
+            startActivity(intent);
+            finish();
         }
     }
 }

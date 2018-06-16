@@ -46,8 +46,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private DatabaseReference myRef, myRef2;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
-    private String UserID;
     private FirebaseUser mUser;
+    private String UserID;
     private RecyclerView mRecyclerView;
     private List<VacatureModel> result;
     private RecyclerViewAdapter adapter;
@@ -72,6 +72,9 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting the title that is showing on the toolbar
+        setTitle("Vaavio");
+
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
@@ -81,7 +84,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         // Making the refrence to the recyclerview
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        // Setting up the adapter and layoutmanager for the recyclerview
+        // Setting up the adapter and LayoutManager for the RecyclerView
         adapter = new RecyclerViewAdapter(getApplicationContext(), result);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutmanager);
@@ -244,7 +247,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_Vacatures.this, "Filters", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Vacatures.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -266,7 +269,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_Vacatures.this, "Settings", Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Vacatures.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

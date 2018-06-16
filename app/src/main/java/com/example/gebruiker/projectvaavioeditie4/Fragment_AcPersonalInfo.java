@@ -222,14 +222,18 @@ public class Fragment_AcPersonalInfo extends Fragment
     {
         String userID = UserID.toString();
 
-        mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        mStorage.child("Profile photos/" + userID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+        {
             @Override
-            public void onSuccess(Uri uri) {
+            public void onSuccess(Uri uri)
+            {
                 Picasso.get().load(uri).fit().centerCrop().into(mProfielFoto);
             }
-        }).addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener()
+        {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onFailure(@NonNull Exception e)
+            {
                 Picasso.get().load("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg").fit().centerCrop().into(mProfielFoto);
             }
         });
