@@ -30,8 +30,8 @@ public class Fragment_AcMotivation extends Fragment
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private DatabaseReference mRef;
-
+    private DatabaseReference mRef
+;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

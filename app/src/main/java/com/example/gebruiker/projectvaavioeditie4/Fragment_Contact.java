@@ -86,7 +86,7 @@ public class Fragment_Contact extends Fragment
 
                     mAuth = FirebaseAuth.getInstance();
                     UserID = user.getUid();
-                    mRef.child("Users").child(UserID).updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
+                    mRef.child("Users").child(UserID).child("Persoonlijke informatie").updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
                     {
                         @Override
                         public void onComplete(@NonNull Task<Void> task)
@@ -123,7 +123,6 @@ public class Fragment_Contact extends Fragment
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
-
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null)

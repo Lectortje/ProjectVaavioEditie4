@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Activity_PasswordForgotten extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    // creating the variables
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
     private FirebaseAuth mAuth;
     private EditText mEmail;

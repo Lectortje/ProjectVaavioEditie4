@@ -38,6 +38,7 @@ import java.util.List;
 
 public class Activity_Vacatures extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader;
@@ -76,10 +77,13 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
 
+        // Setting the result as an Array list
         result = new ArrayList<>();
 
+        // Making the refrence to the recyclerview
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        // Setting up the adapter and layoutmanager for the recyclerview
         adapter = new RecyclerViewAdapter(getApplicationContext(), result);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutmanager);
@@ -87,6 +91,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(adapter);
 
+        // Executing the create result function to create placeholders for the recyclerview, created down below
         createResult();
         // updateList();
 
@@ -124,8 +129,9 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
             mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
 
             // addValueEventListener to change the default text view to the name and email adres of the user, if it has provided these in the
-            // profile information section of the account. A dataSnapshot is used to get the name and email, which get put in a string, after which the
-            // string gets put in het Text View.
+            // profile information section of the account. A dataSnapshot is used to get the name, which get put in a string, after which the
+            // string gets put in het Text View. The email is provided by registration, so this can be gotten with the mAuth state. Where it
+            // gets the current user, and puts the current user email in a string.
             myRef.addValueEventListener(new ValueEventListener()
             {
                 @Override
@@ -148,6 +154,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         }
     }
 
+    // The createResult function to fill the recycylerview, with a simple for loop 10 items get added.
     private void createResult(){
         for (int i = 0; i < 10; i++){
             result.add(new VacatureModel("Title", "Locatie", "Omschrijving", ""));

@@ -31,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
     private Button mZoeken;
     private ImageView mIVNavHeader;
@@ -101,8 +101,9 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             mTV2NavHeader = (TextView) hView.findViewById(R.id.TextViewEmailNavHeader);
 
             // addValueEventListener to change the default text view to the name and email adres of the user, if it has provided these in the
-            // profile information section of the account. A dataSnapshot is used to get the name and email, which get put in a string, after which the
-            // string gets put in het Text View.
+            // profile information section of the account. A dataSnapshot is used to get the name, which get put in a string, after which the
+            // string gets put in het Text View. The email is provided by registration, so this can be gotten with the mAuth state. Where it
+            // gets the current user, and puts the current user email in a string.
             myRef.addValueEventListener(new ValueEventListener()
             {
                 @Override

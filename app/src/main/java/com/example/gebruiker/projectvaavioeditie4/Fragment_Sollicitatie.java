@@ -96,7 +96,7 @@ public class Fragment_Sollicitatie extends Fragment
 
                                 // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'Sollicitaties' with a
                                 // Parent equal to there UserID.
-                                myRef.child("Sollicitaties").child(UserID).setValue(bericht).addOnCompleteListener(new OnCompleteListener<Void>()
+                                myRef.child("Sollicitaties").child(UserID).child("Persoonlijke informatie").setValue(bericht).addOnCompleteListener(new OnCompleteListener<Void>()
                                 {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task)

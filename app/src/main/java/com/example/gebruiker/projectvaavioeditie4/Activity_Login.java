@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Activity_Login extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    // creating the variables
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
     private EditText mEmailadres;
     private EditText mWachtwoord;
@@ -55,6 +55,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Setting up the refrences to the actual buttons/edittexts/textviews in the app
         mEmailadres = (EditText) findViewById(R.id.EditTextEmailadres);
         mWachtwoord = (EditText) findViewById(R.id.EditTextWachtwoord);
         mInlog = (Button) findViewById(R.id.InlogBtn);

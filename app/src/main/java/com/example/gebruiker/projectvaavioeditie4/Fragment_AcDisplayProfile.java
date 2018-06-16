@@ -88,7 +88,7 @@ public class Fragment_AcDisplayProfile extends Fragment
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
-                mTextViewAdres.setText(adres + " " + huisnummer + " " + toevoeging);
+                mTextViewAdres.setText(adres + " " + huisnummer + toevoeging);
                 mTextViewErvaring.setText(ervaring);
                 mTextViewNaamWerkn.setText(naam + " " + achternaam);
                 mTextViewNationaliteit.setText(nationaliteit);

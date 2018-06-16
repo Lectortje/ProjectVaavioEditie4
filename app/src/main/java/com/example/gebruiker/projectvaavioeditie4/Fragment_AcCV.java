@@ -124,16 +124,18 @@ public class Fragment_AcCV extends Fragment
             }
         });
 
-        mUploadCVBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("*file/*");
-                startActivityForResult(intent, PICK_DOCUMENT);
-            }
-        });
+        mUploadCVBtn.setOnClickListener(new View.OnClickListener()
+        {
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*file/*");
+            startActivityForResult(intent, PICK_DOCUMENT);
+        }
+    });
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
