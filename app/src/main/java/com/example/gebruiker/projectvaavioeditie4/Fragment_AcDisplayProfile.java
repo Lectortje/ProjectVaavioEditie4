@@ -21,8 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Fragment_AcDisplayProfile extends Fragment
 {
     //Declaring all the button, textView, String and Firebase variables.
-    private TextView mTextViewNationaliteit, mTextViewNaamWerkn, mTextViewAdres, mTextViewPostcode, mTextViewPlaats, mTextViewEmailadres, mTextViewHuisNr, mTextViewAchternaam;
-    private TextView mTextViewOpleidingen, mTextViewErvaring, mTextViewTrainingen, mTextViewVaardigheden, mTextViewTelefoonNr, mTextViewGeslacht, mTextViewToevoeging;
+    private TextView mTextViewNationaliteit, mTextViewNaamWerkn, mTextViewAdres, mTextViewPostcode, mTextViewPlaats, mTextViewEmailadres;
+    private TextView mTextViewOpleidingen, mTextViewErvaring, mTextViewTrainingen, mTextViewVaardigheden, mTextViewTelefoonNr, mTextViewGeslacht;
     private String UserID;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -59,9 +59,7 @@ public class Fragment_AcDisplayProfile extends Fragment
         mTextViewTelefoonNr = view.findViewById(R.id.textViewTelefoonNrDis);
         mTextViewEmailadres = view.findViewById(R.id.textViewEmailadresDis);
         mTextViewGeslacht = view.findViewById(R.id.textViewGeslachtDis);
-        mTextViewHuisNr = view.findViewById(R.id.textViewHuisNrDis);
-        mTextViewToevoeging = view.findViewById(R.id.textViewToevoegingDis);
-        mTextViewAchternaam = view.findViewById(R.id.textViewAchternaamDis);
+
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
@@ -90,21 +88,18 @@ public class Fragment_AcDisplayProfile extends Fragment
 
                 // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint
                 // given to the edit text in het xml.
-                mTextViewAdres.setText("Adres: " + adres);
-                mTextViewErvaring.setText("Ervaring: " + ervaring);
-                mTextViewNaamWerkn.setText(naam);
-                mTextViewAchternaam.setText("Achternaam: " + achternaam);
-                mTextViewNationaliteit.setText("Nationaliteit: " + nationaliteit);
-                mTextViewOpleidingen.setText("Opleidingen: " + opleidingen);
-                mTextViewPlaats.setText("Woonplaats: " + plaats);
-                mTextViewPostcode.setText("Postcode: " + postcode);
-                mTextViewTrainingen.setText("Trainingen: " + trainingen);
-                mTextViewVaardigheden.setText("Vaardigheden: " + vaardigheden);
-                mTextViewTelefoonNr.setText("Telefoonnummer: " + telefoonnummer);
-                mTextViewEmailadres.setText("E-mailadres: " + emailadres);
-                mTextViewGeslacht.setText("Gelsacht: " + geslacht);
-                mTextViewHuisNr.setText("Huisnummer: " + huisnummer);
-                mTextViewToevoeging.setText("Toevoeging: " + toevoeging);
+                mTextViewAdres.setText(adres + " " + huisnummer + " " + toevoeging);
+                mTextViewErvaring.setText(ervaring);
+                mTextViewNaamWerkn.setText(naam + " " + achternaam);
+                mTextViewNationaliteit.setText(nationaliteit);
+                mTextViewOpleidingen.setText(opleidingen);
+                mTextViewPlaats.setText(plaats);
+                mTextViewPostcode.setText(postcode);
+                mTextViewTrainingen.setText(trainingen);
+                mTextViewVaardigheden.setText(vaardigheden);
+                mTextViewTelefoonNr.setText(telefoonnummer);
+                mTextViewEmailadres.setText(emailadres);
+                mTextViewGeslacht.setText(geslacht);
             }
             @Override
             public void onCancelled(DatabaseError databaseError)

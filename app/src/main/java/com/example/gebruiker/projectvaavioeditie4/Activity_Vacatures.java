@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,9 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Activity_Vacatures extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -40,14 +44,14 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private TextView mTV2NavHeader;
     private StorageReference mStorage;
     private DatabaseReference myRef;
+    private DatabaseReference myRef2;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private String UserID;
-
-    private ArrayList<String> mJobTitles = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
-    private ArrayList<String> mLocaties = new ArrayList<>();
-    private ArrayList<String> mOmschrijvingen = new ArrayList<>();
+    private FirebaseUser mUser;
+    private RecyclerView mRecyclerView;
+    private List<VacatureModel> result;
+    private RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,6 +75,20 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
+
+        result = new ArrayList<>();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        adapter = new RecyclerViewAdapter(getApplicationContext(), result);
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutmanager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(adapter);
+
+        createResult();
+        // updateList();
 
         // Setting up the firebase connection, getting the current user, if present
         mDatabase = FirebaseDatabase.getInstance();
@@ -113,8 +131,9 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot)
                 {
+                    mUser = mAuth.getCurrentUser();
+                    String email = mUser.getEmail();
                     String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
-                    String email = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
 
                     mTV1NavHeader.setText(naam);
                     mTV2NavHeader.setText(email);
@@ -127,9 +146,81 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 }
             });
         }
+    }
 
-        // Executing the initImageBitmaps function created down below;
-        initImageBitmaps();
+    private void createResult(){
+        for (int i = 0; i < 10; i++){
+            result.add(new VacatureModel("Title", "Locatie", "Omschrijving", ""));
+        }
+    }
+
+    // private void updateList()
+    {
+        /*mDatabase = FirebaseDatabase.getInstance();
+        myRef2 = mDatabase.getReference().child("Vacatures");
+        myRef2.addChildEventListener(new ChildEventListener()
+        {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
+
+                result.add(dataSnapshot.getValue(VacatureModel.class));
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
+
+                VacatureModel model = dataSnapshot.getValue(VacatureModel.class);
+
+                int index = getItemIndex(model);
+
+                result.set(index, model);
+                adapter.notifyItemChanged(index);
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+
+                VacatureModel model = dataSnapshot.getValue(VacatureModel.class);
+
+                int index = getItemIndex(model);
+
+                result.remove(index);
+                adapter.notifyItemRemoved(index);
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        }); */
+    }
+
+    // private int getItemIndex(VacatureModel vacature)
+    {
+        /* int index = -1;
+        for (int i = 0; i < result.size(); i++)
+        {
+            if (result.get(i).key.equals(vacature.key))
+            {
+                index = i;
+                break;
+            }
+        }
+        return index; */
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -191,33 +282,5 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         {
             super.onBackPressed();
         }
-    }
-
-    private void initImageBitmaps()
-    {
-        mJobTitles.add("Loodgieter");
-        mImageUrls.add("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg");
-        mLocaties.add("Heerenveen");
-        mOmschrijvingen.add("Dit is een prachtige omschrijving");
-
-        mJobTitles.add("Loodgieter");
-        mImageUrls.add("https://www.vaavio.nl/wp-content/plugins/wp-jobhunt/assets/images/img-not-found4x3.jpg");
-        mLocaties.add("Heerenveen");
-        mOmschrijvingen.add("Dit is een prachtige omschrijving");
-
-        mJobTitles.add("Support medewerker");
-        mImageUrls.add("https://www.vaavio.nl/employer/flexibility/");
-        mLocaties.add("Veenendaal");
-        mOmschrijvingen.add("Onze opdrachtgever is een vooruitstrevende producent van slimme software.");
-
-        initRecyclerView();
-    }
-
-    private void initRecyclerView()
-    {
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mJobTitles, mImageUrls, mLocaties, mOmschrijvingen);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

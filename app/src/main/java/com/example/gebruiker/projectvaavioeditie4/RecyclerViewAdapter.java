@@ -6,81 +6,69 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import java.util.List;
 
-import java.util.ArrayList;
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
+{
 
-import de.hdodenhof.circleimageview.CircleImageView;
+    private List<VacatureModel> list;
+    public Context mContext;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
-
-    private static final String TAG = "RecyclerViewAdapter";
-
-    private ArrayList<String> mJobTitles = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
-    private ArrayList<String> mLocaties = new ArrayList<>();
-    private ArrayList<String> mOmschrijvingen = new ArrayList<>();
-    private Context mContext;
-
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mJobTitles, ArrayList<String> mImages, ArrayList<String> mLocaties, ArrayList<String> mOmschrijvingen) {
-        this.mJobTitles = mJobTitles;
-        this.mImages = mImages;
-        this.mLocaties = mLocaties;
-        this.mOmschrijvingen = mOmschrijvingen;
+    public RecyclerViewAdapter(Context mContext, List<VacatureModel> list)
+    {
+        this.list = list;
         this.mContext = mContext;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem,parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+    public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        return new VacatureViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mImages.get(position))
-                .into(holder.image);
+    public void onBindViewHolder (VacatureViewHolder holder, int position)
+    {
 
-        holder.job_title.setText(mJobTitles.get(position));
-        holder.locatie.setText(mLocaties.get(position));
-        holder.omschrijving.setText(mOmschrijvingen.get(position));
+        VacatureModel vacature = list.get(position);
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mTitle.setText(vacature.Title);
+        holder.mLocatie.setText(vacature.Locatie);
+        holder.mOmschrijving.setText(vacature.Omschrijving);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Intent omschrijving = new Intent(mContext, Activity_VacOmschrijving.class);
-                mContext.startActivity(omschrijving);
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mContext, Activity_VacOmschrijving.class);
+                mContext.startActivity(intent);
             }
         });
-    }
 
+    }
     @Override
-    public int getItemCount() {
-        return mJobTitles.size();
+    public int getItemCount()
+    {
+        return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class VacatureViewHolder extends RecyclerView.ViewHolder
+    {
 
-        CircleImageView image;
-        TextView job_title;
-        TextView locatie;
-        TextView omschrijving;
-        RelativeLayout parentLayout;
+        TextView mTitle, mLocatie, mOmschrijving;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.image);
-            job_title = itemView.findViewById(R.id.job_title);
-            locatie = itemView.findViewById(R.id.locatie);
-            omschrijving = itemView.findViewById(R.id.omschrijving);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+        public VacatureViewHolder(View view)
+        {
+            super(view);
+
+            mTitle = (TextView) view.findViewById(R.id.job_title);
+            mLocatie = (TextView) view.findViewById(R.id.locatie);
+            mOmschrijving = (TextView) view.findViewById(R.id.omschrijving);
         }
-    }
 
+    }
 }

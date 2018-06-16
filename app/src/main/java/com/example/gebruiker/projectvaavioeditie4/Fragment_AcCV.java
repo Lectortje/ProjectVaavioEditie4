@@ -1,5 +1,10 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,8 +27,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+
+import static android.app.Activity.RESULT_OK;
 
 public class Fragment_AcCV extends Fragment
 {
@@ -33,6 +45,9 @@ public class Fragment_AcCV extends Fragment
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
+    private StorageReference mStorage;
+    private ProgressDialog mProgressDialog;
+    private static final int PICK_DOCUMENT = 0;
 
     @Nullable
     @Override
@@ -49,6 +64,8 @@ public class Fragment_AcCV extends Fragment
         UserID = user.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mFirebaseDatabase.getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mProgressDialog = new ProgressDialog(getActivity());
 
         //Assingning the button variables to the button ID's.
         mBtnOpslaan = view.findViewById(R.id.OpslaanBtn);
@@ -57,6 +74,9 @@ public class Fragment_AcCV extends Fragment
         mEditTextErvaring = view.findViewById(R.id.ErvaringEditText);
         mEditTextTraining = view.findViewById(R.id.TrainingCursussenEditText);
         mEditTextVaardigheden = view.findViewById(R.id.VaardighedenEditText);
+
+        // Executing the checkFilePersmissions function created down below
+        checkFilePermissions();
 
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
@@ -104,6 +124,17 @@ public class Fragment_AcCV extends Fragment
             }
         });
 
+        mUploadCVBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("*file/*");
+                startActivityForResult(intent, PICK_DOCUMENT);
+            }
+        });
+
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
         mRef.addValueEventListener(new ValueEventListener() {
@@ -132,5 +163,48 @@ public class Fragment_AcCV extends Fragment
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Declaring the request we want to take care of, and checking if the request went successful
+        if (requestCode == PICK_DOCUMENT && resultCode == RESULT_OK)
+        {
+            // Showing the progress dialog while uploading the image
+            mProgressDialog.setMessage("Uploading...");
+            mProgressDialog.show();
+
+            // Getting the uri
+            Uri uri = data.getData();
+
+            // Setting up the path to the location to the image in the database and putting the image in the database
+            StorageReference filepath = mStorage.child("CV's").child(UserID);
+            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+            {
+                // When successful, a toast will show saying the upload was successful and the progress dialog will go.
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                {
+                    Toast.makeText(getActivity(), "Upload done.", Toast.LENGTH_LONG).show();
+                    mProgressDialog.dismiss();
+                }
+            });
+        }
+    }
+
+    private void checkFilePermissions()
+    {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP)
+        {
+            int permissionCheck = getActivity().checkSelfPermission("Manifest.permission.READ_EXTERNAL_STORAGE");
+            permissionCheck += getActivity().checkSelfPermission("Manifest.permission.WRITE_EXTERNAL_STORAGE");
+            if (permissionCheck != 0)
+            {
+                getActivity().requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1001);
+            }
+        }
     }
 }

@@ -7,56 +7,105 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView
+    <ImageView
+        android:id="@+id/imageViewBannerDis"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="228dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/banner" />
+
+    <ImageView
+        android:id="@+id/imageViewProfielFotoDis"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewBannerDis"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewBannerDis"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewBannerDis"
+        app:layout_constraintTop_toTopOf="@+id/imageViewBannerDis"
+        app:layout_constraintVertical_bias="0.556"
+        app:srcCompat="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/textViewNaamWerknDis"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Naam werknemer"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewBannerDis"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewBannerDis"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProfielFotoDis"
+        app:layout_constraintTop_toTopOf="@+id/imageViewBannerDis"
+        app:layout_constraintVertical_bias="0.529" />
+
+    <ScrollView
+        android:id="@+id/scrollView7"
+        android:layout_width="0dp"
+        android:layout_height="331dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textViewNaamWerknDis"
-                android:layout_width="237dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:text="Naam werknemer"
-                android:textSize="18sp" />
-
             <ImageView
-                android:id="@+id/imageViewProfielFotoDis"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_marginTop="-50dp"
-                app:srcCompat="@android:color/holo_blue_dark" />
+                android:id="@+id/imageView4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.104"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.395"
+                app:srcCompat="@drawable/profilepic" />
 
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="-40dp"
                 android:text="Persoonlijke informatie"
-                android:layout_marginTop="20dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textViewAchternaamDis"
+                android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Achternaam"
-                android:textSize="14sp" />
+                android:layout_marginTop="15dp"
+                android:text="Adres"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewAdresDis"
@@ -66,18 +115,14 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textViewHuisNrDis"
+                android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Huisnummer"
-                android:textSize="14sp" />
+                android:layout_marginTop="5dp"
+                android:text="Postcode"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/textViewToevoegingDis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Toevoeging"
-                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textViewPostcodeDis"
@@ -87,12 +132,29 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Plaats"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textViewPlaatsDis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Plaats"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Nationaliteit"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewNationaliteitDis"
@@ -102,12 +164,29 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Telefoonnummer"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textViewTelefoonNrDis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Telefoonnummer"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="E-mailadres"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewEmailadresDis"
@@ -117,19 +196,45 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Geslacht"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textViewGeslachtDis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Geslacht"
                 android:textSize="14sp" />
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/kennis" />
+
             <TextView
                 android:id="@+id/textView20"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:layout_marginLeft="50dp"
                 android:text="Kennis en vaardigheden"
                 android:textSize="18dp" />
 
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Opleidingen"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewOpleidingenDis"
@@ -139,6 +244,15 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Ervaring"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textViewErvaringDis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -146,11 +260,29 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Trainingen en cursussen"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textViewTrainingenDis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Trainingen en cursussen"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Vaardigheden"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewVaardighedenDis"
