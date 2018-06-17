@@ -29,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="Type hier uw motivatie"
+                android:textColor="#808080"
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 

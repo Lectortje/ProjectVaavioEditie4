@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Opleidingen"
+                android:textColor="#808080"
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
@@ -88,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Ervaring"
+                android:textColor="#808080"
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
@@ -121,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Trainingen en cursussen"
+                android:textColor="#808080"
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
@@ -153,6 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="#808080"
                 android:hint="Vaardigheden"
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />

@@ -97,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Naam"
+                android:textColor="#808080"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
 
@@ -117,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Achternaam"
+                android:textColor="#808080"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
 
@@ -137,6 +139,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="E-mailadres"
+                android:textColor="#808080"
                 android:inputType="textEmailAddress"
                 android:textSize="12sp" />
 
@@ -156,6 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="#808080"
                 android:hint="Telefoonnummer"
                 android:inputType="phone"
                 android:textSize="12sp" />
@@ -176,6 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="#808080"
                 android:hint="Straat"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
@@ -196,6 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="#808080"
                 android:hint="Huisnummer"
                 android:inputType="number"
                 android:textSize="12sp" />
@@ -217,6 +223,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Toevoeging"
+                android:textColor="#808080"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
 
@@ -237,6 +244,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Woonplaats"
+                android:textColor="#808080"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
 
@@ -257,28 +265,33 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Postcode"
+                android:textColor="#808080"
                 android:inputType="textPostalAddress"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/TextViewLeeftijd"
+                android:id="@+id/TextViewGeboortedatumText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:text="Leeftijd"
+                android:text="Geboortedatum"
                 android:textColor="#000"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="54dp" />
 
-            <EditText
-                android:id="@+id/EditTextLeeftijd"
+            <TextView
+                android:id="@+id/TextViewGeboortedatum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Leeftijd"
-                android:inputType="number"
-                android:textSize="12sp" />
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textColor="#808080"
+                android:hint="Selecteer datum..."
+                android:textSize="12sp"
+                android:padding="4dp"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="54dp" />
 
             <TextView
                 android:id="@+id/TextViewGeslacht"
@@ -291,14 +304,12 @@
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="54dp" />
 
-            <EditText
-                android:id="@+id/EditTextGeslacht"
+            <Spinner
+                android:id="@+id/SpinnerGeslacht"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Man/Vrouw"
-                android:inputType="textPersonName"
-                android:textSize="12sp" />
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
 
             <TextView
                 android:id="@+id/TextViewNationaliteit"
@@ -311,14 +322,12 @@
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="54dp" />
 
-            <EditText
-                android:id="@+id/EditTextNationaliteit"
+            <Spinner
+                android:id="@+id/SpinnerNationaliteit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nationaliteit"
-                android:inputType="textPersonName"
-                android:textSize="12sp" />
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
 
         </LinearLayout>
     </ScrollView>

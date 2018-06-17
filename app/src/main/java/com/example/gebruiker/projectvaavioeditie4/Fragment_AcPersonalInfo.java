@@ -1,8 +1,11 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,9 +16,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
@@ -41,7 +49,10 @@ import static android.app.Activity.RESULT_OK;
 public class Fragment_AcPersonalInfo extends Fragment
 {
     // Declaring the variables
-    private EditText mNaam, mAchternaam, mEmail, mTelefoonnummer, mAdres, mHuisnummer, mToevoeging, mWoonplaats, mPostcode, mLeeftijd, mGeslacht, mNationaliteit;
+    private EditText mNaam, mAchternaam, mEmail, mTelefoonnummer, mAdres, mHuisnummer, mToevoeging, mWoonplaats, mPostcode;
+    private Spinner mGeslacht, mNationaliteit;
+    private TextView mGeboortedatum;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     private Button mOpslaan, mUpload;
     private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
@@ -79,9 +90,16 @@ public class Fragment_AcPersonalInfo extends Fragment
         mToevoeging = view.findViewById(R.id.EditTextToevoeging);
         mWoonplaats = view.findViewById(R.id.EditTextWoonplaats);
         mPostcode = view.findViewById(R.id.EditTextPostcode);
-        mLeeftijd = view.findViewById(R.id.EditTextLeeftijd);
-        mGeslacht = view.findViewById(R.id.EditTextGeslacht);
-        mNationaliteit = view.findViewById(R.id.EditTextNationaliteit);
+        mGeboortedatum = view.findViewById(R.id.TextViewGeboortedatum);
+        mGeslacht = view.findViewById(R.id.SpinnerGeslacht);
+        mNationaliteit = view.findViewById(R.id.SpinnerNationaliteit);
+
+        // Setting the Array adapters for the spinners. They get declared the spinner item layout, which can be found in the res map
+        final ArrayAdapter<CharSequence> adapterGeslacht = ArrayAdapter.createFromResource(getActivity(), R.array.geslacht, R.layout.spinner_item);
+        mGeslacht.setAdapter(adapterGeslacht);
+
+        final ArrayAdapter<CharSequence> adapterNationaliteit = ArrayAdapter.createFromResource(getActivity(), R.array.landen, R.layout.spinner_item);
+        mNationaliteit.setAdapter(adapterNationaliteit);
 
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
@@ -104,6 +122,42 @@ public class Fragment_AcPersonalInfo extends Fragment
             }
         });
 
+        // Setting the OnClickListener for the geboortedatum TextView.
+        mGeboortedatum.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // First the current day, month and year get out into int variables
+                Calendar cal = Calendar.getInstance();
+                int jaar = cal.get(Calendar.YEAR);
+                int maand = cal.get(Calendar.MONTH);
+                int dag = cal.get(Calendar.DAY_OF_MONTH);
+
+                // Second, the DatePickerDialog gets set up. The context is put in, the thema, the DateSetListener (created down below) and the jaar, maand and dag
+                // variables declared above to show the current date. Also the background color gets made transparent and lastly the dialog is shown.
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, jaar, maand, dag);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        // Setting up date DateSetListener
+        mDateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+            {
+                // To show the month correctly (January is 0, instead of 1) the month get incremented by 1.
+                month = month + 1;
+
+                // The day, month and year selected by the user get put in a string variable called datum together. After which the Text of the geboortedatum TextView
+                // gets set equal to the datum string created.
+                String datum = dayOfMonth + "/" + month + "/" + year;
+                mGeboortedatum.setText(datum);
+            }
+        };
+
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
         myRef.addValueEventListener(new ValueEventListener()
@@ -123,7 +177,7 @@ public class Fragment_AcPersonalInfo extends Fragment
                 String toevoeging = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Toevoeging").getValue(String.class);
                 String woonplaats = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Woonplaats").getValue(String.class);
                 String postcode = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Postcode").getValue(String.class);
-                String leeftijd = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Leeftijd").getValue(String.class);
+                String geboortedatum = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Geboortedatum").getValue(String.class);
                 String geslacht = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Geslacht").getValue(String.class);
                 String nationaliteit = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Nationaliteit").getValue(String.class);
 
@@ -138,9 +192,13 @@ public class Fragment_AcPersonalInfo extends Fragment
                 mToevoeging.setText(toevoeging);
                 mWoonplaats.setText(woonplaats);
                 mPostcode.setText(postcode);
-                mLeeftijd.setText(leeftijd);
-                mGeslacht.setText(geslacht);
-                mNationaliteit.setText(nationaliteit);
+                mGeboortedatum.setText(geboortedatum);
+
+                // To set the spinner equal to the value known in the database, a setSelection funtion is called. It takes the string created above, and compares it
+                // to the strings known in the adapter. If it finds a string that is equal, it gets the position of that string in the array and passes it in the
+                // setSelection function. This makes that position the default selected when loading the fragment again.
+                mGeslacht.setSelection(adapterGeslacht.getPosition(geslacht));
+                mNationaliteit.setSelection(adapterNationaliteit.getPosition(nationaliteit));
             }
 
             @Override
@@ -156,7 +214,37 @@ public class Fragment_AcPersonalInfo extends Fragment
             @Override
             public void onClick(View v)
             {
-                // First, a string is created, in which the text that is filled in the edit text gets put.
+                // To get item selected in the spinner into the database, the following if else statement is execcuted:
+                // First, the position from the currently selected item in the spinner gets passed into a variable.
+                // Then the position gets checked. If the position is 0, its the default and nothing should be passed into
+                // the database. Therefore, the variable that gets put into the database is equal to "". If the position is not
+                // 0, the item corresponding to the position gets selected and converted to a string. This string gets passed
+                // into a variable after which the variable gets put into the database. This proces repeats it self for al the spinnners
+                int positionGeslacht = mGeslacht.getSelectedItemPosition();
+                if (positionGeslacht > 0)
+                {
+                    String geslacht = mGeslacht.getSelectedItem().toString().trim();
+                    myRef.child("Users").child(UserID).child("Persoonlijke informatie").child("Geslacht").setValue(geslacht);
+                }
+                else
+                {
+                    String geslacht = "";
+                    myRef.child("Users").child(UserID).child("Persoonlijke informatie").child("Geslacht").setValue(geslacht);
+                }
+
+                int positionNationaliteit = mNationaliteit.getSelectedItemPosition();
+                if (positionNationaliteit > 0)
+                {
+                    String nationaliteit = mNationaliteit.getSelectedItem().toString().trim();
+                    myRef.child("Users").child(UserID).child("Persoonlijke informatie").child("Nationaliteit").setValue(nationaliteit);
+                }
+                else
+                {
+                    String nationaliteit = "";
+                    myRef.child("Users").child(UserID).child("Persoonlijke informatie").child("Nationaliteit").setValue(nationaliteit);
+                }
+
+                // For all the other EditTexts in the fragment, we first create a string in which the text that is filled in the edit text gets put.
                 String naam = mNaam.getText().toString().trim();
                 String achternaam = mAchternaam.getText().toString().trim();
                 String email = mEmail.getText().toString().trim().toLowerCase();
@@ -166,13 +254,11 @@ public class Fragment_AcPersonalInfo extends Fragment
                 String toevoeging = mToevoeging.getText().toString().trim();
                 String woonplaats = mWoonplaats.getText().toString().trim();
                 String postcode = mPostcode.getText().toString().trim();
-                String leeftijd = mLeeftijd.getText().toString().trim();
-                String geslacht = mGeslacht.getText().toString().trim();
-                String nationaliteit = mNationaliteit.getText().toString().trim();
+                String geboortedatum = mGeboortedatum.getText().toString().trim();
 
                 // When all the strings are created, they get put in an HashMap. This HashMap is used to send the data to the database.
                 // For every string, a child name gets declared.
-                HashMap<String, String> dataMap = new HashMap<String, String>();
+                HashMap<String, Object> dataMap = new HashMap<String, Object>();
                 dataMap.put("Naam", naam);
                 dataMap.put("Achternaam", achternaam);
                 dataMap.put("Email", email);
@@ -182,13 +268,11 @@ public class Fragment_AcPersonalInfo extends Fragment
                 dataMap.put("Toevoeging", toevoeging);
                 dataMap.put("Woonplaats", woonplaats);
                 dataMap.put("Postcode", postcode);
-                dataMap.put("Leeftijd", leeftijd);
-                dataMap.put("Geslacht", geslacht);
-                dataMap.put("Nationaliteit", nationaliteit);
+                dataMap.put("Geboortedatum", geboortedatum);
 
                 // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                 // Parent equal to there UserID.
-                myRef.child("Users").child(UserID).child("Persoonlijke informatie").setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
+                myRef.child("Users").child(UserID).child("Persoonlijke informatie").updateChildren(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)

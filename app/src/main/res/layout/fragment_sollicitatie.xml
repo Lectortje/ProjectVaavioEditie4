@@ -63,6 +63,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="-37dp"
                 android:ems="10"
+                android:textColor="#808080"
                 android:hint="Naam"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
@@ -75,6 +76,7 @@
                 android:layout_marginLeft="40dp"
                 android:ems="10"
                 android:hint="Achternaam"
+                android:textColor="#808080"
                 android:inputType="textPersonName"
                 android:textSize="12sp" />
 
@@ -94,6 +96,7 @@
                 android:layout_marginTop="-37dp"
                 android:ems="10"
                 android:hint="E-mailadres"
+                android:textColor="#808080"
                 android:inputType="textEmailAddress"
                 android:textSize="12sp" />
 
@@ -111,6 +114,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="-37dp"
+                android:textColor="#808080"
                 android:ems="10"
                 android:hint="Telefoonnummer"
                 android:inputType="textPersonName"
@@ -128,6 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:textColor="#808080"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="-37dp"
                 android:ems="10"

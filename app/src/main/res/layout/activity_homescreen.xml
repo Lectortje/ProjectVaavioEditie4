@@ -55,6 +55,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:textColor="#808080"
             android:hint="Bijv. Loodgieter"
             android:textSize="12sp" />
 
@@ -80,6 +81,7 @@
             android:hint="Bijv. Heerenveen"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
+            android:textColor="#808080"
             android:textSize="12sp" />
 
         <Button

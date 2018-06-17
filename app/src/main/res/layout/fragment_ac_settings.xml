@@ -72,6 +72,7 @@
                 android:ems="10"
                 android:hint="Huidig wachtwoord"
                 android:inputType="textPassword"
+                android:textColor="#808080"
                 android:textSize="12sp"
                 tools:layout_editor_absoluteX="54dp"
                 tools:layout_editor_absoluteY="169dp" />
@@ -84,6 +85,7 @@
                 android:ems="10"
                 android:hint="Nieuw wachtwoord"
                 android:inputType="textPassword"
+                android:textColor="#808080"
                 android:textSize="12sp"
                 tools:layout_editor_absoluteX="54dp"
                 tools:layout_editor_absoluteY="169dp" />
@@ -96,6 +98,7 @@
                 android:ems="10"
                 android:hint="Nieuw wactwoord herhalen"
                 android:inputType="textPassword"
+                android:textColor="#808080"
                 android:textSize="12sp"
                 tools:layout_editor_absoluteX="54dp"
                 tools:layout_editor_absoluteY="169dp" />
@@ -126,6 +129,7 @@
                 android:ems="10"
                 android:hint="Huidig wachtwoord"
                 android:inputType="textPassword"
+                android:textColor="#808080"
                 android:textSize="12sp"
                 tools:layout_editor_absoluteX="54dp"
                 tools:layout_editor_absoluteY="169dp" />
