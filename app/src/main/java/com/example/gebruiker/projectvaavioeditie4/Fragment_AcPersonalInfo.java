@@ -68,6 +68,7 @@ public class Fragment_AcPersonalInfo extends Fragment
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
+        // Setting the variables equal to their corresponding objects
         mProfielFoto = view.findViewById(R.id.ImageViewProfilePicture);
         mNaam = view.findViewById(R.id.EditTextNaam);
         mAchternaam = view.findViewById(R.id.EditTextAchternaam);
@@ -85,7 +86,7 @@ public class Fragment_AcPersonalInfo extends Fragment
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
 
-        // Executing the setProfileImage function created donw below
+        // Executing the setProfileImage function created down below
         setProfileImage();
 
         // Handling the event that needs to happen when the upload button is clicked.

@@ -92,7 +92,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(adapter);
 
-        // Executing the create result function to create placeholders for the recyclerview, created down below
+        // Executing the create result function to create placeholders for the RecyclerView, created down below
         createResult();
         // updateList();
 
@@ -163,8 +163,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     }
 
     // private void updateList()
-    {
-        /*mDatabase = FirebaseDatabase.getInstance();
+     {
+       /* mDatabase = FirebaseDatabase.getInstance();
         myRef2 = mDatabase.getReference().child("Vacatures");
         myRef2.addChildEventListener(new ChildEventListener()
         {

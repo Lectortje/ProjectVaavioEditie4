@@ -79,7 +79,7 @@ public class Fragment_Contact extends Fragment
                     childUpdates.put("Naam", naam);
                     childUpdates.put("Achternaam", achternaam);
                     childUpdates.put("Emailadres", emailadres);
-                    childUpdates.put("Telefoon", telefoon);
+                    childUpdates.put("Telefoonnummer", telefoon);
 
                     // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                     // Parent equal to there UserID.
@@ -138,7 +138,7 @@ public class Fragment_Contact extends Fragment
                     String naam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Naam").getValue(String.class);
                     String achternaam = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Achternaam").getValue(String.class);
                     String emailadres = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Email").getValue(String.class);
-                    String telefoon = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Telefoon").getValue(String.class);
+                    String telefoon = dataSnapshot.child("Users").child(UserID).child("Persoonlijke informatie").child("Telefoonnummer").getValue(String.class);
                     String bericht = dataSnapshot.child("Contact").child("Berichten").child(UserID).child("Bericht").getValue(String.class);
 
                     // Here te Edit Texts texts are put equal to the strings values. If the value's are empty, the text field stay empty and you would still see the hint

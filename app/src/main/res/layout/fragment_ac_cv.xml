@@ -16,13 +16,21 @@
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ImageViewIcOpleidingen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_opleidingen" />
 
             <TextView
                 android:id="@+id/TextViewOpleidingen"
@@ -32,6 +40,9 @@
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-27dp"
+                android:layout_marginBottom="5dp"
                 android:text="Opleidingen "
                 android:textColor="#000"
                 android:textSize="14sp"
@@ -47,6 +58,13 @@
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
+            <ImageView
+                android:id="@+id/ImageViewIcErvaring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/ic_ervaring" />
+
             <TextView
                 android:id="@+id/TextViewErvaring"
                 android:layout_width="match_parent"
@@ -55,6 +73,9 @@
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-27dp"
+                android:layout_marginBottom="5dp"
                 android:text="Ervaring"
                 android:textColor="#000"
                 android:textSize="14sp"
@@ -70,6 +91,13 @@
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
+            <ImageView
+                android:id="@+id/ImageViewIcTraining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/ic_trainingen" />
+
             <TextView
                 android:id="@+id/TextViewTrainingCursussen"
                 android:layout_width="match_parent"
@@ -78,6 +106,9 @@
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-27dp"
+                android:layout_marginBottom="5dp"
                 android:text="Trainingen en cursussen"
                 android:textColor="#000"
                 android:textSize="14sp"
@@ -93,6 +124,13 @@
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
+            <ImageView
+                android:id="@+id/ImageViewIcVaardigheden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/ic_vaardigheden" />
+
             <TextView
                 android:id="@+id/TextViewVaardigheden"
                 android:layout_width="match_parent"
@@ -101,6 +139,9 @@
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:paddingTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-27dp"
+                android:layout_marginBottom="5dp"
                 android:text="Vaardigheden"
                 android:textColor="#000"
                 android:textSize="14sp"

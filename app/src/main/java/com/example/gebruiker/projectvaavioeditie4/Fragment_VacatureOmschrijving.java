@@ -24,7 +24,9 @@ public class Fragment_VacatureOmschrijving extends Fragment
         View view = inflater.inflate(R.layout.fragment_vacatureomschrijving, container, false);
 
         //Assingning the button variables to the button ID.
+        mContact = view.findViewById(R.id.ContactBtn);
         mSollicitatie = view.findViewById(R.id.SollicitatieBtn);
+
         mSollicitatie.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -37,8 +39,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
             }
 
         });
-        //Assingning the button variables to the button ID.
-        mContact = view.findViewById(R.id.ContactBtn);
+
         mContact.setOnClickListener(new View.OnClickListener()
         {
             @Override

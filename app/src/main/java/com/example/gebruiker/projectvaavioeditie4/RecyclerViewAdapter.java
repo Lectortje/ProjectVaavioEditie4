@@ -13,15 +13,18 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
 {
 
+    // Creating the variable. The list is set to the type create in the VacatureModel
     private List<VacatureModel> list;
     public Context mContext;
 
+    // Setting up the RecyclerViewAdapter. The adapter needs the context and list to work properly
     public RecyclerViewAdapter(Context mContext, List<VacatureModel> list)
     {
         this.list = list;
         this.mContext = mContext;
     }
 
+    // Connecting the layout to the view holder onCreate
     @Override
     public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -35,10 +38,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         VacatureModel vacature = list.get(position);
 
+        // Setting the text of the items in the layout equal to the text of the items in the list
         holder.mTitle.setText(vacature.Title);
         holder.mLocatie.setText(vacature.Locatie);
         holder.mOmschrijving.setText(vacature.Omschrijving);
 
+        // Declaring what to do when an item in the RecyclerView is clicked.
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -50,6 +55,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
 
     }
+
+
     @Override
     public int getItemCount()
     {

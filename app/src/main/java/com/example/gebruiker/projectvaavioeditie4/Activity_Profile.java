@@ -192,11 +192,9 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
             drawer.closeDrawer(GravityCompat.START);
         }
         else
-        // if the drawer isn't open, the back button will start a new intent to go from the profile screen to the homescreen
+        // if the drawer isn't open, the back button will act as normail
         {
-            Intent intent = new Intent(this, Activity_Homescreen.class);
-            startActivity(intent);
-            finish();
+            super.onBackPressed();
         }
     }
 }

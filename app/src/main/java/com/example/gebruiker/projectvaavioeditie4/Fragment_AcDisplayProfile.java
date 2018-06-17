@@ -69,6 +69,7 @@ public class Fragment_AcDisplayProfile extends Fragment
         mGeslacht = view.findViewById(R.id.TextViewGeslacht);
         mProfielFoto = view.findViewById(R.id.ImageViewProfielFoto);
 
+        // Executing the setProfileImage function created down below
         setProfileImage();
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
@@ -109,18 +110,26 @@ public class Fragment_AcDisplayProfile extends Fragment
                 mTelefoon.setText(telefoonnummer);
                 mEmailadres.setText(emailadres);
                 mGeslacht.setText(geslacht);
+
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError)
             {
 
             }
+
         });
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;
     }
 
+    // The set profile image function. This function is used to set the image of the image view, displaying either the photo uploaded by the user,
+    // or an stock image. First, the UserID gets converted to a string, as it needed for the storage reference. The profile pictures are uploaded under
+    // The users UserID, and are stored in a folder called Profile photos. So to get the profile picture, a reference to the profile pictures map with the UserID
+    // is made. When successful, the profile picture get put in the image view with Picasso. If there is no picture present, and on failure listener
+    // Will execute, making the image a stock image from vaavio.
     private void setProfileImage()
     {
         String userID = UserID.toString();

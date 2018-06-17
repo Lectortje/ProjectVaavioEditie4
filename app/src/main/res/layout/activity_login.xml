@@ -33,16 +33,42 @@
             android:layout_marginTop="48dp"
             app:srcCompat="@drawable/vaavio_logo" />
 
+        <TextView
+            android:id="@+id/TextViewEmailadres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="Emailadres:"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
         <EditText
             android:id="@+id/EditTextEmailadres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:hint="E-mailadres*"
             android:inputType="textEmailAddress"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/TextViewWachtwoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="Wachtwoord:"
+            android:textColor="#000"
             android:textSize="12sp" />
 
         <EditText
@@ -52,7 +78,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:hint="Wachtwoord*"
             android:inputType="textPassword"
             android:textSize="12sp" />
