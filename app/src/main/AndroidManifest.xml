@@ -26,7 +26,8 @@
         <activity android:name=".Activity_Register" />
         <activity android:name=".Activity_PasswordForgotten" />
         <activity android:name=".Activity_Vacatures" />
-        <activity android:name=".Activity_VacOmschrijving"></activity>
+        <activity android:name=".Activity_VacOmschrijving" />
+        <activity android:name=".Activity_NewVacature"></activity>
     </application>
 
 </manifest>

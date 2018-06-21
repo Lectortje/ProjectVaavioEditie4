@@ -13,12 +13,12 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
 {
 
-    // Creating the variable. The list is set to the type create in the VacatureModel
-    private List<VacatureModel> list;
+    // Creating the variable. The list is set to the type create in the VacatureModule
+    private List<VacatureModule> list;
     public Context mContext;
 
     // Setting up the RecyclerViewAdapter. The adapter needs the context and list to work properly
-    public RecyclerViewAdapter(Context mContext, List<VacatureModel> list)
+    public RecyclerViewAdapter(Context mContext, List<VacatureModule> list)
     {
         this.list = list;
         this.mContext = mContext;
@@ -36,10 +36,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder (VacatureViewHolder holder, int position)
     {
 
-        VacatureModel vacature = list.get(position);
+        VacatureModule vacature = list.get(position);
 
         // Setting the text of the items in the layout equal to the text of the items in the list
-        holder.mTitle.setText(vacature.Title);
+        holder.mFunctie.setText(vacature.Functie);
         holder.mLocatie.setText(vacature.Locatie);
         holder.mOmschrijving.setText(vacature.Omschrijving);
 
@@ -66,15 +66,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     class VacatureViewHolder extends RecyclerView.ViewHolder
     {
 
-        TextView mTitle, mLocatie, mOmschrijving;
+        TextView mFunctie, mLocatie, mOmschrijving;
 
         public VacatureViewHolder(View view)
         {
             super(view);
 
-            mTitle = (TextView) view.findViewById(R.id.job_title);
-            mLocatie = (TextView) view.findViewById(R.id.locatie);
-            mOmschrijving = (TextView) view.findViewById(R.id.omschrijving);
+            mFunctie = (TextView) view.findViewById(R.id.TextViewRVFunctie);
+            mLocatie = (TextView) view.findViewById(R.id.TextViewRVLocatie);
+            mOmschrijving = (TextView) view.findViewById(R.id.TextViewRVOmschrijving);
         }
 
     }
