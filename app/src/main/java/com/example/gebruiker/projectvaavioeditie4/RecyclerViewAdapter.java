@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
@@ -16,6 +19,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Creating the variable. The list is set to the type create in the VacatureModule
     private List<VacatureModule> list;
     public Context mContext;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference myRef;
 
     // Setting up the RecyclerViewAdapter. The adapter needs the context and list to work properly
     public RecyclerViewAdapter(Context mContext, List<VacatureModule> list)
@@ -29,13 +34,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        return new VacatureViewHolder(itemView);
+        final VacatureViewHolder holder = new VacatureViewHolder(itemView);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder (VacatureViewHolder holder, int position)
+    public void onBindViewHolder (final VacatureViewHolder holder, int position)
     {
-
         VacatureModule vacature = list.get(position);
 
         // Setting the text of the items in the layout equal to the text of the items in the list
@@ -53,7 +58,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 mContext.startActivity(intent);
             }
         });
-
     }
 
 

@@ -27,4 +27,39 @@
         <item>Italiaans</item>
     </string-array>
 
+    <string-array name="dienstverband">
+        <item>Selecteer dienstverband...</item>
+        <item>Freelance</item>
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Internship</item>
+        <item>Stage</item>
+        <item>Tijdelijk</item>
+        <item>Vast</item>
+    </string-array>
+
+    <string-array name="opleiding">
+        <item>Selecteer vereist opleidingsniveau...</item>
+        <item>Lagere school</item>
+        <item>LBO</item>
+        <item>VMBO/MAVO</item>
+        <item>HAVO</item>
+        <item>VWO</item>
+        <item>MBO</item>
+        <item>HBO</item>
+        <item>WO/Universitair</item>
+        <item>Postdoctoraal</item>
+        <item>Overig</item>
+    </string-array>
+
+    <string-array name="salaris">
+        <item>Selecteer salarisschaal...</item>
+        <item>0 - 1750</item>
+        <item>1750 - 2500</item>
+        <item>2500 - 3500</item>
+        <item>3500 - 5000</item>
+        <item>5000 - 7500</item>
+        <item>In overleg</item>
+    </string-array>
+
 </resources>
