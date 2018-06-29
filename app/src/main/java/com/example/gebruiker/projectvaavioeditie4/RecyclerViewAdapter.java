@@ -19,8 +19,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Creating the variable. The list is set to the type create in the VacatureModule
     private List<VacatureModule> list;
     public Context mContext;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference myRef;
 
     // Setting up the RecyclerViewAdapter. The adapter needs the context and list to work properly
     public RecyclerViewAdapter(Context mContext, List<VacatureModule> list)
@@ -41,9 +39,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder (final VacatureViewHolder holder, int position)
     {
-        VacatureModule vacature = list.get(position);
+        final VacatureModule vacature = list.get(position);
 
-        // Setting the text of the items in the layout equal to the text of the items in the list
+        // Setting the text of the items in the layout equal to the text of the items in the list. The list is filled with the data from the
+        // Database.
         holder.mFunctie.setText(vacature.Functie);
         holder.mLocatie.setText(vacature.Locatie);
         holder.mOmschrijving.setText(vacature.Omschrijving);
@@ -55,6 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v)
             {
                 Intent intent = new Intent(mContext, Activity_VacOmschrijving.class);
+                intent.putExtra("Key", vacature.Key);
                 mContext.startActivity(intent);
             }
         });
@@ -67,6 +67,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return list.size();
     }
 
+    // Declaring the ViewHolder for the vacatures. Here fore the TextView's from the layout_listitem get added to there corresponding variables
+    // This way, the TextView's can get edited in the onBindViewHolder.
     class VacatureViewHolder extends RecyclerView.ViewHolder
     {
 

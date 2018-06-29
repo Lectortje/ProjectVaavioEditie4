@@ -142,7 +142,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         result = new ArrayList<>();
 
         // Making the refrence to the recyclerview
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
         // Setting up the adapter and LayoutManager for the RecyclerView
         adapter = new RecyclerViewAdapter(getApplicationContext(), result);
@@ -157,6 +157,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
     }
 
+    // Adding the + button on the top right of the vacature scherm.
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -165,6 +166,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         return true;
     }
 
+    // Adding the onClickListener for the + button on the top right of the screen. This happens through a switch statement. It
+    // Checks if the item clicked is the +, and when that's the case, executes a intent to a new activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -176,6 +179,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         return super.onOptionsItemSelected(item);
     }
 
+    // Adding the data from the database into the RecyclerView. First a reference gets made to the child with the vacatures in the
+    // Database. When that is done, an addChildEventListener gets executed.
     private void updateList()
     {
         mDatabase = FirebaseDatabase.getInstance();
@@ -185,7 +190,9 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
-
+                // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                // When filled, the adapter get notified that data is added and will 'refresh' itself.
                 result.add(dataSnapshot.getValue(VacatureModule.class));
                 adapter.notifyDataSetChanged();
 
@@ -195,25 +202,11 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
 
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
-
-                int index = getItemIndex(model);
-
-                result.set(index, model);
-                adapter.notifyItemChanged(index);
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot)
             {
-
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
-
-                int index = getItemIndex(model);
-
-                result.remove(index);
-                adapter.notifyItemRemoved(index);
 
             }
 
@@ -229,20 +222,6 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
             }
         });
-    }
-
-    private int getItemIndex(VacatureModule vacature)
-    {
-        int index = -1;
-        for (int i = 0; i < result.size(); i++)
-        {
-            if (result.get(i).key.equals(vacature.key))
-            {
-                index = i;
-                break;
-            }
-        }
-        return index;
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with

@@ -54,9 +54,9 @@ public class Fragment_VacatureOmschrijving extends Fragment
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                if (getActivity().getIntent().hasExtra("key"))
+                if (getActivity().getIntent().hasExtra("Key"))
                 {
-                    String key = getActivity().getIntent().getExtras().getString("key");
+                    String key = getActivity().getIntent().getExtras().getString("Key");
 
                     String functie = dataSnapshot.child("Vacatures").child(key).child("Functie").getValue(String.class);
                     String locatie = dataSnapshot.child("Vacatures").child(key).child("Locatie").getValue(String.class);
