@@ -27,7 +27,6 @@
         <item>Italiaans</item>
     </string-array>
 
-<<<<<<< HEAD
     <!-- Everything beyond this is for the Google Signin. -->
     <string name="label_google_sign_in">Firebase + Google Sign In</string>
     <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
@@ -114,41 +113,5 @@
     <string name="email_fmt">Email: %s</string>
     <string name="title_activity__inbox">Activity_Inbox</string>
     <string name="action_settings">Settings</string>
-=======
-    <string-array name="dienstverband">
-        <item>Selecteer dienstverband...</item>
-        <item>Freelance</item>
-        <item>Full Time</item>
-        <item>Part Time</item>
-        <item>Internship</item>
-        <item>Stage</item>
-        <item>Tijdelijk</item>
-        <item>Vast</item>
-    </string-array>
-
-    <string-array name="opleiding">
-        <item>Selecteer vereist opleidingsniveau...</item>
-        <item>Lagere school</item>
-        <item>LBO</item>
-        <item>VMBO/MAVO</item>
-        <item>HAVO</item>
-        <item>VWO</item>
-        <item>MBO</item>
-        <item>HBO</item>
-        <item>WO/Universitair</item>
-        <item>Postdoctoraal</item>
-        <item>Overig</item>
-    </string-array>
-
-    <string-array name="salaris">
-        <item>Selecteer salarisschaal...</item>
-        <item>0 - 1750</item>
-        <item>1750 - 2500</item>
-        <item>2500 - 3500</item>
-        <item>3500 - 5000</item>
-        <item>5000 - 7500</item>
-        <item>In overleg</item>
-    </string-array>
->>>>>>> f32a20bdfecc55e8b7eafcc78d98260d1c1a81fb
 
 </resources>

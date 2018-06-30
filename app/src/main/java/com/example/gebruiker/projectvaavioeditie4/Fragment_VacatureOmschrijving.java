@@ -9,23 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Fragment_VacatureOmschrijving extends Fragment
 {
-    //Declaring all the variables.
+    //Declaring all the button variables.
     private Button mSollicitatie, mContact;
-    private TextView mFunctie, mLocatie, mDienstverband, mOpleiding, mSalaris, mOmschrijving;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference myRef;
-
 
     @Nullable
     @Override
@@ -35,64 +23,9 @@ public class Fragment_VacatureOmschrijving extends Fragment
         //This also holds the content of the fragment to display.
         View view = inflater.inflate(R.layout.fragment_vacatureomschrijving, container, false);
 
-        // Setting up the database reference
-        mDatabase = FirebaseDatabase.getInstance();
-        myRef = mDatabase.getReference();
-
-        // Declaring the variables and setting the equal to their corresponding objects
-        mFunctie = view.findViewById(R.id.TextViewFunctie);
-        mLocatie = view.findViewById(R.id.TextViewLocatie);
-        mDienstverband = view.findViewById(R.id.TextViewDienstverband);
-        mOpleiding = view.findViewById(R.id.TextViewOpleiding);
-        mSalaris = view.findViewById(R.id.TextViewSalaris);
-        mOmschrijving = view.findViewById(R.id.TextViewOmschrijving);
-
         //Assingning the button variables to the button ID.
         mContact = view.findViewById(R.id.ContactBtn);
         mSollicitatie = view.findViewById(R.id.SollicitatieBtn);
-
-        // Setting up the addValueEventListener to import the data from the database
-        myRef.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                // First, there is a check to see if the data send with the Intent from Activity_Vacatures is present. If not present, the
-                // app will crash when trying to do something with it, because it's empty. A toast will show saying something went wrong
-                // When no key is present.
-                if (getActivity().getIntent().hasExtra("Key"))
-                {
-                    // If a key is present, the Intent extra gets put into a variable key, which can be used in or database reference
-                    String key = getActivity().getIntent().getExtras().getString("Key");
-
-                    // With the key, the data corresponding with that key can be loaded in into the placeholder, this is done by getting
-                    // a reference to the needed data, and put that data into a string. This string is then loaded into the TextView
-                    String functie = dataSnapshot.child("Vacatures").child(key).child("Functie").getValue(String.class);
-                    String locatie = dataSnapshot.child("Vacatures").child(key).child("Locatie").getValue(String.class);
-                    String dienstverband = dataSnapshot.child("Vacatures").child(key).child("Dienstverband").getValue(String.class);
-                    String opleiding = dataSnapshot.child("Vacatures").child(key).child("Opleidingsniveau").getValue(String.class);
-                    String salaris = dataSnapshot.child("Vacatures").child(key).child("Salarisschaal").getValue(String.class);
-                    String omschrijving = dataSnapshot.child("Vacatures").child(key).child("Omschrijving volledig").getValue(String.class);
-
-                    mFunctie.setText(functie);
-                    mLocatie.setText(locatie);
-                    mDienstverband.setText(dienstverband);
-                    mOpleiding.setText(opleiding);
-                    mSalaris.setText(salaris);
-                    mOmschrijving.setText(omschrijving);
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "Er is iets fout gegaan, probeer het opnieuw", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
-            }
-        });
 
         mSollicitatie.setOnClickListener(new View.OnClickListener()
         {
@@ -119,7 +52,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
             }
 
         });
-
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;

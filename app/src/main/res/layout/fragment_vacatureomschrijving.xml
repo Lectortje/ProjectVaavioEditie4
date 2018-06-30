@@ -6,145 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/ScrollViewVacatureOmschrijving"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+    <TextView
+        android:id="@+id/TextViewOmschrijving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Vacature Omschrijving"
         app:layout_constraintBottom_toTopOf="@+id/SollicitatieBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextViewFunctieText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Functie:"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/TextViewFunctie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="-26dp"
-                android:layout_marginLeft="160dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-            <TextView
-                android:id="@+id/TextViewLocatieText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Locatie:"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/TextViewLocatie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="-26dp"
-                android:layout_marginLeft="160dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-            <TextView
-                android:id="@+id/TextViewDienstverbandText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Dienstverband:"
-                android:textColor="#000" />
-            <TextView
-                android:id="@+id/TextViewDienstverband"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="-26dp"
-                android:layout_marginLeft="160dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-            <TextView
-                android:id="@+id/TextViewOpleidingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Opleidingsniveau:"
-                android:textColor="#000" />
-            <TextView
-                android:id="@+id/TextViewOpleiding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="-26dp"
-                android:layout_marginLeft="160dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-            <TextView
-                android:id="@+id/TextViewSalarisText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Salarisschaal:"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/TextViewSalaris"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="-26dp"
-                android:layout_marginLeft="160dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-            <TextView
-                android:id="@+id/TextViewOmschrijvingText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"
-                android:padding="2dp"
-                android:text="Omschrijving:"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/TextViewOmschrijving"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:padding="2dp"
-                android:text="Placeholder"
-                android:textColor="#808080" />
-
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/SollicitatieBtn"

@@ -48,7 +48,7 @@
             android:textSize="14sp" />
 
         <AutoCompleteTextView
-            android:id="@+id/AcEditTextFunctie"
+            android:id="@+id/EditTextFunctie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -66,13 +66,14 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:layout_marginEnd="32dp"
+
             android:layout_marginStart="32dp"
             android:text="Locatie"
             android:textColor="#000"
             android:textSize="14sp" />
 
         <AutoCompleteTextView
-            android:id="@+id/AcEditTextLocatie"
+            android:id="@+id/EditTextLocatie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
