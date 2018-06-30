@@ -81,8 +81,9 @@ public class Fragment_Sollicitatie extends Fragment
                     childUpdates.put("Emailadres", emailadres);
                     childUpdates.put("Telefoonnummer", telefoon);
 
-                    // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'E-mail' with a
+                    // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                     // Parent equal to there UserID.
+
                     mAuth = FirebaseAuth.getInstance();
                     UserID = user.getUid();
                     myRef.child("Users").child(UserID).child("Persoonlijke informatie").updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()

@@ -44,9 +44,6 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Dennis\Downloads\firebase_lockup_400.png" />
-                                      <entry key="outputName" value="firebase_lockup_400" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="000000" />
                                     </map>

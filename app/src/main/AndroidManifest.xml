@@ -27,13 +27,7 @@
         <activity android:name=".Activity_PasswordForgotten" />
         <activity android:name=".Activity_Vacatures" />
         <activity android:name=".Activity_VacOmschrijving" />
-        <activity android:name=".Activity_NewVacature" />
-        <activity android:name=".Activity_SocialLogin" />
-        <activity android:name=".Activity_Settings" />
-        <activity
-            android:name=".Activity_Inbox"
-            android:label="@string/title_activity__inbox"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".Activity_NewVacature"></activity>
     </application>
 
 </manifest>

@@ -29,7 +29,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
     private DrawerLayout drawer;
     private EditText mEmailadres, mWachtwoord;
     private Button mInlog;
-    private TextView mRegisteren,mResetPassword, mSocialMedia;
+    private TextView mRegisteren,mResetPassword;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -62,7 +62,6 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         mInlog = findViewById(R.id.InlogBtn);
         mRegisteren = findViewById(R.id.TextViewRegistreren);
         mResetPassword = findViewById(R.id.TextViewWachtwoordVergeten);
-        mSocialMedia = findViewById(R.id.TextViewSocialeButtons);
 
         // Initializing the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
@@ -148,14 +147,6 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
                 startActivity(resetpassword);
             }
         });
-        mSocialMedia.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v){
-                Intent socialmedialogin = new Intent(Activity_Login.this, Activity_SocialLogin.class);
-                startActivity(socialmedialogin);
-            }
-        });
     }
 
     // When the login activity is loaded, you first want to check if the user is logged in or not already. Therefore, onStart, you
@@ -207,12 +198,8 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Intent navsettings = new Intent(this, Activity_Settings.class);
-                navsettings.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(navsettings);
-                finish();
+                Toast.makeText(Activity_Login.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
-                //Toast.makeText(Activity_Login.this, "Settings", Toast.LENGTH_SHORT).show();
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment
         drawer.closeDrawer(GravityCompat.START);

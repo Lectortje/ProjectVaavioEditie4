@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +44,6 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
-    private ImageButton mImageBtnFav;
     private StorageReference mStorage;
     private DatabaseReference myRef, myRef2;
     private FirebaseDatabase mDatabase;
@@ -156,18 +154,6 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
         // Executing the create result function to create placeholders for the RecyclerView, created down below
         updateList();
-
-        // Assigning the image button variable to the button ID.
-        mImageBtnFav = findViewById(R.id.imageButtonFav);
-
-        // Initiate and perform click event on the imagebutton.
-        ImageButton favoriet = findViewById(R.id.imageButtonFav);
-        mImageBtnFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"De vacature is opgeslagen als favoriet.", Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
