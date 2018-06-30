@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,10 +26,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -42,6 +47,10 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private String UserID;
+    private AutoCompleteTextView mFunctie, mLocatie;
+
+    public static ArrayList<String> Functies = new ArrayList<String>();
+    public static ArrayList<String> Locaties = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -130,17 +139,131 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);
 
-        // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
+        // Declaring the variables to there corresponding objects
+        mFunctie = findViewById(R.id.AcEditTextFunctie);
+        mLocatie = findViewById(R.id.AcEditTextLocatie);
+
+        // mFunctie and mLocatie are AutoCompleteTextView's, therefore they need strings to show when you type in the EditText. These strings are stored in the
+        // Database. This way we only show suggestions of functies and locaties that are actually used in vacatures. To add these items to a Array that can be used
+        // for the AutoCompleteTextView, we first make a addListenerForSingleValueEvent.
+        myRef.child("Functies").addValueEventListener(new ValueEventListener()
+        {
+            // To add the strings, a for loop is executed, because its unknown how many entries there are of functies and locaties in the database, we first
+            // get the amount of children from the dataSnapshot. And then for every child a string gets added to the Functies Array. Before we do this, we first
+            // remove all the items in the ArrayList, to make sure there aren't any duplicates
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Functies.removeAll(Functies);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Functies.add(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        // To add the array to the AutoCompleteTextView, an ArrayAdapter is made. This adapter consists of 3 items, the context (this), the layout used to display
+        // the suggestions when typing something, and the suggestions itself which were stored in the ArrayList, in this case Functies. When the adapter is created,
+        // It gets added to the AutoCompleteTextView. Also, the Threshold is changed, which is the amount of characters needed before the AutoCompleteTextView shows
+        // a suggestion, the standard of this Threshold is 2, in our case it's 1.
+        ArrayAdapter<String> functies = new ArrayAdapter<String>(this, R.layout.autocomplete_item, Functies);
+        mFunctie.setAdapter(functies);
+        mFunctie.setThreshold(1);
+
+        myRef.child("Locaties").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Locaties.removeAll(Locaties);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Locaties.add(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        ArrayAdapter<String> locaties = new ArrayAdapter<String>(this, R.layout.autocomplete_item, Locaties);
+        mLocatie.setAdapter(locaties);
+        mLocatie.setThreshold(1);
+
+        // Setting the on click event for the zoeken button. Which executes the onClickZoeken function created down below.
         mZoeken = findViewById(R.id.ZoekenBtn);
         mZoeken.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
-                startActivity(zoeken);
+                onClickZoeken();
             }
         });
+    }
+
+    // The onClickZoeken function.
+    private void onClickZoeken()
+    {
+        // First, a connection is made with the database
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference();
+
+        // Then, a series of if statements get checked. In this activity, the user can fill in 2 Edit Texts, Functie and Locatie.
+        // If the users fills in either both, none or 1 of those EditTexts, the data filled in those fields needs to be passed on to
+        // the Vacature activity. Therefore, we do the following.
+        if (mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
+        {
+            // The first statement is executed when both fields are empty. Nothing needs to be passed on, so a intent will start
+            // redirecting the user to the vacature screen.
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            startActivity(zoeken);
+            finish();
+        }
+        if (!mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
+        {
+            // The second statement will execute when something is filled in into the Functie edit text. The text filled in by the user will
+            // be converted into a string, and put into a string variable. Then a intent will start, but with this intent data gets send
+            // with the putExtra. The string just created will also passed along.
+            String functie = mFunctie.getText().toString();
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("functie", functie);
+            startActivity(zoeken);
+            finish();
+        }
+        if (mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
+        {
+            // The third statement will execute when something is filled in into the Locatie edit text. The text filled in by the user will
+            // be converted into a string, and put into a string variable. Then a intent will start, but with this intent data gets send
+            // with the putExtra. The string just created will also passed along.
+            String locatie = mLocatie.getText().toString();
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("locatie", locatie);
+            startActivity(zoeken);
+            finish();
+        }
+        if (!mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
+        {
+            // The forth statement will execute when something is filled in into both the Functie and Locatie edit text. The text filled in by the user will
+            // be converted into strings, and put into a string variable. Then the string will be combined into one string. Then a intent will start,
+            // but with this intent data gets send with the putExtra. The string just created will also passed along.
+            String locatie = mLocatie.getText().toString();
+            String functie = mFunctie.getText().toString();
+            String functie_locatie = functie + "_" + locatie;
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("functie_locatie", functie_locatie);
+            startActivity(zoeken);
+            finish();
+        }
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with

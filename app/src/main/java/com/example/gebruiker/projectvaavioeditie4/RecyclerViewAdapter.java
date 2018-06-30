@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
@@ -29,31 +32,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
-        return new VacatureViewHolder(itemView);
+        final VacatureViewHolder holder = new VacatureViewHolder(itemView);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder (VacatureViewHolder holder, int position)
+    public void onBindViewHolder (final VacatureViewHolder holder, int position)
     {
+        final VacatureModule vacature = list.get(position);
 
-        VacatureModule vacature = list.get(position);
-
-        // Setting the text of the items in the layout equal to the text of the items in the list
+        // Setting the text of the items in the layout equal to the text of the items in the list. The list is filled with the data from the
+        // Database.
         holder.mFunctie.setText(vacature.Functie);
         holder.mLocatie.setText(vacature.Locatie);
         holder.mOmschrijving.setText(vacature.Omschrijving);
 
-        // Declaring what to do when an item in the RecyclerView is clicked.
+        // Declaring what to do when an item in the RecyclerView is clicked. In this case it's not just starting an intent to a new activity,
+        // It is also sending the Key of the item clicked in the RecyclerView with that intent. This way, in vacature omschrijving we know
+        // Which data needs te be loaded in.
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent(mContext, Activity_VacOmschrijving.class);
+                intent.putExtra("Key", vacature.Key);
                 mContext.startActivity(intent);
             }
         });
-
     }
 
 
@@ -63,6 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return list.size();
     }
 
+    // Declaring the ViewHolder for the vacatures. Here fore the TextView's from the layout_listitem get added to there corresponding variables
+    // This way, the TextView's can get edited in the onBindViewHolder.
     class VacatureViewHolder extends RecyclerView.ViewHolder
     {
 
