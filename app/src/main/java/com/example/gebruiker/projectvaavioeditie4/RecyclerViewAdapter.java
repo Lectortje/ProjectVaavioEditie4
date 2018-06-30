@@ -47,7 +47,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.mLocatie.setText(vacature.Locatie);
         holder.mOmschrijving.setText(vacature.Omschrijving);
 
-        // Declaring what to do when an item in the RecyclerView is clicked.
+        // Declaring what to do when an item in the RecyclerView is clicked. In this case it's not just starting an intent to a new activity,
+        // It is also sending the Key of the item clicked in the RecyclerView with that intent. This way, in vacature omschrijving we know
+        // Which data needs te be loaded in.
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override

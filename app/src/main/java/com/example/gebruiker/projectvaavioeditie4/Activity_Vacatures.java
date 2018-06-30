@@ -30,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -184,44 +185,171 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private void updateList()
     {
         mDatabase = FirebaseDatabase.getInstance();
-        myRef2 = mDatabase.getReference().child("Vacatures");
-        myRef2.addChildEventListener(new ChildEventListener()
+
+        if (getIntent().hasExtra("functie"))
         {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            String functie = getIntent().getExtras().getString("functie");
+            Query functiequery = myRef.child("Vacatures").orderByChild("Functie").equalTo(functie);
+            functiequery.addChildEventListener(new ChildEventListener()
             {
-                // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
-                // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
-                // When filled, the adapter get notified that data is added and will 'refresh' itself.
-                result.add(dataSnapshot.getValue(VacatureModule.class));
-                adapter.notifyDataSetChanged();
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
 
-            }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+        if (getIntent().hasExtra("locatie"))
+        {
+            String locatie = getIntent().getExtras().getString("locatie");
+            Query locatiequery = myRef.child("Vacatures").orderByChild("Locatie").equalTo(locatie);
+            locatiequery.addChildEventListener(new ChildEventListener()
             {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
 
-            }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot)
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+        if (getIntent().hasExtra("functie_locatie"))
+        {
+            String functie_locatie = getIntent().getExtras().getString("functie_locatie");
+            Query functie_locatiequery = myRef.child("Vacatures").orderByChild("Functie_Locatie").equalTo(functie_locatie);
+            functie_locatiequery.addChildEventListener(new ChildEventListener()
             {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
 
-            }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+        else
+        {
+            myRef2 = mDatabase.getReference().child("Vacatures");
+            myRef2.addChildEventListener(new ChildEventListener()
             {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
 
-            }
+                }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
-            }
-        });
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with

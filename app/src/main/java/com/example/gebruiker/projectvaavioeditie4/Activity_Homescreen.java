@@ -12,22 +12,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -42,6 +52,11 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private String UserID;
+    private AutoCompleteTextView mFunctie, mLocatie;
+    // private List<VacatureModule> result;
+
+    public static ArrayList<String> Functies = new ArrayList<String>();
+    public static ArrayList<String> Locaties = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -130,6 +145,65 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         // Making the nav_home button in the drawer menu selected on start up
         navigationView.setCheckedItem(R.id.nav_home);
 
+        // Declaring the variables to there corresponding objects
+        mFunctie = findViewById(R.id.AcEditTextFunctie);
+        mLocatie = findViewById(R.id.AcEditTextLocatie);
+
+        // mFunctie and mLocatie are AutoCompleteTextView's, therefore they need strings to show when you type in the EditText. These strings are stored in the
+        // Database. This way we only show suggestions of functies and locaties that are actually used in vacatures. To add these items to a Array that can be used
+        // for the AutoCompleteTextView, we first make a addListenerForSingleValueEvent.
+        myRef.child("Functies").addValueEventListener(new ValueEventListener()
+        {
+            // To add the strings, a for loop is executed, because its unknown how many entries there are of functies and locaties in the database, we first
+            // get the amount of childern from the dataSnapshot. And then for every child a string gets added to the Functies Array.
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Functies.removeAll(Functies);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Functies.add(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        // To add the array to the AutoCompleteTextView, an ArrayAdapter is made. This adapter consists of 3 items, the context (this), the layout used to display
+        // the suggestions when typing something, and the suggestions itself which were stored in the ArrayList, in this case Functies. When the adapter is created,
+        // It gets added to the AutoCompleteTextView. Also, the Threshold is changed, which is the amount of characters needed before the AutoCompleteTextView shows
+        // a suggestion, the standard of this Threshold is 2, in our case it's 1.
+        ArrayAdapter<String> functies = new ArrayAdapter<String>(this, R.layout.autocomplete_item, Functies);
+        mFunctie.setAdapter(functies);
+        mFunctie.setThreshold(1);
+
+        myRef.child("Locaties").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                Locaties.removeAll(Locaties);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Locaties.add(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        ArrayAdapter<String> locaties = new ArrayAdapter<String>(this, R.layout.autocomplete_item, Locaties);
+        mLocatie.setAdapter(locaties);
+        mLocatie.setThreshold(1);
+
         // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
         mZoeken = findViewById(R.id.ZoekenBtn);
         mZoeken.setOnClickListener(new View.OnClickListener()
@@ -137,10 +211,48 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View v)
             {
-                Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
-                startActivity(zoeken);
+                onClickZoeken();
             }
         });
+    }
+
+    private void onClickZoeken()
+    {
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef = mDatabase.getReference();
+
+        if (mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
+        {
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            startActivity(zoeken);
+            finish();
+        }
+        if (!mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
+        {
+            String functie = mFunctie.getText().toString();
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("functie", functie);
+            startActivity(zoeken);
+            finish();
+        }
+        if (mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
+        {
+            String locatie = mLocatie.getText().toString();
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("locatie", locatie);
+            startActivity(zoeken);
+            finish();
+        }
+        if (!mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
+        {
+            String locatie = mLocatie.getText().toString();
+            String functie = mFunctie.getText().toString();
+            String functie_locatie = functie + "_" + locatie;
+            Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("functie_locatie", functie_locatie);
+            startActivity(zoeken);
+            finish();
+        }
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
