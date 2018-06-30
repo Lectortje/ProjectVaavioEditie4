@@ -180,14 +180,20 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         return super.onOptionsItemSelected(item);
     }
 
-    // Adding the data from the database into the RecyclerView. First a reference gets made to the child with the vacatures in the
-    // Database. When that is done, an addChildEventListener gets executed.
+    // Adding the data from the database into the RecyclerView.
     private void updateList()
     {
+        // First, the database connection gets initialized.
         mDatabase = FirebaseDatabase.getInstance();
 
+        // Then a series of if statements will checked if there is data send over from the Homescreen.
+        // If the intent has the extra called 'functie', that means the user filled in something in the EditText Functie and
+        // wants to search for functions corresponding with what he filled in.
         if (getIntent().hasExtra("functie"))
         {
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
             String functie = getIntent().getExtras().getString("functie");
             Query functiequery = myRef.child("Vacatures").orderByChild("Functie").equalTo(functie);
             functiequery.addChildEventListener(new ChildEventListener()
@@ -227,8 +233,13 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 }
             });
         }
+        // If the intent has the extra called 'locatie', that means the user filled in something in the EditText Locatie and
+        // wants to search for functions corresponding with what he filled in.
         if (getIntent().hasExtra("locatie"))
         {
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
             String locatie = getIntent().getExtras().getString("locatie");
             Query locatiequery = myRef.child("Vacatures").orderByChild("Locatie").equalTo(locatie);
             locatiequery.addChildEventListener(new ChildEventListener()
@@ -268,8 +279,13 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 }
             });
         }
+        // If the intent has the extra called 'functie_locatie', that means the user filled in something in both the EditText
+        // Functie and the EditText Locatie and wants to search for functions corresponding with what he filled in.
         if (getIntent().hasExtra("functie_locatie"))
         {
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
             String functie_locatie = getIntent().getExtras().getString("functie_locatie");
             Query functie_locatiequery = myRef.child("Vacatures").orderByChild("Functie_Locatie").equalTo(functie_locatie);
             functie_locatiequery.addChildEventListener(new ChildEventListener()
@@ -309,6 +325,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 }
             });
         }
+        // When no extra is send with the intent, this means the user wants to see all vacatures, therefore no extra query is
+        // made to search and to display all vacature we just use 'Vacatures' as references.
         else
         {
             myRef2 = mDatabase.getReference().child("Vacatures");

@@ -19,9 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -53,7 +48,6 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     private FirebaseAuth mAuth;
     private String UserID;
     private AutoCompleteTextView mFunctie, mLocatie;
-    // private List<VacatureModule> result;
 
     public static ArrayList<String> Functies = new ArrayList<String>();
     public static ArrayList<String> Locaties = new ArrayList<String>();
@@ -155,7 +149,8 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         myRef.child("Functies").addValueEventListener(new ValueEventListener()
         {
             // To add the strings, a for loop is executed, because its unknown how many entries there are of functies and locaties in the database, we first
-            // get the amount of childern from the dataSnapshot. And then for every child a string gets added to the Functies Array.
+            // get the amount of children from the dataSnapshot. And then for every child a string gets added to the Functies Array. Before we do this, we first
+            // remove all the items in the ArrayList, to make sure there aren't any duplicates
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -204,7 +199,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         mLocatie.setAdapter(locaties);
         mLocatie.setThreshold(1);
 
-        // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
+        // Setting the on click event for the zoeken button. Which executes the onClickZoeken function created down below.
         mZoeken = findViewById(R.id.ZoekenBtn);
         mZoeken.setOnClickListener(new View.OnClickListener()
         {
@@ -216,19 +211,29 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         });
     }
 
+    // The onClickZoeken function.
     private void onClickZoeken()
     {
+        // First, a connection is made with the database
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference();
 
+        // Then, a series of if statements get checked. In this activity, the user can fill in 2 Edit Texts, Functie and Locatie.
+        // If the users fills in either both, none or 1 of those EditTexts, the data filled in those fields needs to be passed on to
+        // the Vacature activity. Therefore, we do the following.
         if (mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
         {
+            // The first statement is executed when both fields are empty. Nothing needs to be passed on, so a intent will start
+            // redirecting the user to the vacature screen.
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             startActivity(zoeken);
             finish();
         }
         if (!mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
         {
+            // The second statement will execute when something is filled in into the Functie edit text. The text filled in by the user will
+            // be converted into a string, and put into a string variable. Then a intent will start, but with this intent data gets send
+            // with the putExtra. The string just created will also passed along.
             String functie = mFunctie.getText().toString();
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             zoeken.putExtra("functie", functie);
@@ -237,6 +242,9 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         }
         if (mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
         {
+            // The third statement will execute when something is filled in into the Locatie edit text. The text filled in by the user will
+            // be converted into a string, and put into a string variable. Then a intent will start, but with this intent data gets send
+            // with the putExtra. The string just created will also passed along.
             String locatie = mLocatie.getText().toString();
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             zoeken.putExtra("locatie", locatie);
@@ -245,6 +253,9 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         }
         if (!mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
         {
+            // The forth statement will execute when something is filled in into both the Functie and Locatie edit text. The text filled in by the user will
+            // be converted into strings, and put into a string variable. Then the string will be combined into one string. Then a intent will start,
+            // but with this intent data gets send with the putExtra. The string just created will also passed along.
             String locatie = mLocatie.getText().toString();
             String functie = mFunctie.getText().toString();
             String functie_locatie = functie + "_" + locatie;

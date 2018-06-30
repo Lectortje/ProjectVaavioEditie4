@@ -173,10 +173,11 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
         // mFunctie and mLocatie are AutoCompleteTextView's, therefore they need strings to show when you type in the EditText. These strings are stored in the
         // Database. This way we only show suggestions of functies and locaties that are actually used in vacatures. To add these items to a Array that can be used
         // for the AutoCompleteTextView, we first make a addListenerForSingleValueEvent.
-        myRef.child("Functies").addListenerForSingleValueEvent(new ValueEventListener()
+        myRef.child("Functies").addValueEventListener(new ValueEventListener()
         {
             // To add the strings, a for loop is executed, because its unknown how many entries there are of functies and locaties in the database, we first
-            // get the amount of childern from the dataSnapshot. And then for every child a string gets added to the Functies Array.
+            // get the amount of children from the dataSnapshot. And then for every child a string gets added to the Functies Array. Before we do this, we first
+            // remove all the items in the ArrayList, to make sure there aren't any duplicates
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -202,7 +203,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
         mFunctie.setAdapter(functies);
         mFunctie.setThreshold(1);
 
-        myRef.child("Locaties").addListenerForSingleValueEvent(new ValueEventListener()
+        myRef.child("Locaties").addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
