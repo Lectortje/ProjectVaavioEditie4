@@ -4,29 +4,24 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,31 +31,24 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Activity_Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class Activity_Vacatures extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
     //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
+    private Switch mSwitchMeldingen, mSwitchDonkerThema;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
-    private ImageButton mImageBtnFav;
     private StorageReference mStorage;
-    private DatabaseReference myRef, myRef2;
+    private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
-    private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private FirebaseAuth mAuth;
     private String UserID;
-    private RecyclerView mRecyclerView;
-    private List<VacatureModule> result;
-    private RecyclerViewAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vacatures);
+        setContentView(R.layout.activity_settings);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -138,127 +126,32 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
                 }
             });
+
+            // Making the nav_home button in the drawer menu selected on start up
+            navigationView.setCheckedItem(R.id.nav_settings);
         }
 
-        // Setting the result as an Array list
-        result = new ArrayList<>();
+        mSwitchDonkerThema = findViewById(R.id.switchDonkerThema);
+        mSwitchMeldingen = findViewById(R.id.switchMeldingen);
 
-        // Making the refrence to the recyclerview
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        // Setting up the adapter and LayoutManager for the RecyclerView
-        adapter = new RecyclerViewAdapter(getApplicationContext(), result);
-        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(mLayoutmanager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(adapter);
-
-        // Executing the create result function to create placeholders for the RecyclerView, created down below
-        updateList();
-
-        // Assigning the image button variable to the button ID.
-        mImageBtnFav = findViewById(R.id.imageButtonFav);
-
-        // Initiate and perform click event on the imagebutton.
-        ImageButton favoriet = findViewById(R.id.imageButtonFav);
-        mImageBtnFav.setOnClickListener(new View.OnClickListener() {
+        mSwitchDonkerThema.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"De vacature is opgeslagen als favoriet.", Toast.LENGTH_LONG).show();
+            public void onClick(View v)
+            {
+                Toast.makeText(Activity_Settings.this, "Het thema is nu donker.", Toast.LENGTH_SHORT).show();
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.vacature_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId()){
-            case R.id.addBtn:
-                Intent intent = new Intent(this, Activity_NewVacature.class);
-                startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void updateList()
-    {
-        mDatabase = FirebaseDatabase.getInstance();
-        myRef2 = mDatabase.getReference().child("Vacatures");
-        myRef2.addChildEventListener(new ChildEventListener()
+        mSwitchMeldingen.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            public void onClick(View v)
             {
-
-                result.add(dataSnapshot.getValue(VacatureModule.class));
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s)
-            {
-
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
-
-                int index = getItemIndex(model);
-
-                result.set(index, model);
-                adapter.notifyItemChanged(index);
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot)
-            {
-
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
-
-                int index = getItemIndex(model);
-
-                result.remove(index);
-                adapter.notifyItemRemoved(index);
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s)
-            {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
+                Toast.makeText(Activity_Settings.this, "Meldingen zijn nu ingeschakeld.", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    private int getItemIndex(VacatureModule vacature)
-    {
-        int index = -1;
-        for (int i = 0; i < result.size(); i++)
-        {
-            if (result.get(i).key.equals(vacature.key))
-            {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
     // The clicked item will be executed.
     @Override
@@ -275,7 +168,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_Vacatures.this, "Filters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Settings.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
@@ -297,8 +190,12 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(Activity_Vacatures.this, "Settings", Toast.LENGTH_SHORT).show();
+                Intent navsettings = new Intent(this, Activity_Settings.class);
+                navsettings.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navsettings);
+                finish();
                 break;
+            // Toast.makeText(Activity_Homescreen.this, "Settings", Toast.LENGTH_SHORT).show();
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment
         drawer.closeDrawer(GravityCompat.START);
