@@ -39,7 +39,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Activity_NewVacature extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -54,7 +53,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
     private FirebaseUser mUser;
     private String UserID;
     private AutoCompleteTextView mFunctie, mLocatie;
-    private Spinner mOpleiding, mDiensverband, mSalaris;
+    private Spinner mOpleiding, mDienstverband, mSalaris;
     private Button mPlaatsen;
     private EditText mOmschrijving, mOmschrijvingVolledig;
 
@@ -147,7 +146,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
 
         // Declaring the variables to there corresponding objects
         mOpleiding = findViewById(R.id.SpinnerOpleiding);
-        mDiensverband = findViewById(R.id.SpinnerDienstverband);
+        mDienstverband = findViewById(R.id.SpinnerDienstverband);
         mSalaris = findViewById(R.id.SpinnerSalaris);
 
         // Setting the ArrayAdapters for the spinners created above. The same process is used for all 3. First, the adapter is initialized, and it's
@@ -158,7 +157,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
         mOpleiding.setAdapter(adapterOpleiding);
 
         final ArrayAdapter<CharSequence> adapterDienstverband = ArrayAdapter.createFromResource(this, R.array.dienstverband, R.layout.spinner_item);
-        mDiensverband.setAdapter(adapterDienstverband);
+        mDienstverband.setAdapter(adapterDienstverband);
 
         final ArrayAdapter<CharSequence> adapterSalaris = ArrayAdapter.createFromResource(this, R.array.salaris, R.layout.spinner_item);
         mSalaris.setAdapter(adapterSalaris);
@@ -245,16 +244,16 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                     Toast.makeText(Activity_NewVacature.this, "Vul een locatie in", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                int positionDienstverband = mDienstverband.getSelectedItemPosition();
+                if (positionDienstverband == 0)
+                {
+                    Toast.makeText(Activity_NewVacature.this, "Kies een dienstverband", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int positionOpleiding = mOpleiding.getSelectedItemPosition();
                 if (positionOpleiding == 0)
                 {
                     Toast.makeText(Activity_NewVacature.this, "Kies een opleiding", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                int positionDienstverband = mDiensverband.getSelectedItemPosition();
-                if (positionDienstverband == 0)
-                {
-                    Toast.makeText(Activity_NewVacature.this, "Kies een dienstverband", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 int positionSalaris = mSalaris.getSelectedItemPosition();
@@ -287,7 +286,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                     String omschrijving = mOmschrijving.getText().toString();
                     String omschrijvingvolledig = mOmschrijvingVolledig.getText().toString();
                     String opleiding = mOpleiding.getSelectedItem().toString().trim();
-                    String dienstverband = mDiensverband.getSelectedItem().toString().trim();
+                    String dienstverband = mDienstverband.getSelectedItem().toString().trim();
                     String salaris = mSalaris.getSelectedItem().toString().trim();
 
                     // To generate a key for the vacature, an empty vacature (it gets filled later) gets pushed (pushing generates a key in Firebase) to

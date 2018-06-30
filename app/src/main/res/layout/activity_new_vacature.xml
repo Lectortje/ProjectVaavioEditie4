@@ -143,7 +143,7 @@
                     android:hint="Geef hier uw korte vacature omschrijving"
                     android:inputType="textMultiLine"
                     android:textColor="#808080"
-                    android:maxLength="250"
+                    android:maxLength="100"
                     android:textSize="12dp" />
 
                 <TextView
