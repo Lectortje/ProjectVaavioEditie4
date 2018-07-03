@@ -4,16 +4,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +33,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class Activity_Homescreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
+public class Activity_Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
-    private Button mZoeken;
+    private Switch mSwitchMeldingen, mSwitchDonkerThema;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
@@ -44,10 +48,9 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
     private String UserID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homescreen);
+        setContentView(R.layout.activity_settings);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -125,24 +128,43 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
 
                 }
             });
+
+            // Making the nav_home button in the drawer menu selected on start up
+            navigationView.setCheckedItem(R.id.nav_settings);
         }
 
-        // Making the nav_home button in the drawer menu selected on start up
-        navigationView.setCheckedItem(R.id.nav_home);
+        mSwitchDonkerThema=(Switch)findViewById(R.id.switchDonkerThema);
+        mSwitchDonkerThema.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-        // Setting the on click event for the zoeken button. Which redirects the user to the activity with the vacatures.
-        mZoeken = findViewById(R.id.ZoekenBtn);
-        mZoeken.setOnClickListener(new View.OnClickListener()
-        {
             @Override
-            public void onClick(View v)
-            {
-                Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
-                startActivity(zoeken);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mSwitchDonkerThema.setText("Donker thema uitschakelen");  //To change the text near to switch
+                    Log.d("Donker thema :", " ingeschakeld");
+                }
+                else {
+                    mSwitchDonkerThema.setText("Donker thema inschakelen");  //To change the text near to switch
+                    Log.d("Donker thema :", " uitgeschakeld");
+                }
+            }
+        });
+
+        mSwitchMeldingen=(Switch)findViewById(R.id.switchMeldingen);
+        mSwitchMeldingen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mSwitchMeldingen.setText("Meldingen uitschakelen");  //To change the text near to switch
+                    Log.d("Meldingen :", " zijn nu ingeschakeld");
+                }
+                else {
+                    mSwitchMeldingen.setText("Meldingen inschakelen");  //To change the text near to switch
+                    Log.d("Meldingen :", " zijn nu uitgeschakeld");
+                }
             }
         });
     }
-
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
     // The clicked item will be executed.
     @Override
@@ -159,7 +181,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_Homescreen.this, "Filters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Settings.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
