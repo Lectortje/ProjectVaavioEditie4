@@ -14,12 +14,7 @@ public class Fragment_AcFavorites extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_ac_favorites, container, false);
-
-
-        //Returning view in order to show the layout created in the xml for the fragment.
-        //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
-        return view;
+        return inflater.inflate(R.layout.fragment_ac_favorites, container, false);
     }
 
 }

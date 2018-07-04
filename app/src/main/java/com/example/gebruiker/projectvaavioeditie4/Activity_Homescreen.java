@@ -181,10 +181,7 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Intent navsettings = new Intent(this, Activity_Settings.class);
-                navsettings.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(navsettings);
-                finish();
+                Toast.makeText(Activity_Homescreen.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

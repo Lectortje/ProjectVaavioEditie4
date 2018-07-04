@@ -1,6 +1,5 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class Fragment_VacatureOmschrijving extends Fragment
 {
@@ -58,7 +52,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
             }
 
         });
-
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;
