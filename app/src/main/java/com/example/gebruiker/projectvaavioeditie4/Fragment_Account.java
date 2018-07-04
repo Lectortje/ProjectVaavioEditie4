@@ -1,6 +1,5 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -68,8 +67,8 @@ public class Fragment_Account extends Fragment
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getActivity(), Activity_Favorites.class);
-                startActivity(intent);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcFavorites()).addToBackStack("tag").commit();
             }
         });
 

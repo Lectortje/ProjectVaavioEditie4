@@ -8,15 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Fragment_AcFavorites extends Fragment {
-
-
+public class Fragment_AcFavorites extends Fragment
+{
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_vacatureomschrijving, container, false);
-
-
-
-        return view;
+        return inflater.inflate(R.layout.fragment_ac_favorites, container, false);
     }
+
 }
