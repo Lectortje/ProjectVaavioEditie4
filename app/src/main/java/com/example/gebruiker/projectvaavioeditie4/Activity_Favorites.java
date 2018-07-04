@@ -2,26 +2,31 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,24 +39,27 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_NewVacature extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Activity_Favorites extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, myRef2;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String UserID;
+    private RecyclerView mRecyclerView;
+    private List<VacatureModule> result;
+    private RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_vacature);
+        setContentView(R.layout.activity_favorites);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -130,6 +138,93 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                 }
             });
         }
+
+        // Setting the result as an Array list
+        result = new ArrayList<>();
+
+        // Making the refrence to the recyclerview
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        // Setting up the adapter and LayoutManager for the RecyclerView
+        adapter = new RecyclerViewAdapter(getApplicationContext(), result);
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutmanager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(adapter);
+
+        // Executing the create result function to create placeholders for the RecyclerView, created down below
+        updateList();
+
+    }
+
+    private void updateList()
+    {
+        mDatabase = FirebaseDatabase.getInstance();
+        myRef2 = mDatabase.getReference().child("Users").child(UserID).child("Favorieten");
+        myRef2.addChildEventListener(new ChildEventListener()
+        {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
+
+                result.add(dataSnapshot.getValue(VacatureModule.class));
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
+
+                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
+
+                int index = getItemIndex(model);
+
+                result.set(index, model);
+                adapter.notifyItemChanged(index);
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+
+                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
+
+                int index = getItemIndex(model);
+
+                result.remove(index);
+                adapter.notifyItemRemoved(index);
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+    }
+
+    private int getItemIndex(VacatureModule vacature)
+    {
+        int index = -1;
+        for (int i = 0; i < result.size(); i++)
+        {
+            if (result.get(i).key.equals(vacature.key))
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -148,7 +243,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_NewVacature.this, "Filters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Favorites.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app

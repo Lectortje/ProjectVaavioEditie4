@@ -9,11 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class Fragment_VacatureOmschrijving extends Fragment
 {
     //Declaring all the button variables.
     private Button mSollicitatie, mContact;
+    private ImageButton mImageButtonFav;
 
     @Nullable
     @Override
@@ -26,6 +29,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
         //Assingning the button variables to the button ID.
         mContact = view.findViewById(R.id.ContactBtn);
         mSollicitatie = view.findViewById(R.id.SollicitatieBtn);
+        mImageButtonFav = view.findViewById(R.id.imageButtonFav);
 
         mSollicitatie.setOnClickListener(new View.OnClickListener()
         {
@@ -49,6 +53,20 @@ public class Fragment_VacatureOmschrijving extends Fragment
                 //This opens the fragment Fragment_Contact if the button btnContact is clicked.
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_Contact()).addToBackStack("tag").commit();
+            }
+
+        });
+
+        mImageButtonFav.setOnClickListener(new View.OnClickListener()
+        {
+            //This button saves the job offer in the Firebase database under the path: "Vacatures" -> "Favorieten".
+            //This can be done by the user in order to save the job offer as a favorite to later be able to quickly navigate to the job offer
+            // from the 'Favorieten' screen.
+            @Override
+            //This is the onClick handling for the button imageButtonFav.
+            public void onClick(View v)
+            {
+                Toast.makeText(getActivity(), "Uw vacature is succesvol opgeslagen in favorieten.", Toast.LENGTH_SHORT).show();
             }
 
         });

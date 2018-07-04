@@ -2,20 +2,22 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,27 +33,24 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Activity_Settings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class Activity_NewVacature extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
-
+    //Declaring all the button, textView, String and Firebase variables.
     private DrawerLayout drawer;
+    private Switch mSwitchMeldingen, mSwitchDonkerThema;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
     private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
-    private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private FirebaseAuth mAuth;
     private String UserID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_vacature);
+        setContentView(R.layout.activity_settings);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -129,9 +128,43 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
 
                 }
             });
-        }
-    }
 
+            // Making the nav_home button in the drawer menu selected on start up
+            navigationView.setCheckedItem(R.id.nav_settings);
+        }
+
+        mSwitchDonkerThema=(Switch)findViewById(R.id.switchDonkerThema);
+        mSwitchDonkerThema.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mSwitchDonkerThema.setText("Donker thema uitschakelen");  //To change the text near to switch
+                    Log.d("Donker thema :", " ingeschakeld");
+                }
+                else {
+                    mSwitchDonkerThema.setText("Donker thema inschakelen");  //To change the text near to switch
+                    Log.d("Donker thema :", " uitgeschakeld");
+                }
+            }
+        });
+
+        mSwitchMeldingen=(Switch)findViewById(R.id.switchMeldingen);
+        mSwitchMeldingen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    mSwitchMeldingen.setText("Meldingen uitschakelen");  //To change the text near to switch
+                    Log.d("Meldingen :", " zijn nu ingeschakeld");
+                }
+                else {
+                    mSwitchMeldingen.setText("Meldingen inschakelen");  //To change the text near to switch
+                    Log.d("Meldingen :", " zijn nu uitgeschakeld");
+                }
+            }
+        });
+    }
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
     // The clicked item will be executed.
     @Override
@@ -148,7 +181,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                 startActivity(navhome);
                 finish();
             case R.id.nav_filters:
-                Toast.makeText(Activity_NewVacature.this, "Filters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Settings.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
