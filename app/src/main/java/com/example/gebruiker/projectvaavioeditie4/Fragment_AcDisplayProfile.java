@@ -30,7 +30,7 @@ public class Fragment_AcDisplayProfile extends Fragment
     //Declaring all the button, textView, String and Firebase variables.
     private TextView mNationaliteit, mNaamWerknemer, mAdres, mPlaats, mEmailadres, mOpleidingen, mErvaring, mTrainingen, mVaardigheden, mTelefoon, mGeslacht;
     private String UserID;
-    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private ImageView mProfielFoto;
     private StorageReference mStorage;
@@ -49,8 +49,8 @@ public class Fragment_AcDisplayProfile extends Fragment
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         UserID = user.getUid();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();

@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context=".Activity_Vacatures"
-    tools:openDrawer="start">
+    tools:openDrawer="">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,12 +23,159 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/Theme.AppCompat.Light" />
 
-        <TextView
-            android:id="@+id/textView"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nieuwe vacature"
-            android:gravity="center"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_weight="1"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TextViewFunctie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:paddingStart="3dp"
+                    android:text="Functie"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/AcEditTextFunctie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+                    android:layout_marginBottom="4dp"
+                    android:hint="Functie"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextViewLocatie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Locatie"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/AcEditTextLocatie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="#808080"
+                    android:hint="Locatie"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/TextViewDienstverband"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Dienstverband"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/SpinnerDienstverband"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/TextViewOpleiding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Opleidingsniveau"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/SpinnerOpleiding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/TextViewSalaris"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Salarisschaal"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/SpinnerSalaris"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/TextViewOmschrijvingKort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Korte omschrijving (max. 250 tekens)"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/EditTextOmschrijving"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:ems="10"
+                    android:hint="Geef hier uw korte vacature omschrijving"
+                    android:inputType="textMultiLine"
+                    android:textColor="#808080"
+                    android:maxLength="100"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/TextViewOmschrijving"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:paddingLeft="3dp"
+                    android:text="Volledige omschrijving"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/EditTextOmschrijvingVolledig"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Geef hier uw volledige vacature omschrijving"
+                    android:textColor="#808080"
+                    android:inputType="textMultiLine"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/PlaatsenBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#008bab"
+            android:text="Plaatsen" />
 
     </LinearLayout>
 

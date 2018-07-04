@@ -30,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -142,7 +143,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         result = new ArrayList<>();
 
         // Making the refrence to the recyclerview
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
         // Setting up the adapter and LayoutManager for the RecyclerView
         adapter = new RecyclerViewAdapter(getApplicationContext(), result);
@@ -157,6 +158,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
 
     }
 
+    // Adding the + button on the top right of the vacature scherm.
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -165,6 +167,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         return true;
     }
 
+    // Adding the onClickListener for the + button on the top right of the screen. This happens through a switch statement. It
+    // Checks if the item clicked is the +, and when that's the case, executes a intent to a new activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -176,73 +180,192 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         return super.onOptionsItemSelected(item);
     }
 
+    // Adding the data from the database into the RecyclerView.
     private void updateList()
     {
+        // First, the database connection gets initialized.
         mDatabase = FirebaseDatabase.getInstance();
-        myRef2 = mDatabase.getReference().child("Vacatures");
-        myRef2.addChildEventListener(new ChildEventListener()
+
+        // Then a series of if statements will checked if there is data send over from the Homescreen.
+        // If the intent has the extra called 'functie', that means the user filled in something in the EditText Functie and
+        // wants to search for functions corresponding with what he filled in.
+        if (getIntent().hasExtra("functie"))
         {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
+            String functie = getIntent().getExtras().getString("functie");
+            Query functiequery = myRef.child("Vacatures").orderByChild("Functie").equalTo(functie);
+            functiequery.addChildEventListener(new ChildEventListener()
             {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
 
-                result.add(dataSnapshot.getValue(VacatureModule.class));
-                adapter.notifyDataSetChanged();
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
-            }
+                }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s)
-            {
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
 
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
+                }
 
-                int index = getItemIndex(model);
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
 
-                result.set(index, model);
-                adapter.notifyItemChanged(index);
+                }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot)
-            {
-
-                VacatureModule model = dataSnapshot.getValue(VacatureModule.class);
-
-                int index = getItemIndex(model);
-
-                result.remove(index);
-                adapter.notifyItemRemoved(index);
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s)
-            {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
-            }
-        });
-    }
-
-    private int getItemIndex(VacatureModule vacature)
-    {
-        int index = -1;
-        for (int i = 0; i < result.size(); i++)
-        {
-            if (result.get(i).key.equals(vacature.key))
-            {
-                index = i;
-                break;
-            }
+                }
+            });
         }
-        return index;
+        // If the intent has the extra called 'locatie', that means the user filled in something in the EditText Locatie and
+        // wants to search for functions corresponding with what he filled in.
+        if (getIntent().hasExtra("locatie"))
+        {
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
+            String locatie = getIntent().getExtras().getString("locatie");
+            Query locatiequery = myRef.child("Vacatures").orderByChild("Locatie").equalTo(locatie);
+            locatiequery.addChildEventListener(new ChildEventListener()
+            {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+        // If the intent has the extra called 'functie_locatie', that means the user filled in something in both the EditText
+        // Functie and the EditText Locatie and wants to search for functions corresponding with what he filled in.
+        if (getIntent().hasExtra("functie_locatie"))
+        {
+            // When this extra is present, the extra gets put into a string variable. With this variable, a query is created.
+            // This query makes a reference that can be used to filled the RecyclerView with only the things the user asked
+            // for in his input in the EditText.
+            String functie_locatie = getIntent().getExtras().getString("functie_locatie");
+            Query functie_locatiequery = myRef.child("Vacatures").orderByChild("Functie_Locatie").equalTo(functie_locatie);
+            functie_locatiequery.addChildEventListener(new ChildEventListener()
+            {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    // To add the items from the database, the ArrayList result (created in the onCreate) needs to be filled. It takes the
+                    // data from the dataSnapshot, and gets the Values that the VacatureModule needs (Functie, Locatie, Omschrijving (see VacatureModule.java))
+                    // When filled, the adapter get notified that data is added and will 'refresh' itself.
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
+        // When no extra is send with the intent, this means the user wants to see all vacatures, therefore no extra query is
+        // made to search and to display all vacature we just use 'Vacatures' as references.
+        else
+        {
+            myRef2 = mDatabase.getReference().child("Vacatures");
+            myRef2.addChildEventListener(new ChildEventListener()
+            {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
