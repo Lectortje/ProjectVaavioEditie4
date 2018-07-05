@@ -374,8 +374,6 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                 navhome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(navhome);
                 finish();
-            case R.id.nav_filters:
-                Toast.makeText(Activity_NewVacature.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app

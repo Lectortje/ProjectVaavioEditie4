@@ -120,9 +120,6 @@ public class Activity_PasswordForgotten extends AppCompatActivity implements Nav
                 startActivity(navhome);
                 finish();
                 break;
-            case R.id.nav_filters:
-                Toast.makeText(this, "Filters", Toast.LENGTH_LONG).show();
-                break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app
                 Intent av = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/terms-and-conditions/"));

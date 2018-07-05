@@ -226,9 +226,10 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
         {
             // The first statement is executed when both fields are empty. Nothing needs to be passed on, so a intent will start
             // redirecting the user to the vacature screen.
+            String vacatures = "Vacatures";
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
+            zoeken.putExtra("Vacatures", vacatures);
             startActivity(zoeken);
-            finish();
         }
         if (!mFunctie.getText().toString().isEmpty() && mLocatie.getText().toString().isEmpty())
         {
@@ -239,7 +240,6 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             zoeken.putExtra("functie", functie);
             startActivity(zoeken);
-            finish();
         }
         if (mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
         {
@@ -250,7 +250,6 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             zoeken.putExtra("locatie", locatie);
             startActivity(zoeken);
-            finish();
         }
         if (!mFunctie.getText().toString().isEmpty() && !mLocatie.getText().toString().isEmpty())
         {
@@ -263,7 +262,6 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
             Intent zoeken = new Intent(Activity_Homescreen.this, Activity_Vacatures.class);
             zoeken.putExtra("functie_locatie", functie_locatie);
             startActivity(zoeken);
-            finish();
         }
     }
 
@@ -282,8 +280,6 @@ public class Activity_Homescreen extends AppCompatActivity implements Navigation
                 navhome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(navhome);
                 finish();
-            case R.id.nav_filters:
-                Toast.makeText(Activity_Homescreen.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app

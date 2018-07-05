@@ -142,7 +142,6 @@
                 android:text="Placeholder"
                 android:textColor="#808080" />
 
-
         </LinearLayout>
     </ScrollView>
 

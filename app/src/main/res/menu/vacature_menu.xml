@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/filterBtn"
+        android:icon="@drawable/ic_filters"
+        android:title="Filters"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/addBtn"
         android:icon="@drawable/ic_add_button"
         android:title="Nieuwe vacature"
         app:showAsAction="ifRoom"/>
-
 </menu>

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:context=".Activity_Homescreen"
+    tools:openDrawer="">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- omdat de action bar uit is gezet in de styles moet de toolbar ook ontworpen worden, zolas hieronder is gedaan -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Theme.AppCompat.Light" />
+
+        <ScrollView
+            android:id="@+id/ScrollViewFilters"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TextViewOpleidingen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:padding="4dp"
+                    android:text="Opleidingen"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <Switch
+                    android:id="@+id/SwitchLagereSchool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Lagere School"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchLBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="LBO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchVMBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="VMBO/MAVO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchHAVO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="HAVO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchVWO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="VWO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchMBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="MBO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchHBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="HBO"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchWO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="WO/Universitair"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchOverigOpleidingen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Overig"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <TextView
+                    android:id="@+id/TextViewSalaris"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="4dp"
+                    android:text="Salarisschaal"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <Switch
+                    android:id="@+id/Switch0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="0-1750"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/Switch1750"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="1750-2500"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/Switch2500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="2500-3500"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/Switch3500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="3500-5000"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/Switch5000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="5000-7500"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchInOverleg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="In Overleg"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <TextView
+                    android:id="@+id/TextViewDienstverband"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="4dp"
+                    android:text="Dienstverband"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <Switch
+                    android:id="@+id/SwitchPostdoctoriaal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Postdoctoriaal"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchFreelance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Freelance"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/Switch1FullTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Full Time"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchPartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Part Time"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchInternship"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Internship"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchStage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Stage"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchTijdelijk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Tijdelijk"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+                <Switch
+                    android:id="@+id/SwitchVast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:checked="true"
+                    android:padding="4dp"
+                    android:text="Vast"
+                    android:textColor="#808080"
+                    android:textSize="14sp"
+                    tools:checked="true" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/OpslaanBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#008bab"
+            android:text="Opslaan" />
+
+    </LinearLayout>
+
+    <!-- Het ontwerpen van de navigation drawer, wat niet meer is dan het toewijzen van de nav header (waar de code in een apart xml file staat,
+    en het toe wijzen van de menu met knoppen) -->
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:menu="@menu/drawer_menu"/>
+
+</android.support.v4.widget.DrawerLayout>

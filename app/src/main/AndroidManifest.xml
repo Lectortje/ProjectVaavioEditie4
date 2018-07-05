@@ -27,7 +27,8 @@
         <activity android:name=".Activity_PasswordForgotten" />
         <activity android:name=".Activity_Vacatures" />
         <activity android:name=".Activity_VacOmschrijving" />
-        <activity android:name=".Activity_NewVacature"></activity>
+        <activity android:name=".Activity_NewVacature" />
+        <activity android:name=".Activity_Filters"></activity>
     </application>
 
 </manifest>
