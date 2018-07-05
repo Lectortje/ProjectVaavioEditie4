@@ -67,8 +67,8 @@ public class Fragment_Account extends Fragment
             @Override
             public void onClick(View v)
             {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcFavorites()).addToBackStack("tag").commit();
+                Intent intent = new Intent(getActivity(), Activity_Favorites.class);
+                startActivity(intent);
             }
         });
 

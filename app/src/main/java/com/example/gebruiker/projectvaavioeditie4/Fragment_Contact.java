@@ -42,6 +42,7 @@ public class Fragment_Contact extends Fragment
         //This also holds the content of the fragment to display.
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
+        //The database connection is setup in order the read data from and write data to the database later on.
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mFirebaseDatabase.getReference();
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -62,11 +63,14 @@ public class Fragment_Contact extends Fragment
             @Override
             public void onClick(View v)
             {
-                // First, a string is created, in which the text that is filled in the edit text gets put.
+
+                //A database authentication is done here first in order to check who the user is (with the UserID)
+                // and to check if the user is logged in and therefore allowed to read data from and write data to the database.
                 mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null)
                 {
+                    // First, a string is created for each variable, in which the text that is filled in the edit text gets put.
                     String naam = mNaam.getText().toString().trim();
                     String achternaam = mAchternaam.getText().toString().trim();
                     String emailadres = mEmail.getText().toString().trim().toLowerCase();
@@ -83,7 +87,6 @@ public class Fragment_Contact extends Fragment
 
                     // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                     // Parent equal to there UserID.
-
                     mAuth = FirebaseAuth.getInstance();
                     UserID = user.getUid();
                     mRef.child("Users").child(UserID).child("Persoonlijke informatie").updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
@@ -116,12 +119,15 @@ public class Fragment_Contact extends Fragment
                 }
                 else
                 {
+                    //If the user is not logged in he/she will get a message telling him/her that he/she has to login in order to send messages.
                     Toast.makeText(getActivity(), "U moet ingelogd zijn om een bericht te versturen", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
+        //A database authentication is done here first in order to check who the user is (with the UserID)
+        // and to check if the user is logged in and therefore allowed to read data from and write data to the database.
+        // Then a ValueEventListener gets setup, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();

@@ -62,6 +62,8 @@ public class Fragment_Sollicitatie extends Fragment
             @Override
             public void onClick(View v) {
 
+                //A database authentication is done here first in order to check who the user is (with the UserID)
+                // and to check if the user is logged in and therefore allowed to read data from and write data to the database.
                 mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null)
@@ -83,7 +85,6 @@ public class Fragment_Sollicitatie extends Fragment
 
                     // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                     // Parent equal to there UserID.
-
                     mAuth = FirebaseAuth.getInstance();
                     UserID = user.getUid();
                     myRef.child("Users").child(UserID).child("Persoonlijke informatie").updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>()
@@ -124,7 +125,9 @@ public class Fragment_Sollicitatie extends Fragment
             }
         });
 
-        // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
+        //A database authentication is done here first in order to check who the user is (with the UserID)
+        // and to check if the user is logged in and therefore allowed to read data from and write data to the database.
+        // Then a ValueEventListener gets setup, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
