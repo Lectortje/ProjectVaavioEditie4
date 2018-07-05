@@ -172,10 +172,16 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId()){
+        switch (item.getItemId())
+        {
             case R.id.addBtn:
-                Intent intent = new Intent(this, Activity_NewVacature.class);
-                startActivity(intent);
+                Intent add = new Intent(this, Activity_NewVacature.class);
+                startActivity(add);
+                break;
+            case R.id.filterBtn:
+                Intent filter = new Intent(this, Activity_Filters.class);
+                startActivity(filter);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -186,6 +192,47 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         // First, the database connection gets initialized.
         mDatabase = FirebaseDatabase.getInstance();
 
+        // When no extra is send with the intent, this means the user wants to see all vacatures, therefore no extra query is
+        // made to search and to display all vacature we just use 'Vacatures' as references.
+        if (getIntent().hasExtra("Vacatures"))
+        {
+            String vacatures = getIntent().getExtras().getString("Vacatures");
+            myRef2 = mDatabase.getReference().child(vacatures);
+            myRef2.addChildEventListener(new ChildEventListener()
+            {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
+                    result.add(dataSnapshot.getValue(VacatureModule.class));
+                    adapter.notifyDataSetChanged();
+                    getIntent().removeExtra("Vacatures");
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+
+                }
+            });
+        }
         // Then a series of if statements will checked if there is data send over from the Homescreen.
         // If the intent has the extra called 'functie', that means the user filled in something in the EditText Functie and
         // wants to search for functions corresponding with what he filled in.
@@ -206,6 +253,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                     // When filled, the adapter get notified that data is added and will 'refresh' itself.
                     result.add(dataSnapshot.getValue(VacatureModule.class));
                     adapter.notifyDataSetChanged();
+                    getIntent().removeExtra("functie");
                 }
 
                 @Override
@@ -252,6 +300,8 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                     // When filled, the adapter get notified that data is added and will 'refresh' itself.
                     result.add(dataSnapshot.getValue(VacatureModule.class));
                     adapter.notifyDataSetChanged();
+                    getIntent().removeExtra("functie");
+
                 }
 
                 @Override
@@ -298,47 +348,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                     // When filled, the adapter get notified that data is added and will 'refresh' itself.
                     result.add(dataSnapshot.getValue(VacatureModule.class));
                     adapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s)
-                {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot)
-                {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s)
-                {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError)
-                {
-
-                }
-            });
-        }
-        // When no extra is send with the intent, this means the user wants to see all vacatures, therefore no extra query is
-        // made to search and to display all vacature we just use 'Vacatures' as references.
-        else
-        {
-            myRef2 = mDatabase.getReference().child("Vacatures");
-            myRef2.addChildEventListener(new ChildEventListener()
-            {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s)
-                {
-
-                    result.add(dataSnapshot.getValue(VacatureModule.class));
-                    adapter.notifyDataSetChanged();
-
+                    getIntent().removeExtra("functie_locatie");
                 }
 
                 @Override
@@ -383,8 +393,6 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
                 navhome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(navhome);
                 finish();
-            case R.id.nav_filters:
-                Toast.makeText(Activity_Vacatures.this, "Filters", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_av:
                 // Intent that redirects the user to the Vaavio website outside the app

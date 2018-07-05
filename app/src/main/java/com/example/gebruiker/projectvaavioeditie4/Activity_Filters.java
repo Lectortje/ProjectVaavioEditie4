@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,24 +31,26 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class Activity_Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Activity_Filters extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    //Declaring all the button, textView, String and Firebase variables.
+
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
     private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
-    private FirebaseUser mUser;
     private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
     private String UserID;
+    // private Switch mLagereSchool, mLBO, mVMBO, mHAVO, mVWO, mMBO, mHBO, mWO, mPostdoctoriaal, mOverigOpleidingen;
+    private Button mOpslaan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_filters);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -72,7 +77,6 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         myRef = mDatabase.getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
 
-        // Initializing the mAuth refrence and checking if a user is signed in
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null)
@@ -124,16 +128,17 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
 
                 }
             });
+
+            mOpslaan = findViewById(R.id.OpslaanBtn);
+            mOpslaan.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Toast.makeText(Activity_Filters.this, "Opslaan Button", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
-
-        // Making the nav_home button in the drawer menu selected on start up
-        navigationView.setCheckedItem(R.id.nav_home);
-
-        // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
-        // So when loading the activity, the fragment gets replaced with the profile fragment.
-        // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Account()).commit();
-        navigationView.setCheckedItem(R.id.nav_profile);
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -172,7 +177,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Filters.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment
@@ -189,9 +194,11 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
             drawer.closeDrawer(GravityCompat.START);
         }
         else
-        // if the drawer isn't open, the back button will act as normail
+        // if the drawer isn't open, the back button will operate just as normal.
         {
             super.onBackPressed();
         }
     }
 }
+
+
