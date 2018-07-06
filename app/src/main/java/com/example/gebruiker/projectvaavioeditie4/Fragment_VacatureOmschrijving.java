@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,11 +17,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class Fragment_VacatureOmschrijving extends Fragment
 {
@@ -27,7 +36,10 @@ public class Fragment_VacatureOmschrijving extends Fragment
     private Button mSollicitatie, mContact;
     private TextView mFunctie, mLocatie, mDienstverband, mOpleiding, mSalaris, mOmschrijving;
     private FirebaseDatabase mDatabase;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, myRef2;
+    private FirebaseAuth mAuth;
+    private String UserID;
+    private Menu mMenu;
 
     @Nullable
     @Override
@@ -129,4 +141,104 @@ public class Fragment_VacatureOmschrijving extends Fragment
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.vacature_omschijving_menu, menu);
+        mMenu =  menu;
+        return;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            /* case R.id.UnFavoriteBtn:
+
+                mDatabase = FirebaseDatabase.getInstance();
+                myRef2 = mDatabase.getReference();
+
+                String key = getActivity().getIntent().getExtras().getString("Key");
+
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                UserID = user.getUid();
+
+                myRef2.child("Favorites").child(UserID).child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        Toast.makeText(getActivity(), "Vacature uit favorieten verwijderd", Toast.LENGTH_SHORT).show();
+                        mMenu.findItem(R.id.FavoriteBtn).setVisible(true);
+                        mMenu.findItem(R.id.UnFavoriteBtn).setVisible(false);
+                    }
+                });
+                return true; */
+
+            case R.id.FavoriteBtn:
+
+                myRef.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        String key = getActivity().getIntent().getExtras().getString("Key");
+
+                        mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        UserID = user.getUid();
+
+                        String dienstverband = dataSnapshot.child("Vacatures").child(key).child("Dienstverband").getValue(String.class);
+                        String functie = dataSnapshot.child("Vacatures").child(key).child("Functie").getValue(String.class);
+                        String functie_locatie = dataSnapshot.child("Vacatures").child(key).child("Functie_Locatie").getValue(String.class);
+                        String locatie = dataSnapshot.child("Vacatures").child(key).child("Locatie").getValue(String.class);
+                        String omschrijving = dataSnapshot.child("Vacatures").child(key).child("Omschrijving").getValue(String.class);
+                        String omschrijving_volledig = dataSnapshot.child("Vacatures").child(key).child("Omschrijving volledig").getValue(String.class);
+                        String opleidingsniveau = dataSnapshot.child("Vacatures").child(key).child("Opleidingsniveau").getValue(String.class);
+                        String salarisschaal = dataSnapshot.child("Vacatures").child(key).child("Salarisschaal").getValue(String.class);
+
+                        HashMap<String, Object> dataMap = new HashMap<String, Object>();
+                        dataMap.put("Functie", functie);
+                        dataMap.put("Key", key);
+                        dataMap.put("Locatie", locatie);
+                        dataMap.put("Omschrijving", omschrijving);
+                        dataMap.put("Omschrijving volledig", omschrijving_volledig);
+                        dataMap.put("Opleidingsniveau", opleidingsniveau);
+                        dataMap.put("Dienstverband", dienstverband);
+                        dataMap.put("Salarisschaal", salarisschaal);
+                        dataMap.put("Functie_Locatie", functie_locatie);
+
+                        myRef.child("Favorites").child(UserID).child(key).setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
+                        {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task)
+                            {
+                                Toast.makeText(getActivity(), "Vacature aan favorieten toegevoegd", Toast.LENGTH_SHORT).show();
+                                mMenu.findItem(R.id.FavoriteBtn).setVisible(false);
+                                mMenu.findItem(R.id.UnFavoriteBtn).setVisible(true);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+
+                    }
+                });
+                return true;
+        }
+        return onOptionsItemSelected(item);
+    }
+
 }
