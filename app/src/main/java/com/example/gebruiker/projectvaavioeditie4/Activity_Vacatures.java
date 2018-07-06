@@ -53,7 +53,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
     private String UserID;
     private RecyclerView mRecyclerView;
     private List<VacatureModule> result;
-    private RecyclerViewAdapter adapter;
+    private VacatureViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -146,7 +146,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         mRecyclerView = findViewById(R.id.recycler_view);
 
         // Setting up the adapter and LayoutManager for the RecyclerView
-        adapter = new RecyclerViewAdapter(getApplicationContext(), result);
+        adapter = new VacatureViewAdapter(getApplicationContext(), result);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

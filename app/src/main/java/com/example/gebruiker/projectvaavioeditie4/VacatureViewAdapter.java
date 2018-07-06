@@ -10,15 +10,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.VacatureViewHolder>
+public class VacatureViewAdapter extends RecyclerView.Adapter<VacatureViewAdapter.VacatureViewHolder>
 {
 
     // Creating the variable. The list is set to the type create in the VacatureModule
     private List<VacatureModule> list;
     public Context mContext;
 
-    // Setting up the RecyclerViewAdapter. The adapter needs the context and list to work properly
-    public RecyclerViewAdapter(Context mContext, List<VacatureModule> list)
+    // Setting up the VacatureViewAdapter. The adapter needs the context and list to work properly
+    public VacatureViewAdapter(Context mContext, List<VacatureModule> list)
     {
         this.list = list;
         this.mContext = mContext;
@@ -28,7 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_vacatures, parent, false);
         final VacatureViewHolder holder = new VacatureViewHolder(itemView);
         return holder;
     }
@@ -68,7 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return list.size();
     }
 
-    // Declaring the ViewHolder for the vacatures. Here fore the TextView's from the layout_listitem get added to there corresponding variables
+    // Declaring the ViewHolder for the vacatures. Here fore the TextView's from the layout_vacatures get added to there corresponding variables
     // This way, the TextView's can get edited in the onBindViewHolder.
     class VacatureViewHolder extends RecyclerView.ViewHolder
     {

@@ -6,13 +6,14 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/ScrollViewCreateMail"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOpslaanMail"
+        app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextAan"
+                android:id="@+id/EditTextAan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -33,7 +34,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/editTextMail"
+                android:id="@+id/EditTextMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -44,9 +45,10 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnOpslaanMail"
+        android:id="@+id/OpslaanBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#008bab"
         android:text="Verstuur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,25 +13,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -54,7 +49,7 @@ public class Activity_Favorites extends AppCompatActivity implements NavigationV
     private String UserID;
     private RecyclerView mRecyclerView;
     private List<VacatureModule> result;
-    private RecyclerViewAdapter adapter;
+    private VacatureViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -147,7 +142,7 @@ public class Activity_Favorites extends AppCompatActivity implements NavigationV
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         // Setting up the adapter and LayoutManager for the RecyclerView
-        adapter = new RecyclerViewAdapter(getApplicationContext(), result);
+        adapter = new VacatureViewAdapter(getApplicationContext(), result);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
