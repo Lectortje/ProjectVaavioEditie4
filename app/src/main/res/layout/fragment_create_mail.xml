@@ -40,7 +40,9 @@
                 android:ems="10"
                 android:hint="Typ hier uw bericht"
                 android:inputType="textMultiLine"
-                android:textSize="14sp" />
+                android:textSize="12sp"
+                android:textColor="#808080"/>
+
         </LinearLayout>
     </ScrollView>
 

@@ -91,42 +91,40 @@ public class Fragment_AcInbox extends Fragment
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         String user = mUser.getEmail();
+        Query mail = myRef.child("Inbox").orderByChild("Ontvanger").equalTo(user);
+        mail.addChildEventListener(new ChildEventListener()
         {
-            Query userquery = myRef.child("Inbox").orderByChild("Ontvanger").equalTo(user);
-            userquery.addChildEventListener(new ChildEventListener()
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s)
-                {
-                    result.add(dataSnapshot.getValue(InboxModule.class));
-                    adapter.notifyDataSetChanged();
-                }
+                result.add(dataSnapshot.getValue(InboxModule.class));
+                adapter.notifyDataSetChanged();
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s)
-                {
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot)
-                {
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
 
-                }
+            }
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s)
-                {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
 
-                }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError)
-                {
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
 
-                }
-            });
-        }
+            }
+        });
     }
 
 }
