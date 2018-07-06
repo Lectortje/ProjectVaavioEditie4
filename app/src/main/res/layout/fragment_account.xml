@@ -57,7 +57,7 @@
                 tools:layout_editor_absoluteY="225dp" />
 
             <Button
-                android:id="@+id/SollicatiesBtn"
+                android:id="@+id/FavorietenBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"

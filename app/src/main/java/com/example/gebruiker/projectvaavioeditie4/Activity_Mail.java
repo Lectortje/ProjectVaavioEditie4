@@ -2,27 +2,24 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,30 +29,26 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Activity_Favorites extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Activity_Mail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    //Declaring all the button, textView, String and Firebase variables.
+
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
+    private TextView mVerzender, mOnderwerp, mBericht;
+    private Button mBeantworoden;
     private StorageReference mStorage;
-    private DatabaseReference myRef, myRef2;
+    private DatabaseReference myRef;
     private FirebaseDatabase mDatabase;
-    private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private FirebaseAuth mAuth;
     private String UserID;
-    private RecyclerView mRecyclerView;
-    private List<VacatureModule> result;
-    private VacatureViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.activity_mail);
 
         // Taking the toolbar and set it as the actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -135,68 +128,61 @@ public class Activity_Favorites extends AppCompatActivity implements NavigationV
             });
         }
 
-        // Setting the result as an Array list
-        result = new ArrayList<>();
+        mVerzender = findViewById(R.id.TextViewVerzender);
+        mOnderwerp = findViewById(R.id.TextViewOnderwerp);
+        mBericht = findViewById(R.id.TextViewBericht);
 
-        // Making the refrence to the recyclerview
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        // Setting up the adapter and LayoutManager for the RecyclerView
-        adapter = new VacatureViewAdapter(getApplicationContext(), result);
-        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(mLayoutmanager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(adapter);
-
-        // Executing the create result function to create placeholders for the RecyclerView, created down below
-        updateList();
-
-    }
-
-    // Adding the data from the database into the RecyclerView.
-    private void updateList()
-    {
-        // First, the database connection gets initialized.
-        mDatabase = FirebaseDatabase.getInstance();
+        // Setting up the addValueEventListener to import the data from the database
+        myRef.addValueEventListener(new ValueEventListener()
         {
-            //All the 'Vacatures' marked as favorite by the user are retrieved from the database. These are identified by they key.
-            //They are then put into the RecyclerView and displayed as a list.
-            //They are stored under Users -> UserID -> Favoriete Vacatures -> Key.
-            myRef2 = mDatabase.getReference().child("Users").child(UserID).child("Favoriete Vacatures").child("Key");
-            myRef2.addChildEventListener(new ChildEventListener()
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
             {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                // First, there is a check to see if the data send with the Intent from Activity_Vacatures is present. If not present, the
+                // app will crash when trying to do something with it, because it's empty. A toast will show saying something went wrong
+                // When no key is present.
+                if (getIntent().hasExtra("Key"))
                 {
-                    result.add(dataSnapshot.getValue(VacatureModule.class));
-                    adapter.notifyDataSetChanged();
-                }
+                    // If a key is present, the Intent extra gets put into a variable key, which can be used in or database reference
+                    String key = getIntent().getExtras().getString("Key");
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                    // With the key, the data corresponding with that key can be loaded in into the placeholder, this is done by getting
+                    // a reference to the needed data, and put that data into a string. This string is then loaded into the TextView
+                    String verzender = dataSnapshot.child("Inbox").child(key).child("Verzender").getValue(String.class);
+                    String onderwerp = dataSnapshot.child("Inbox").child(key).child("Onderwerp").getValue(String.class);
+                    String bericht = dataSnapshot.child("Inbox").child(key).child("Bericht").getValue(String.class);
+
+                    //The variables are 'set' into text with the corresponding values. This means that the values will be converted into
+                    // text and then displayed on screen as text.
+                    mVerzender.setText(verzender);
+                    mOnderwerp.setText(onderwerp);
+                    mBericht.setText(bericht);
+                }
+                else
                 {
-
+                    //In case the data can not be send to the database, the user get's an error message saying that he/she should try again.
+                    Toast.makeText(Activity_Mail.this, "Er is iets fout gegaan, probeer het opnieuw", Toast.LENGTH_LONG).show();
                 }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot)
-                {
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
 
-                }
+            }
+        });
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s)
-                {
-
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError)
-                {
-
-                }
-            });
-        }
+        mBeantworoden = findViewById(R.id.BeantwoordenBtn);
+        mBeantworoden.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent (Activity_Mail.this, Activity_Profile.class);
+                intent.putExtra("Beantwoorden", "FromMail");
+                startActivity(intent);
+            }
+        });
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
@@ -235,10 +221,7 @@ public class Activity_Favorites extends AppCompatActivity implements NavigationV
                 startActivity(contact);
                 break;
             case R.id.nav_settings:
-                Intent navsettings = new Intent(this, Activity_Settings.class);
-                navsettings.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(navsettings);
-                finish();
+                Toast.makeText(Activity_Mail.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         // After an item is clicked in the menu, the drawer will close itself so you can see the activity/fragment

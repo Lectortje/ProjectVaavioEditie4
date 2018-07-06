@@ -38,13 +38,14 @@ public class InboxViewAdapter extends RecyclerView.Adapter<InboxViewAdapter.Inbo
 
         holder.mVerzender.setText(mail.Verzender);
         holder.mBericht.setText(mail.Bericht);
+        holder.mOnderwerp.setText(mail.Onderwerp);
 
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(mContext, Activity_VacOmschrijving.class);
+                Intent intent = new Intent(mContext, Activity_Mail.class);
                 intent.putExtra("Key", mail.Key);
                 mContext.startActivity(intent);
             }
@@ -62,7 +63,7 @@ public class InboxViewAdapter extends RecyclerView.Adapter<InboxViewAdapter.Inbo
     class InboxViewHolder extends RecyclerView.ViewHolder
     {
 
-        TextView mVerzender, mBericht;
+        TextView mVerzender, mBericht, mOnderwerp;
 
         public InboxViewHolder(View view)
         {
@@ -70,6 +71,7 @@ public class InboxViewAdapter extends RecyclerView.Adapter<InboxViewAdapter.Inbo
 
             mVerzender = (TextView) view.findViewById(R.id.TextViewAfzender);
             mBericht = (TextView) view.findViewById(R.id.TextViewBericht);
+            mOnderwerp = (TextView) view.findViewById(R.id.TextViewOnderwerp);
         }
 
     }

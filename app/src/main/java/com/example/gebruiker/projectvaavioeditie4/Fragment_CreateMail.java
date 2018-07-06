@@ -16,16 +16,20 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
 public class Fragment_CreateMail extends Fragment {
 
     //Declaring all the button, textView, String and Firebase variables.
-    private EditText mMail, mAan;
-    private Button mOpslaan;
+    private EditText mMail, mAan, mOnderwerp;
+    private Button mVerstuur;
     private FirebaseDatabase mDatabase;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
@@ -44,11 +48,12 @@ public class Fragment_CreateMail extends Fragment {
 
         mMail = view.findViewById(R.id.EditTextMail);
         mAan = view.findViewById (R.id.EditTextAan);
-        mOpslaan = view.findViewById(R.id.OpslaanBtn);
+        mOnderwerp = view.findViewById(R.id.EditTextOnderwerp);
+        mVerstuur = view.findViewById(R.id.VerstuurBtn);
 
         mAuth = FirebaseAuth.getInstance();
 
-        mOpslaan.setOnClickListener(new View.OnClickListener()
+        mVerstuur.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -59,6 +64,7 @@ public class Fragment_CreateMail extends Fragment {
                 // First, a string is created, in which the text that is filled in the edit text gets put.
                 String ontvanger = mAan.getText().toString().trim();
                 String bericht = mMail.getText().toString().trim();
+                String onderwerp = mOnderwerp.getText().toString().trim();
                 String key = myRef.child("Inbox").push().getKey();
                 String verzender = mUser.getEmail();
 
@@ -69,6 +75,7 @@ public class Fragment_CreateMail extends Fragment {
                 dataMap.put("Bericht", bericht);
                 dataMap.put("Key", key);
                 dataMap.put("Verzender", verzender);
+                dataMap.put("Onderwerp", onderwerp);
 
                 // When the HashMap is completed, the HashMap gets send to the database. The data get put under the child 'User' with a
                 // Parent equal to there UserID.
@@ -80,7 +87,7 @@ public class Fragment_CreateMail extends Fragment {
                         if (task.isSuccessful())
                         {
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcInbox()).addToBackStack("tag").commit();
+                            fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcInbox()).commit();
                         }
                         else
                         {

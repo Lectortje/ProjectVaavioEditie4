@@ -20,7 +20,7 @@ public class Fragment_Account extends Fragment
 
     // Creating the variables
     private FirebaseAuth.AuthStateListener mAuthstateListener;
-    private Button mLogOut, mCv, mPersoonlijkeInfo, mSollicitaties, mProfielWeergave, mMotivatie, mInbox, mSettings;
+    private Button mLogOut, mCv, mPersoonlijkeInfo, mFavorieten, mProfielWeergave, mMotivatie, mInbox, mSettings;
 
     // When loading the fragment, the fragment has to be assigned a layout. This happens through the inflate method.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -30,7 +30,7 @@ public class Fragment_Account extends Fragment
         mLogOut = view.findViewById(R.id.LogOutBtn);
         mCv = view.findViewById(R.id.CvBtn);
         mPersoonlijkeInfo = view.findViewById(R.id.PersoonlijkeInfoBtn);
-        mSollicitaties = view.findViewById(R.id.SollicatiesBtn);
+        mFavorieten = view.findViewById(R.id.FavorietenBtn);
         mProfielWeergave = view.findViewById(R.id.ProfielWeergaveBtn);
         mMotivatie = view.findViewById(R.id.MotivatieBtn);
         mInbox = view.findViewById(R.id.InboxBtn);
@@ -63,12 +63,12 @@ public class Fragment_Account extends Fragment
             }
         });
 
-        mSollicitaties.setOnClickListener(new View.OnClickListener() {
+        mFavorieten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getActivity(), Activity_Favorites.class);
-                startActivity(intent);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcFavorites()).addToBackStack("tag").commit();
             }
         });
 
@@ -98,7 +98,7 @@ public class Fragment_Account extends Fragment
             public void onClick(View v)
             {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcInbox()).addToBackStack("tag").commit();
+                fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcInbox()).commit();
             }
         });
 

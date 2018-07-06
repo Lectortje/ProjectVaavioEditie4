@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:context=".Activity_Homescreen"
+    tools:openDrawer="">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- omdat de action bar uit is gezet in de styles moet de toolbar ook ontworpen worden, zolas hieronder is gedaan -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Theme.AppCompat.Light" />
+
+        <ScrollView
+            android:id="@+id/ScrollViewMail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_weight="1"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TextViewVerzender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:padding="4dp"
+                    android:text="Verzender" />
+
+                <TextView
+                    android:id="@+id/TextViewOnderwerp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:padding="4dp"
+                    android:text="Onderwerp" />
+
+                <TextView
+                    android:id="@+id/TextViewBericht"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:padding="4dp"
+                    android:text="Bericht" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/BeantwoordenBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#008bab"
+            android:text="Beantwoorden" />
+
+    </LinearLayout>
+
+    <!-- Het ontwerpen van de navigation drawer, wat niet meer is dan het toewijzen van de nav header (waar de code in een apart xml file staat,
+    en het toe wijzen van de menu met knoppen) -->
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:menu="@menu/drawer_menu"/>
+
+</android.support.v4.widget.DrawerLayout>

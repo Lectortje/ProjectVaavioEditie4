@@ -126,14 +126,19 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
             });
         }
 
-        // Making the nav_home button in the drawer menu selected on start up
-        navigationView.setCheckedItem(R.id.nav_home);
-
         // Because the page only consists of a empty fragment container, the activity ahs to be loaded with a fragment.
         // So when loading the activity, the fragment gets replaced with the profile fragment.
         // The profile button in the drawer menu also gets selected.
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Account()).commit();
-        navigationView.setCheckedItem(R.id.nav_profile);
+        if (getIntent().hasExtra("Beantwoorden"))
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_CreateMail()).commit();
+            navigationView.setCheckedItem(R.id.nav_profile);
+        }
+        else
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Account()).commit();
+            navigationView.setCheckedItem(R.id.nav_profile);
+        }
     }
 
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with

@@ -31,7 +31,15 @@
                 android:ems="10"
                 android:hint="Aan:"
                 android:inputType="textEmailAddress"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/EditTextOnderwerp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Onderwerp"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/EditTextMail"
@@ -47,7 +55,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/OpslaanBtn"
+        android:id="@+id/VerstuurBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#008bab"
