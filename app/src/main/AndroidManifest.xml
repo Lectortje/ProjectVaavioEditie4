@@ -27,13 +27,10 @@
         <activity android:name=".Activity_PasswordForgotten" />
         <activity android:name=".Activity_Vacatures" />
         <activity android:name=".Activity_VacOmschrijving" />
-<<<<<<< HEAD
         <activity android:name=".Activity_NewVacature"/>
         <activity android:name=".Activity_Favorites"></activity>
-=======
         <activity android:name=".Activity_NewVacature" />
         <activity android:name=".Activity_Filters"></activity>
->>>>>>> d3baea1a8659685ed3584dc4221ce817bab78412
     </application>
 
 </manifest>
