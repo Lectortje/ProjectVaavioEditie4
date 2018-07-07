@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +23,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -36,10 +33,9 @@ public class Fragment_VacatureOmschrijving extends Fragment
     private Button mSollicitatie, mContact;
     private TextView mFunctie, mLocatie, mDienstverband, mOpleiding, mSalaris, mOmschrijving;
     private FirebaseDatabase mDatabase;
-    private DatabaseReference myRef, myRef2;
+    private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private String UserID;
-    private Menu mMenu;
 
     @Nullable
     @Override
@@ -153,7 +149,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
         inflater.inflate(R.menu.vacature_omschijving_menu, menu);
-        mMenu =  menu;
         return;
     }
 
@@ -162,29 +157,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
     {
         switch (item.getItemId())
         {
-            /* case R.id.UnFavoriteBtn:
-
-                mDatabase = FirebaseDatabase.getInstance();
-                myRef2 = mDatabase.getReference();
-
-                String key = getActivity().getIntent().getExtras().getString("Key");
-
-                mAuth = FirebaseAuth.getInstance();
-                FirebaseUser user = mAuth.getCurrentUser();
-                UserID = user.getUid();
-
-                myRef2.child("Favorites").child(UserID).child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task)
-                    {
-                        Toast.makeText(getActivity(), "Vacature uit favorieten verwijderd", Toast.LENGTH_SHORT).show();
-                        mMenu.findItem(R.id.FavoriteBtn).setVisible(true);
-                        mMenu.findItem(R.id.UnFavoriteBtn).setVisible(false);
-                    }
-                });
-                return true; */
-
             case R.id.FavoriteBtn:
 
                 myRef.addValueEventListener(new ValueEventListener()
@@ -224,8 +196,6 @@ public class Fragment_VacatureOmschrijving extends Fragment
                             public void onComplete(@NonNull Task<Void> task)
                             {
                                 Toast.makeText(getActivity(), "Vacature aan favorieten toegevoegd", Toast.LENGTH_SHORT).show();
-                                mMenu.findItem(R.id.FavoriteBtn).setVisible(false);
-                                mMenu.findItem(R.id.UnFavoriteBtn).setVisible(true);
                             }
                         });
                     }
@@ -240,5 +210,4 @@ public class Fragment_VacatureOmschrijving extends Fragment
         }
         return onOptionsItemSelected(item);
     }
-
 }
