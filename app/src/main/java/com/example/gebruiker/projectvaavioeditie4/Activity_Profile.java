@@ -134,6 +134,11 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_CreateMail()).commit();
             navigationView.setCheckedItem(R.id.nav_profile);
         }
+        if (getIntent().hasExtra("VacOms"))
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_CreateMail()).commit();
+            navigationView.setCheckedItem(R.id.nav_profile);
+        }
         else
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Account()).commit();

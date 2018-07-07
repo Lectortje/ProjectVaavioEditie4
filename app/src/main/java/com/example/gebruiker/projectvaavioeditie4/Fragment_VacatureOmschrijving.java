@@ -1,5 +1,6 @@
 package com.example.gebruiker.projectvaavioeditie4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -107,7 +108,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
             }
         });
 
-        //The button lets the user navigate to the Sollicitatie screen to send out a sollicitation to the employer.
+        // The button lets the user navigate to the Sollicitatie screen to send out a sollicitation to the employer.
         mSollicitatie.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -119,17 +120,41 @@ public class Fragment_VacatureOmschrijving extends Fragment
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_Sollicitatie()).addToBackStack("tag").commit();
             }
         });
-        //This button lets the user navigate to the Contact screen in order to send out a contactform to inquire more information
-        // about the job offer.
+        // This button starts an intent to the profile activity, in which the create mail fragment will be opened. A few things get send
+        // with the intent aswell, these are the email and omschrijving. They first get gotten out of the database with a ValueEventListener.
         mContact.setOnClickListener(new View.OnClickListener()
         {
             @Override
             //This is the onClick handling for the button btnContact.
             public void onClick(View v)
             {
-                //This opens the fragment Fragment_Contact if the button btnContact is clicked.
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new Fragment_Contact()).addToBackStack("tag").commit();
+                myRef.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        String key = getActivity().getIntent().getExtras().getString("Key");
+
+                        String email = dataSnapshot.child("Vacatures").child(key).child("Plaatser").getValue(String.class);
+                        String omschrijving = dataSnapshot.child("Vacatures").child(key).child("Omschrijving").getValue(String.class);
+
+                        Intent intent = new Intent(getActivity(), Activity_Profile.class);
+                        intent.putExtra("VacOms", "VacOms");
+                        intent.putExtra("Email", email);
+                        intent.putExtra("Omschrijving", omschrijving);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+
+                    }
+                });
+
+
+
+
             }
         });
 

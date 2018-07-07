@@ -13,7 +13,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/OpslaanBtn"
+        app:layout_constraintBottom_toTopOf="@+id/VerstuurBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +48,8 @@
                 android:ems="10"
                 android:hint="Typ hier uw bericht"
                 android:inputType="textMultiLine"
-                android:textSize="12sp"
-                android:textColor="#808080"/>
+                android:textColor="#808080"
+                android:textSize="12sp" />
 
         </LinearLayout>
     </ScrollView>

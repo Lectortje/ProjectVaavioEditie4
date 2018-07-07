@@ -57,6 +57,18 @@ public class Fragment_CreateMail extends Fragment
         //The authentication of access is run.
         mAuth = FirebaseAuth.getInstance();
 
+        // When the user is redirect from the contact button at the vacature omschrijving screen. A few extra's are present which can be used
+        // to prefill the reciever and the subject of the mail. These extra's get put into a string and their corresponding object gets put
+        // equal to that string.
+        if (getActivity().getIntent().hasExtra("VacOms"))
+        {
+            String email = getActivity().getIntent().getExtras().getString("Email");
+            String onderwerp = getActivity().getIntent().getExtras().getString("Omschrijving");
+
+            mAan.setText(email);
+            mOnderwerp.setText(onderwerp);
+        }
+
         //The action of the button is assigned to the button that sends the mail to the database.
         mVerstuur.setOnClickListener(new View.OnClickListener()
         {
@@ -92,6 +104,7 @@ public class Fragment_CreateMail extends Fragment
                     {
                         if (task.isSuccessful())
                         {
+                            Toast.makeText(getActivity(), "Bericht succesvol verstuurd", Toast.LENGTH_LONG).show();
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.fragment_container, new Fragment_AcInbox()).commit();
                         }

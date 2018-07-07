@@ -293,6 +293,9 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                     String dienstverband = mDienstverband.getSelectedItem().toString().trim();
                     String salaris = mSalaris.getSelectedItem().toString().trim();
 
+                    mUser = mAuth.getCurrentUser();
+                    String email = mUser.getEmail();
+
                     // To generate a key for the vacature, an empty vacature (it gets filled later) gets pushed (pushing generates a key in Firebase) to
                     // the database, after which the key just generated gets instantly gotten and put into a string variable, so that we can use it.
                     String key = myRef2.child("Vacatures").push().getKey();
@@ -308,6 +311,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
                     dataMap.put("Dienstverband", dienstverband);
                     dataMap.put("Salarisschaal", salaris);
                     dataMap.put("Functie_Locatie", functie + "_" + locatie);
+                    dataMap.put("Plaatser", email);
 
                     // When everything above is created, it can be put in to the database. In this reference as you can see is the key created above used
                     // This way the data gets put into that random generated key.
