@@ -18,13 +18,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_AcFavorites extends Fragment
 {
+    //Declaring all the RecyclerView, List, Adapter, String and Firebase variables.
     private RecyclerView mRecyclerView;
     private List<VacatureModule> result;
     private VacatureViewAdapter adapter;
@@ -63,10 +63,12 @@ public class Fragment_AcFavorites extends Fragment
     private void updateList()
     {
 
+        //First of all the application checks if the user is logged in and which user is logged in.
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         UserID = user.getUid();
 
+        //A database connection is set up.
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference().child("Favorites").child(UserID);
         myRef.addChildEventListener(new ChildEventListener()
@@ -74,6 +76,8 @@ public class Fragment_AcFavorites extends Fragment
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
+                //The VacatureModule is being used to load the mails into the recyclerview and show them to the user in a
+                // recyclerview format.
                 result.add(dataSnapshot.getValue(VacatureModule.class));
                 adapter.notifyDataSetChanged();
             }
