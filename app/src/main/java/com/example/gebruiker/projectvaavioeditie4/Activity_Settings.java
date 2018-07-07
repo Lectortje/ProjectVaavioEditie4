@@ -37,7 +37,6 @@ public class Activity_Settings extends AppCompatActivity implements NavigationVi
 
     //Declaring all the drawer, button, textView, ImageView, String and Firebase variables.
     private DrawerLayout drawer;
-    private Switch mSwitchMeldingen, mSwitchDonkerThema;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
     private StorageReference mStorage;
@@ -132,38 +131,6 @@ public class Activity_Settings extends AppCompatActivity implements NavigationVi
             // Making the nav_home button in the drawer menu selected on start up
             navigationView.setCheckedItem(R.id.nav_settings);
         }
-
-        mSwitchDonkerThema=(Switch)findViewById(R.id.switchDonkerThema);
-        mSwitchDonkerThema.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    mSwitchDonkerThema.setText("Donker thema uitschakelen");  //To change the text near to switch
-                    Log.d("Donker thema :", " ingeschakeld");
-                }
-                else {
-                    mSwitchDonkerThema.setText("Donker thema inschakelen");  //To change the text near to switch
-                    Log.d("Donker thema :", " uitgeschakeld");
-                }
-            }
-        });
-
-        mSwitchMeldingen=(Switch)findViewById(R.id.switchMeldingen);
-        mSwitchMeldingen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    mSwitchMeldingen.setText("Meldingen uitschakelen");  //To change the text near to switch
-                    Log.d("Meldingen :", " zijn nu ingeschakeld");
-                }
-                else {
-                    mSwitchMeldingen.setText("Meldingen inschakelen");  //To change the text near to switch
-                    Log.d("Meldingen :", " zijn nu uitgeschakeld");
-                }
-            }
-        });
     }
     // The cases for the items in the Navigation drawer. When clicking on an item in the menu, the method corresponding with
     // The clicked item will be executed.
