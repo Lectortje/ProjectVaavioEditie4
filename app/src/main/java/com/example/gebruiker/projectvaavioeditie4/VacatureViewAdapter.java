@@ -28,6 +28,9 @@ public class VacatureViewAdapter extends RecyclerView.Adapter<VacatureViewAdapte
     @Override
     public VacatureViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+        //In order to be able to view the items in the application, an inflation of the layout is set up. The layout inflation is used to
+        // instantiate the correct layout and load it into the corresponding screen in order to be able to see it. In this case it is the
+        // layout_vacatures that is needed in the Activity_Vacatures.
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_vacatures, parent, false);
         final VacatureViewHolder holder = new VacatureViewHolder(itemView);
         return holder;

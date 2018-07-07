@@ -91,12 +91,17 @@ public class Fragment_AcInbox extends Fragment
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         String user = mUser.getEmail();
+        //A query is used to retrieve all the messages from the same sender to the user that opens his/her mailbox.
+        //Especially the last part of this query is important; '.equalTo(user)' with this the user is set equal to the
+        // user that is supposed to receive the mail when opening his/her mailbox.
         Query mail = myRef.child("Inbox").orderByChild("Ontvanger").equalTo(user);
         mail.addChildEventListener(new ChildEventListener()
         {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s)
             {
+                //The InboxModule is being used to load the mails into the recyclerview and show them to the user in a
+                // recyclerview format.
                 result.add(dataSnapshot.getValue(InboxModule.class));
                 adapter.notifyDataSetChanged();
             }

@@ -196,6 +196,10 @@ public class Fragment_AcCV extends Fragment
         }
     }
 
+    // On android versions higher the lollipop, extra verification is needed to get access to the storage of the phone of the user.
+    // So, first the android version of the mobile phone gets checked.
+    // If the version is Lollipop or higher, an extra pop-up will show asking the user to grant permission to the storage.
+    // If the version is lower then Lollipop, nothing will show.
     private void checkFilePermissions()
     {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP)

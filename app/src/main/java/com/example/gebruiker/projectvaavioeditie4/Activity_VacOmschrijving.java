@@ -31,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 public class Activity_VacOmschrijving extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    //Declaring all the button, textView, String and Firebase variables.
+    //Declaring all the drawer, button, textView, ImageView, String and Firebase variables.
     private DrawerLayout drawer;
     private ImageView mIVNavHeader;
     private TextView mTV1NavHeader, mTV2NavHeader;
@@ -153,20 +153,24 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
                 Intent av = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/terms-and-conditions/"));
                 startActivity(av);
                 break;
+            //Intent that switches the user to his/her profile page from the current activity.
             case R.id.nav_profile:
                 Intent navprofile = new Intent(this, Activity_Login.class);
                 navprofile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(navprofile);
                 finish();
                 break;
+            //Intent that redirects the user to the "about us" page of Vaavio.
             case R.id.nav_over_ons:
                 Intent overons = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/over-ons/"));
                 startActivity(overons);
                 break;
+            //Intent that redirects the user to the "contact" page of Vaavio.
             case R.id.nav_contact:
                 Intent contact = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.vaavio.nl/contact/"));
                 startActivity(contact);
                 break;
+            //Intent that shows a toast "Settings" when clicked.
             case R.id.nav_settings:
                 Toast.makeText(Activity_VacOmschrijving.this, "Settings", Toast.LENGTH_SHORT).show();
                 break;

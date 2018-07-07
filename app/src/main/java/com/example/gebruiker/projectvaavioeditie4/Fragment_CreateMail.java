@@ -43,22 +43,27 @@ public class Fragment_CreateMail extends Fragment {
         //This also holds the content of the fragment to display.
         View view = inflater.inflate(R.layout.fragment_create_mail, container, false);
 
+        //First of all, a database connection is made.
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference();
 
+        //The different variables are assigned to the corresponding buttons and EditText functions.
         mMail = view.findViewById(R.id.EditTextMail);
         mAan = view.findViewById (R.id.EditTextAan);
         mOnderwerp = view.findViewById(R.id.EditTextOnderwerp);
         mVerstuur = view.findViewById(R.id.VerstuurBtn);
 
+        //The authentication of access is run.
         mAuth = FirebaseAuth.getInstance();
 
+        //The action of the button is assigned to the button that sends the mail to the database.
         mVerstuur.setOnClickListener(new View.OnClickListener()
         {
             @Override
+            //The onclick handling is set up.
             public void onClick(View v)
             {
-
+                //First of all, the application checks which user is logged in.
                 mUser = mAuth.getCurrentUser();
 
                 // First, a string is created, in which the text that is filled in the edit text gets put.
