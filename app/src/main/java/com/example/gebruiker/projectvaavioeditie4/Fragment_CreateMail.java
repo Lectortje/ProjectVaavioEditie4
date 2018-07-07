@@ -25,7 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class Fragment_CreateMail extends Fragment {
+public class Fragment_CreateMail extends Fragment
+{
 
     //Declaring all the button, textView, String and Firebase variables.
     private EditText mMail, mAan, mOnderwerp;

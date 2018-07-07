@@ -172,6 +172,8 @@ public class Activity_Mail extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        // The OnClickListener for the beantwoorden button. It starts an Intent to the profile activity. It also sends an Extra so that activity
+        // knows were the user came from.
         mBeantworoden = findViewById(R.id.BeantwoordenBtn);
         mBeantworoden.setOnClickListener(new View.OnClickListener()
         {

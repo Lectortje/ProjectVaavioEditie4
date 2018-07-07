@@ -138,6 +138,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
         return view;
     }
 
+    // Telling the app when the activity is created that the app has an options menu
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
@@ -145,6 +146,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
         setHasOptionsMenu(true);
     }
 
+    // Creating the options menu by inflating the layout to it
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
@@ -152,6 +154,7 @@ public class Fragment_VacatureOmschrijving extends Fragment
         return;
     }
 
+    // Telling the app what to do when the button in the options menu is clicked
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -159,53 +162,68 @@ public class Fragment_VacatureOmschrijving extends Fragment
         {
             case R.id.FavoriteBtn:
 
-                myRef.addValueEventListener(new ValueEventListener()
+                // checking if a user is currently logged in
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user != null)
                 {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot)
+                    // An addValueEventListener is created to get the data from the database
+                    myRef.addValueEventListener(new ValueEventListener()
                     {
-                        String key = getActivity().getIntent().getExtras().getString("Key");
-
-                        mAuth = FirebaseAuth.getInstance();
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        UserID = user.getUid();
-
-                        String dienstverband = dataSnapshot.child("Vacatures").child(key).child("Dienstverband").getValue(String.class);
-                        String functie = dataSnapshot.child("Vacatures").child(key).child("Functie").getValue(String.class);
-                        String functie_locatie = dataSnapshot.child("Vacatures").child(key).child("Functie_Locatie").getValue(String.class);
-                        String locatie = dataSnapshot.child("Vacatures").child(key).child("Locatie").getValue(String.class);
-                        String omschrijving = dataSnapshot.child("Vacatures").child(key).child("Omschrijving").getValue(String.class);
-                        String omschrijving_volledig = dataSnapshot.child("Vacatures").child(key).child("Omschrijving volledig").getValue(String.class);
-                        String opleidingsniveau = dataSnapshot.child("Vacatures").child(key).child("Opleidingsniveau").getValue(String.class);
-                        String salarisschaal = dataSnapshot.child("Vacatures").child(key).child("Salarisschaal").getValue(String.class);
-
-                        HashMap<String, Object> dataMap = new HashMap<String, Object>();
-                        dataMap.put("Functie", functie);
-                        dataMap.put("Key", key);
-                        dataMap.put("Locatie", locatie);
-                        dataMap.put("Omschrijving", omschrijving);
-                        dataMap.put("Omschrijving volledig", omschrijving_volledig);
-                        dataMap.put("Opleidingsniveau", opleidingsniveau);
-                        dataMap.put("Dienstverband", dienstverband);
-                        dataMap.put("Salarisschaal", salarisschaal);
-                        dataMap.put("Functie_Locatie", functie_locatie);
-
-                        myRef.child("Favorites").child(UserID).child(key).setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot)
                         {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task)
+                            // The Key that has been send from the vacatures activity gets converted into a string that we can use
+                            String key = getActivity().getIntent().getExtras().getString("Key");
+
+                            // The current user get put into a variable
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            UserID = user.getUid();
+
+                            // Getting the data needed from the dataShot and putting it into string variables.
+                            String dienstverband = dataSnapshot.child("Vacatures").child(key).child("Dienstverband").getValue(String.class);
+                            String functie = dataSnapshot.child("Vacatures").child(key).child("Functie").getValue(String.class);
+                            String functie_locatie = dataSnapshot.child("Vacatures").child(key).child("Functie_Locatie").getValue(String.class);
+                            String locatie = dataSnapshot.child("Vacatures").child(key).child("Locatie").getValue(String.class);
+                            String omschrijving = dataSnapshot.child("Vacatures").child(key).child("Omschrijving").getValue(String.class);
+                            String omschrijving_volledig = dataSnapshot.child("Vacatures").child(key).child("Omschrijving volledig").getValue(String.class);
+                            String opleidingsniveau = dataSnapshot.child("Vacatures").child(key).child("Opleidingsniveau").getValue(String.class);
+                            String salarisschaal = dataSnapshot.child("Vacatures").child(key).child("Salarisschaal").getValue(String.class);
+
+                            // Putting the strings just created into a HashMap
+                            HashMap<String, Object> dataMap = new HashMap<String, Object>();
+                            dataMap.put("Functie", functie);
+                            dataMap.put("Key", key);
+                            dataMap.put("Locatie", locatie);
+                            dataMap.put("Omschrijving", omschrijving);
+                            dataMap.put("Omschrijving volledig", omschrijving_volledig);
+                            dataMap.put("Opleidingsniveau", opleidingsniveau);
+                            dataMap.put("Dienstverband", dienstverband);
+                            dataMap.put("Salarisschaal", salarisschaal);
+                            dataMap.put("Functie_Locatie", functie_locatie);
+
+                            // Sending the HashMap to a new reference in the database where the favorites of a user are stored.
+                            myRef.child("Favorites").child(UserID).child(key).updateChildren(dataMap).addOnCompleteListener(new OnCompleteListener<Void>()
                             {
-                                Toast.makeText(getActivity(), "Vacature aan favorieten toegevoegd", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    Toast.makeText(getActivity(), "Vacature aan favorieten toegevoegd", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError)
-                    {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError)
+                        {
 
-                    }
-                });
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "Je moet ingelogd zijn om vacatures aan je favorieten toe te voegen", Toast.LENGTH_SHORT).show();
+                }
                 return true;
         }
         return onOptionsItemSelected(item);

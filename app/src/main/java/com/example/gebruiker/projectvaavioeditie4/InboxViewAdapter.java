@@ -17,7 +17,7 @@ public class InboxViewAdapter extends RecyclerView.Adapter<InboxViewAdapter.Inbo
     private List<InboxModule> list;
     public Context mContext;
 
-    //A public viewadapter containing the Context and the List is set up.
+    //A public ViewAdapter containing the Context and the List is set up.
     public InboxViewAdapter(Context mContext, List<InboxModule> list)
     {
         //The Context and List are set equal to their varaibeles assigned earlier.
