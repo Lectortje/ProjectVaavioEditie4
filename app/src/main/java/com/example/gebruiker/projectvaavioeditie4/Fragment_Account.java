@@ -39,6 +39,8 @@ public class Fragment_Account extends Fragment
         // Executing the FireBaseListener function created below to log the user out.
         setupFireBaseListener();
 
+        getActivity().setTitle("Account");
+
         // Setting the onClickListener for the button. When the button is clicked, a fragment transaction will start replacing the
         // Current fragment to the fragment called in the method. The fragment however gets added to the back stack so the user can press
         // The back button in case it wants to go back. This prevents the app from getting closed start away when the back button is pressed.

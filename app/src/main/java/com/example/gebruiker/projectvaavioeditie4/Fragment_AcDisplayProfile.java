@@ -72,6 +72,8 @@ public class Fragment_AcDisplayProfile extends Fragment
         // Executing the setProfileImage function created down below
         setProfileImage();
 
+        getActivity().setTitle("Profiel weergave");
+
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
         mRef.addValueEventListener(new ValueEventListener()

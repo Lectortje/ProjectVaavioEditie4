@@ -63,7 +63,7 @@ public class Activity_VacOmschrijving extends AppCompatActivity implements Navig
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Vacature omschrijving");
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);

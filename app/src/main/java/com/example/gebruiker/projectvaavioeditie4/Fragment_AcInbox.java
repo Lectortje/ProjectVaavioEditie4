@@ -78,6 +78,8 @@ public class Fragment_AcInbox extends Fragment
 
         updateList();
 
+        getActivity().setTitle("Inbox");
+
         //Returning view in order to show the layout created in the xml for the fragment.
         //This is also in order to ensure that the buttons inside the fragment can be assigned and can be clicked and open other screens (activities or fragments).
         return view;

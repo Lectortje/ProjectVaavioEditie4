@@ -54,7 +54,7 @@ public class Activity_Login extends AppCompatActivity implements NavigationView.
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Login");
 
         // Setting up the refrences to the actual buttons/edittexts/textviews in the app
         mEmailadres = findViewById(R.id.EditTextEmailadres);

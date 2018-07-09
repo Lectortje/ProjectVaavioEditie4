@@ -12,6 +12,7 @@
         android:background="#008bab"
         android:text="Verstuur"
         android:textSize="14sp"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

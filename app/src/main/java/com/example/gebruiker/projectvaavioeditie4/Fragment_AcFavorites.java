@@ -56,6 +56,8 @@ public class Fragment_AcFavorites extends Fragment
         // Executing the create result function to create placeholders for the RecyclerView, created down below
         updateList();
 
+        getActivity().setTitle("Favorieten");
+
         return view;
     }
 

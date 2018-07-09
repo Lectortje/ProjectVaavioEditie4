@@ -77,6 +77,8 @@ public class Fragment_AcCV extends Fragment
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
 
+        getActivity().setTitle("CV");
+
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 

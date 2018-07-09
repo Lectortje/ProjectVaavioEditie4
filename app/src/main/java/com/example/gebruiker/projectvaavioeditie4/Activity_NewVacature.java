@@ -2,16 +2,13 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +39,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Activity_NewVacature extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -85,7 +81,7 @@ public class Activity_NewVacature extends AppCompatActivity implements Navigatio
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Nieuwe vacature");
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);

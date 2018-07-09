@@ -104,6 +104,8 @@ public class Fragment_AcPersonalInfo extends Fragment
         // Executing the checkFilePersmissions function created down below
         checkFilePermissions();
 
+        getActivity().setTitle("Persoonlijke informatie");
+
         // Executing the setProfileImage function created down below
         setProfileImage();
 

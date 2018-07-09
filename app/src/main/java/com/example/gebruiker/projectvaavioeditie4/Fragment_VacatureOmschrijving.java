@@ -62,6 +62,8 @@ public class Fragment_VacatureOmschrijving extends Fragment
         mContact = view.findViewById(R.id.ContactBtn);
         mSollicitatie = view.findViewById(R.id.SollicitatieBtn);
 
+        getActivity().setTitle("Vacature omschrijving");
+
         // Setting up the addValueEventListener to import the data from the database
         myRef.addValueEventListener(new ValueEventListener()
         {

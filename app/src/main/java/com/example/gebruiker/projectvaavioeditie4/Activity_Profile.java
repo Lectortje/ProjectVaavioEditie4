@@ -62,7 +62,7 @@ public class Activity_Profile extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Profiel");
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);

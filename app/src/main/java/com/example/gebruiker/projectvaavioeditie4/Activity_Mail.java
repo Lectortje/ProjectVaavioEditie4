@@ -65,7 +65,7 @@ public class Activity_Mail extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Inbox");
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);
@@ -180,9 +180,9 @@ public class Activity_Mail extends AppCompatActivity implements NavigationView.O
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent (Activity_Mail.this, Activity_Profile.class);
-                intent.putExtra("Beantwoorden", "FromMail");
-                startActivity(intent);
+                Intent intent2 = new Intent (Activity_Mail.this, Activity_Profile.class);
+                intent2.putExtra("Beantwoorden", "Beantwoorden");
+                startActivity(intent2);
             }
         });
     }

@@ -76,7 +76,7 @@ public class Activity_Vacatures extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Vacatures");
 
         // Setting the nav_header of the drawer menu, using the layout created.
         View hView = navigationView.inflateHeaderView(R.layout.nav_header);

@@ -109,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="#008bab"
+                android:textColor="#FFF"
                 android:text="Bevestingen"
                 android:textSize="12sp" />
 
@@ -140,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="#008bab"
+                android:textColor="#FFF"
                 android:text="Verwijder Account"
                 android:textSize="12sp" />
 

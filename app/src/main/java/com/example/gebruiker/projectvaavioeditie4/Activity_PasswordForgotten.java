@@ -49,7 +49,7 @@ public class Activity_PasswordForgotten extends AppCompatActivity implements Nav
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Wachtwoord vergeten");
 
         // Initializing the Auth refrence
         mAuth = FirebaseAuth.getInstance();

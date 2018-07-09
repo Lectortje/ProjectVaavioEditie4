@@ -56,6 +56,8 @@ public class Fragment_Sollicitatie extends Fragment
         mBericht = view.findViewById(R.id.EditTextBerichtSollicitatie);
         mTelefoon = view.findViewById(R.id.EditTextTelefoonSollicitatie);
 
+        getActivity().setTitle("Sollicitatie");
+
         //Setting the OnClick event for the verstuur button.
         mVerstuur.setOnClickListener(new View.OnClickListener()
         {

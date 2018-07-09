@@ -16,12 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -68,6 +64,8 @@ public class Fragment_CreateMail extends Fragment
             mAan.setText(email);
             mOnderwerp.setText(onderwerp);
         }
+
+        getActivity().setTitle("Creeer mail");
 
         //The action of the button is assigned to the button that sends the mail to the database.
         mVerstuur.setOnClickListener(new View.OnClickListener()

@@ -58,6 +58,7 @@ public class VacatureViewAdapter extends RecyclerView.Adapter<VacatureViewAdapte
             {
                 Intent intent = new Intent(mContext, Activity_VacOmschrijving.class);
                 intent.putExtra("Key", vacature.Key);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });

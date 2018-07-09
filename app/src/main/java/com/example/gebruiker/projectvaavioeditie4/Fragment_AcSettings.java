@@ -50,6 +50,8 @@ public class Fragment_AcSettings extends Fragment
 
         mAuth = FirebaseAuth.getInstance();
 
+        getActivity().setTitle("Account settings");
+
         // Setting the OnClickListener  for the bevestigen button
         mBevestigen.setOnClickListener(new View.OnClickListener()
         {

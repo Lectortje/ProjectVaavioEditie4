@@ -2,7 +2,6 @@ package com.example.gebruiker.projectvaavioeditie4;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -59,7 +58,7 @@ public class Activity_Register extends AppCompatActivity implements NavigationVi
         toggle.syncState();
 
         // Setting the title that is showing on the toolbar
-        setTitle("Vaavio");
+        setTitle("Registreren");
 
         // Creating the refrence to the EditText's and TextView
         mEmail = findViewById(R.id.EditTextEmail);

@@ -55,6 +55,8 @@ public class Fragment_AcMotivation extends Fragment
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference mRef = mFirebaseDatabase.getReference();
 
+        getActivity().setTitle("Motivatie");
+
         //Setting the OnClick event for the opslaan button.
         mOpslaan.setOnClickListener(new View.OnClickListener()
         {
@@ -91,9 +93,11 @@ public class Fragment_AcMotivation extends Fragment
 
         // Setting up the ValueEventListener, used to extract data from the database. This is to prefill the edit texts with the data from the
         // database so that the user does not have to fill in the whole list again when it wants te change only 1 field for example.
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
                 // First there is a string created. This string gets the data form the dataSnapshot. In the case of 'motivatie'. The string gets the value
                 // equal to the Motivatie child in the child equal to the currently logged in user his UserID.
                 String motivatie = dataSnapshot.child("Users").child(UserID).child("Motivatie").getValue(String.class);
@@ -104,7 +108,8 @@ public class Fragment_AcMotivation extends Fragment
 
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError)
+            {
 
             }
         });
